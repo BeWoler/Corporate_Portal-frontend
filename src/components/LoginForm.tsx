@@ -1,10 +1,12 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useContext } from "react";
+import { Context } from "../index";
 import classes from "../styles/loginForm.module.css";
 import { Button, Link, TextField } from "@mui/material";
 
 const LoginForm: FC = () => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const { store } = useContext(Context);
 
   return (
     <form className={classes.form}>
@@ -25,7 +27,11 @@ const LoginForm: FC = () => {
           setPassword(e.target.value);
         }}
       />
-      <Button variant="contained" sx={{ margin: "2rem 1.3rem 2rem 1.3rem" }}>
+      <Button
+        variant="contained"
+        sx={{ margin: "2rem 1.3rem 2rem 1.3rem" }}
+        onClick={() => store.login(username, password)}
+      >
         Sign In
       </Button>
       <div className={classes.linkBox}>

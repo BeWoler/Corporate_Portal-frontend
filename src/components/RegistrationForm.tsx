@@ -1,4 +1,5 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useContext } from "react";
+import { Context } from "../index";
 import classes from "../styles/registrationForm.module.css";
 import { Link, TextField, Button } from "@mui/material";
 
@@ -6,6 +7,7 @@ const RegistrationForm: FC = () => {
   const [email, setEmail] = useState<string>("");
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const { store } = useContext(Context);
 
   return (
     <form className={classes.form}>
@@ -20,7 +22,7 @@ const RegistrationForm: FC = () => {
       />
       <TextField
         label="Username"
-        type="password"
+        type="text"
         sx={{ margin: "1.5rem 1.3rem 0.8rem 1.3rem" }}
         onChange={(e) => {
           setUsername(e.target.value);
@@ -34,12 +36,16 @@ const RegistrationForm: FC = () => {
           setPassword(e.target.value);
         }}
       />
-      <Button variant="contained" sx={{ margin: "2rem 1.3rem 2rem 1.3rem" }}>
+      <Button
+        variant="contained"
+        sx={{ margin: "2rem 1.3rem 2rem 1.3rem" }}
+        onClick={() => store.registration(email, username, password)}
+      >
         Sign In
       </Button>
       <div className={classes.linkBox}>
         <span>Have an account?</span>
-        <Link href="#">Sign In</Link>
+        <Link href="#">Sign Up</Link>
       </div>
     </form>
   );
