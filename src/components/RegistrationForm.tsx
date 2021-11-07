@@ -2,6 +2,7 @@ import React, { FC, useState, useContext } from "react";
 import { Context } from "../index";
 import classes from "../styles/registrationForm.module.css";
 import { Link, TextField, Button } from "@mui/material";
+import { observer } from 'mobx-react-lite';
 
 const RegistrationForm: FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -41,14 +42,14 @@ const RegistrationForm: FC = () => {
         sx={{ margin: "2rem 1.3rem 2rem 1.3rem" }}
         onClick={() => store.registration(email, username, password)}
       >
-        Sign In
+        Sign Up
       </Button>
       <div className={classes.linkBox}>
         <span>Have an account?</span>
-        <Link href="#">Sign Up</Link>
+        <Link href="#">Sign In</Link>
       </div>
     </form>
   );
 };
 
-export default RegistrationForm;
+export default observer(RegistrationForm);

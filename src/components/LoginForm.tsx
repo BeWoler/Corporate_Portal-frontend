@@ -1,7 +1,8 @@
-import React, { FC, useState, useContext } from "react";
+import { FC, useState, useContext } from "react";
 import { Context } from "../index";
 import classes from "../styles/loginForm.module.css";
-import { Button, Link, TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
+import { observer } from 'mobx-react-lite';
 
 const LoginForm: FC = () => {
   const [username, setUsername] = useState<string>("");
@@ -35,11 +36,9 @@ const LoginForm: FC = () => {
         Sign In
       </Button>
       <div className={classes.linkBox}>
-        <Link href="#">Sign Up</Link>
-        <Link href="#">Forgot Password?</Link>
       </div>
     </form>
   );
 };
 
-export default LoginForm;
+export default observer(LoginForm);
