@@ -2,6 +2,7 @@ import { FC, useState, useContext } from "react";
 import { Context } from "../index";
 import classes from "../styles/loginForm.module.css";
 import { Button, TextField } from "@mui/material";
+import { Link } from "react-router-dom";
 import { observer } from 'mobx-react-lite';
 
 const LoginForm: FC = () => {
@@ -11,7 +12,7 @@ const LoginForm: FC = () => {
 
   return (
     <form className={classes.form}>
-      <h2 className={classes.h2}>Sign In</h2>
+      <h2 className={classes.h2}>Login</h2>
       <TextField
         label="Username"
         type="text"
@@ -36,6 +37,7 @@ const LoginForm: FC = () => {
         Sign In
       </Button>
       <div className={classes.linkBox}>
+        <Link to="/registration">Sign Up</Link>
       </div>
     </form>
   );

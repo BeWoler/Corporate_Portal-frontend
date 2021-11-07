@@ -1,9 +1,8 @@
 import { useEffect, useContext } from "react";
 import classes from "../styles/app.module.css";
-import LoginForm from "./LoginForm";
-// import RegistrationForm from "./RegistrationForm";
 import { observer } from "mobx-react-lite";
 import { Context } from "../index";
+import AppRouter from "./AppRouter";
 import Header from "./Header";
 
 const App = () => {
@@ -15,17 +14,21 @@ const App = () => {
     }
   }, [store]);
 
-  if(!store.isAuth) {
-    return <div>
-    <Header /> 
-    <LoginForm />
-    </div>
+  if(store.isLoading) {
+    return <div></div>
+  }
+
+  const check = () => {
+    if(store.isAuth) {
+      return console.log('Authorized')
+    }
   }
 
   return (
     <div className={classes.myDiv}>
+      {check()}
       <Header />
-      <h1 className={classes.h1}>{store.isAuth ?  `Welcome ${store.user.username}!` : 'Unauthorized'}</h1>
+      <AppRouter />
     </div>
   );
 };

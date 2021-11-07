@@ -8,11 +8,30 @@ import { Button } from "@mui/material";
 const Header: FC = () => {
   const { store } = useContext(Context);
 
-  const checkAuth = () => {
-    if (store.isAuth) {
-      return <UserBar />;
-    }
+  if (store.isAuth) {
     return (
+      <header className={classes.header}>
+        <nav>
+          <ul className={classes.ul}>
+            <li className={classes.li}>Main</li>
+            <li className={classes.li}>Main</li>
+            <li className={classes.li}>Main</li>
+          </ul>
+        </nav>
+        <UserBar />
+      </header>
+    );
+  }
+
+  return (
+    <header className={classes.header}>
+      <nav>
+        <ul className={classes.ul}>
+          <li className={classes.li}>Main</li>
+          <li className={classes.li}>Main</li>
+          <li className={classes.li}>Main</li>
+        </ul>
+      </nav>
       <div>
         <Link to="/login">Sign In</Link>
         <Link to="/registration">Sign Up</Link>
@@ -28,18 +47,6 @@ const Header: FC = () => {
           Refresh Tokens
         </Button>
       </div>
-    );
-  };
-  return (
-    <header className={classes.header}>
-      <nav>
-        <ul className={classes.ul}>
-          <li className={classes.li}>Main</li>
-          <li className={classes.li}>Main</li>
-          <li className={classes.li}>Main</li>
-        </ul>
-      </nav>
-      {checkAuth()}
     </header>
   );
 };

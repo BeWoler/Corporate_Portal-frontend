@@ -10,6 +10,7 @@ import { API_URL } from "../http/axios";
 export default class Store {
   user = {} as User;
   isAuth = false;
+  isLoading = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -21,6 +22,10 @@ export default class Store {
 
   setUser(user: User) {
     this.user = user;
+  }
+
+  setLoading(bool: boolean) {
+    this.isLoading = bool;
   }
 
   async login(username: string, password: string) {
@@ -60,6 +65,7 @@ export default class Store {
   }
 
   async checkAuth() {
+    this.setLoading(true);
     try {
       const response = await axios.get<AuthResponse>(`${API_URL}/refresh`, { withCredentials: true });
       console.log(response)
@@ -69,6 +75,9 @@ export default class Store {
     }
     catch (e) {
       console.log(e);
+    }
+    finally {
+      this.setLoading(false);
     }
   }
 }

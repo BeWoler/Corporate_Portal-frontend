@@ -1,7 +1,8 @@
-import React, { FC, useState, useContext } from "react";
+import { FC, useState, useContext } from "react";
 import { Context } from "../index";
 import classes from "../styles/registrationForm.module.css";
-import { Link, TextField, Button } from "@mui/material";
+import { TextField, Button } from "@mui/material";
+import { Link } from "react-router-dom";
 import { observer } from 'mobx-react-lite';
 
 const RegistrationForm: FC = () => {
@@ -46,7 +47,7 @@ const RegistrationForm: FC = () => {
       </Button>
       <div className={classes.linkBox}>
         <span>Have an account?</span>
-        <Link href="#">Sign In</Link>
+        <Link to="/login">Sign In</Link>
       </div>
     </form>
   );
