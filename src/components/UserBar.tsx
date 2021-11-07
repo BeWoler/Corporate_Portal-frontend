@@ -18,17 +18,6 @@ const UserBar: FC = () => {
       >
         Logout
       </Button>
-      <Button
-        variant="contained"
-        color="error"
-        onClick={() => store.checkAuth()}
-        sx={{
-          margin: "-0.2rem 0 0 1rem",
-          height: "1.5rem",
-        }}
-      >
-        Refresh Tokens
-      </Button>
     </div>
   );
 };

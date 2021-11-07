@@ -14,19 +14,19 @@ const App = () => {
     }
   }, [store]);
 
-  if(store.isLoading) {
-    return <div></div>
+  if (store.isLoading) {
+    return <div></div>;
   }
 
-  const check = () => {
-    if(store.isAuth) {
-      return console.log('Authorized')
+  const checkAuth = () => {
+    if (store.isAuth) {
+      return console.log();
     }
-  }
+  };
 
   return (
     <div className={classes.myDiv}>
-      {check()}
+      {checkAuth()}
       <Header />
       <AppRouter />
     </div>

@@ -7,14 +7,3 @@
   align-items: center;
   background-color: #1976D2;
 }
-
-.ul {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.li {
-  display: inline-block;
-  margin-right: 1rem;
-}

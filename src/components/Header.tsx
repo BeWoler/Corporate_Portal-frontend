@@ -4,6 +4,7 @@ import UserBar from "./UserBar";
 import { Context } from "../index";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
+import NavBar from "./NavBar";
 
 const Header: FC = () => {
   const { store } = useContext(Context);
@@ -11,13 +12,7 @@ const Header: FC = () => {
   if (store.isAuth) {
     return (
       <header className={classes.header}>
-        <nav>
-          <ul className={classes.ul}>
-            <li className={classes.li}>Main</li>
-            <li className={classes.li}>Main</li>
-            <li className={classes.li}>Main</li>
-          </ul>
-        </nav>
+        <NavBar />
         <UserBar />
       </header>
     );
@@ -25,13 +20,7 @@ const Header: FC = () => {
 
   return (
     <header className={classes.header}>
-      <nav>
-        <ul className={classes.ul}>
-          <li className={classes.li}>Main</li>
-          <li className={classes.li}>Main</li>
-          <li className={classes.li}>Main</li>
-        </ul>
-      </nav>
+      <NavBar />
       <div>
         <Link to="/login">Sign In</Link>
         <Link to="/registration">Sign Up</Link>

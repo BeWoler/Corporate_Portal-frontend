@@ -1,5 +1,9 @@
-const PrivateComponent = () => {
-  return <h2>Private Info</h2>;
+import { FC, useContext } from "react";
+import { Context } from "../index";
+
+const PrivateComponent: FC = () => {
+  const { store } = useContext(Context);
+  return <h2>{store.user.email}</h2>;
 };
 
 export default PrivateComponent;

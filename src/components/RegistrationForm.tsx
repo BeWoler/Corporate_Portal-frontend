@@ -3,7 +3,7 @@ import { Context } from "../index";
 import classes from "../styles/registrationForm.module.css";
 import { TextField, Button } from "@mui/material";
 import { Link } from "react-router-dom";
-import { observer } from 'mobx-react-lite';
+import { observer } from "mobx-react-lite";
 
 const RegistrationForm: FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -41,7 +41,10 @@ const RegistrationForm: FC = () => {
       <Button
         variant="contained"
         sx={{ margin: "2rem 1.3rem 2rem 1.3rem" }}
-        onClick={() => store.registration(email, username, password)}
+        onClick={async () => {
+          await store.registration(email, username, password);
+          store.checkAuth();
+        }}
       >
         Sign Up
       </Button>

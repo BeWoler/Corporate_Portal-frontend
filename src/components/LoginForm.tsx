@@ -3,7 +3,7 @@ import { Context } from "../index";
 import classes from "../styles/loginForm.module.css";
 import { Button, TextField } from "@mui/material";
 import { Link } from "react-router-dom";
-import { observer } from 'mobx-react-lite';
+import { observer } from "mobx-react-lite";
 
 const LoginForm: FC = () => {
   const [username, setUsername] = useState<string>("");
@@ -32,7 +32,10 @@ const LoginForm: FC = () => {
       <Button
         variant="contained"
         sx={{ margin: "2rem 1.3rem 2rem 1.3rem" }}
-        onClick={() => store.login(username, password)}
+        onClick={async () => {
+          await store.login(username, password);
+          store.checkAuth();
+        }}
       >
         Sign In
       </Button>

@@ -10,10 +10,10 @@ export interface Route {
 }
 
 export const PublicRoutes: Route[] = [
-  {path: '/login', exact: true, component: LoginForm},
-  {path: '/registration', exact: true, component: RegistrationForm}
+  { path: '/login', exact: true, component: LoginForm },
+  { path: '/registration', exact: true, component: RegistrationForm }
 ]
 
 export const PrivateRoutes: Route[] = [
-  {path: '/private', exact: true, component: PrivateComponent}
+  { path: '/private', exact: true, component: PrivateComponent },
 ]
