@@ -1,5 +1,5 @@
 import { useEffect, useContext } from "react";
-import classes from "../styles/app.module.css";
+import "../styles/app.css";
 import { observer } from "mobx-react-lite";
 import { Context } from "../index";
 import AppRouter from "./AppRouter";
@@ -15,7 +15,7 @@ const App = () => {
   }, [store]);
 
   if (store.isLoading) {
-    return <div></div>;
+    return <></>;
   }
 
   const checkAuth = () => {
@@ -25,10 +25,12 @@ const App = () => {
   };
 
   return (
-    <div className={classes.myDiv}>
+    <div className="main__box">
       {checkAuth()}
       <Header />
-      <AppRouter />
+      <div className="main__box__container">
+        <AppRouter />
+      </div>
     </div>
   );
 };

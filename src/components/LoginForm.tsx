@@ -1,7 +1,7 @@
 import { FC, useState, useContext } from "react";
 import { Context } from "../index";
-import classes from "../styles/loginForm.module.css";
-import { Button, TextField } from "@mui/material";
+import "../styles/loginForm.css";
+import { Button, Input } from "@mui/material";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 
@@ -11,27 +11,39 @@ const LoginForm: FC = () => {
   const { store } = useContext(Context);
 
   return (
-    <form className={classes.form}>
-      <h2 className={classes.h2}>Login</h2>
-      <TextField
-        label="Username"
+    <form className="login__form">
+      <h2 className="form__h2">Login</h2>
+      <Input
+        placeholder="Username"
         type="text"
-        sx={{ margin: "1.5rem 1.3rem 0.8rem 1.3rem" }}
+        sx={{
+          margin: "1.5rem 1.3rem 0.8rem 1.3rem",
+          ":after": { borderBottom: "2px solid #D65A3E" },
+        }}
         onChange={(e) => {
           setUsername(e.target.value);
         }}
       />
-      <TextField
-        label="Password"
+      <Input
+        placeholder="Password"
         type="password"
-        sx={{ margin: "1.5rem 1.3rem 0.8rem 1.3rem" }}
+        sx={{
+          margin: "1.5rem 1.3rem 0.8rem 1.3rem",
+          ":after": { borderBottom: "2px solid #D65A3E" },
+        }}
         onChange={(e) => {
           setPassword(e.target.value);
         }}
       />
       <Button
         variant="contained"
-        sx={{ margin: "2rem 1.3rem 2rem 1.3rem" }}
+        sx={{
+          margin: "2rem 1.3rem 2rem 1.3rem",
+          backgroundColor: "#D65A3E",
+          ":hover": {
+            backgroundColor: "#B04A33",
+          },
+        }}
         onClick={async () => {
           await store.login(username, password);
           store.checkAuth();
@@ -39,7 +51,7 @@ const LoginForm: FC = () => {
       >
         Sign In
       </Button>
-      <div className={classes.linkBox}>
+      <div className="form__linkBox">
         <Link to="/registration">Sign Up</Link>
       </div>
     </form>

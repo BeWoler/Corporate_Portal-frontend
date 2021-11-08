@@ -1,5 +1,5 @@
 import { FC, useContext } from "react";
-import classes from "../styles/header.module.css";
+import "../styles/header.css";
 import UserBar from "./UserBar";
 import { Context } from "../index";
 import { Link } from "react-router-dom";
@@ -11,30 +11,34 @@ const Header: FC = () => {
 
   if (store.isAuth) {
     return (
-      <header className={classes.header}>
-        <NavBar />
-        <UserBar />
+      <header className="header">
+        <div className="header__main">
+          <NavBar />
+          <UserBar />
+        </div>
       </header>
     );
   }
 
   return (
-    <header className={classes.header}>
-      <NavBar />
-      <div>
-        <Link to="/login">Sign In</Link>
-        <Link to="/registration">Sign Up</Link>
-        <Button
-          variant="contained"
-          color="error"
-          onClick={() => store.checkAuth()}
-          sx={{
-            margin: "-0.2rem 0 0 1rem",
-            height: "1.5rem",
-          }}
-        >
-          Refresh Tokens
-        </Button>
+    <header className="header">
+      <div className="header__main nonAuth">
+        <div>
+          <Button
+            variant="contained"
+            onClick={() => store.checkAuth()}
+            sx={{
+              margin: "-0.2rem 0 0 1rem",
+              height: "1.5rem",
+              backgroundColor: "#D65A3E",
+              ":hover": {
+                backgroundColor: "#B04A33"
+              }
+            }}
+          >
+            Refresh Tokens
+          </Button>
+        </div>
       </div>
     </header>
   );

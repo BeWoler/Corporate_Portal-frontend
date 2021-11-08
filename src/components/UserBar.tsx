@@ -1,23 +1,24 @@
-import { Button } from "@mui/material";
+import { Avatar } from "@mui/material";
 import { FC, useContext } from "react";
 import { Context } from "../index";
+import "../styles/userBar.css";
 
 const UserBar: FC = () => {
   const { store } = useContext(Context);
+
   return (
-    <div>
+    <div className="userBar__container">
       {store.user.email}
-      <Button
-        variant="contained"
-        color="error"
+      <Avatar
         onClick={() => store.logout()}
         sx={{
-          margin: "-0.2rem 0 0 1rem",
-          height: "1.5rem",
+          cursor: "pointer",
+          width: "30px",
+          height: "30px",
+          marginLeft: "0.5rem",
+          bgcolor: "#D65A3E",
         }}
-      >
-        Logout
-      </Button>
+      ></Avatar>
     </div>
   );
 };

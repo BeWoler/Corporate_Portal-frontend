@@ -17,3 +17,13 @@ a {
   color: #000;
   margin: 0 5px;
 }
+
+.main__box {
+  display: flex;
+  flex-direction: column;
+}
+
+.main__box__container {
+  width: 1100px;
+  margin: 1rem auto;
+}

@@ -1,0 +1,17 @@
+.nav__ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.nav__li {
+  display: inline-block;
+  margin-right: 1rem;
+  transition: all ease 0.2s;
+}
+
+.nav__li:hover {
+  color: #b04a33;
+}

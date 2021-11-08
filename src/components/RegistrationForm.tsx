@@ -1,7 +1,7 @@
 import { FC, useState, useContext } from "react";
 import { Context } from "../index";
-import classes from "../styles/registrationForm.module.css";
-import { TextField, Button } from "@mui/material";
+import "../styles/registrationForm.css";
+import { Button, Input } from "@mui/material";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 
@@ -12,35 +12,50 @@ const RegistrationForm: FC = () => {
   const { store } = useContext(Context);
 
   return (
-    <form className={classes.form}>
-      <h2 className={classes.h2}>Registration</h2>
-      <TextField
-        label="Email"
+    <form className="registr__form">
+      <h2 className="form__h2">Join Us</h2>
+      <Input
+        placeholder="Email"
         type="text"
-        sx={{ margin: "1.5rem 1.3rem 0.8rem 1.3rem" }}
+        sx={{
+          margin: "1.5rem 1.3rem 0.8rem 1.3rem",
+          ":after": { borderBottom: "2px solid #D65A3E" },
+        }}
         onChange={(e) => {
           setEmail(e.target.value);
         }}
       />
-      <TextField
-        label="Username"
+      <Input
+        placeholder="Username"
         type="text"
-        sx={{ margin: "1.5rem 1.3rem 0.8rem 1.3rem" }}
+        sx={{
+          margin: "1.5rem 1.3rem 0.8rem 1.3rem",
+          ":after": { borderBottom: "2px solid #D65A3E" },
+        }}
         onChange={(e) => {
           setUsername(e.target.value);
         }}
       />
-      <TextField
-        label="Password"
+      <Input
+        placeholder="Password"
         type="password"
-        sx={{ margin: "1.5rem 1.3rem 0.8rem 1.3rem" }}
+        sx={{
+          margin: "1.5rem 1.3rem 0.8rem 1.3rem",
+          ":after": { borderBottom: "2px solid #D65A3E" },
+        }}
         onChange={(e) => {
           setPassword(e.target.value);
         }}
       />
       <Button
         variant="contained"
-        sx={{ margin: "2rem 1.3rem 2rem 1.3rem" }}
+        sx={{
+          margin: "2rem 1.3rem 2rem 1.3rem",
+          backgroundColor: "#D65A3E",
+          ":hover": {
+            backgroundColor: "#B04A33",
+          },
+        }}
         onClick={async () => {
           await store.registration(email, username, password);
           store.checkAuth();
@@ -48,7 +63,7 @@ const RegistrationForm: FC = () => {
       >
         Sign Up
       </Button>
-      <div className={classes.linkBox}>
+      <div className="form__linkBox">
         <span>Have an account?</span>
         <Link to="/login">Sign In</Link>
       </div>
