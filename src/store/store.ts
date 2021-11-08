@@ -80,4 +80,14 @@ export default class Store {
       this.setLoading(false);
     }
   }
+
+  async getUsers() {
+    try {
+      const response = await axios.get<AuthResponse>(`${API_URL}/users`, { withCredentials: true });
+      
+    }
+    catch (e) {
+
+    }
+  }
 }

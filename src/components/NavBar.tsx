@@ -16,6 +16,10 @@ const NavBar = () => {
           <SettingsIcon sx={{ color: "#D65A3E", verticalAlign: "bottom" }} />
           Settings
         </Link>
+        <Link to="/users" className="nav__li">
+          <SettingsIcon sx={{ color: "#D65A3E", verticalAlign: "bottom" }} />
+          Our Users
+        </Link>
         <Input
           placeholder="Search"
           sx={{
