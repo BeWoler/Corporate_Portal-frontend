@@ -5,7 +5,7 @@ import { Button, Input } from "@mui/material";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 
-const LoginForm: FC = () => {
+const LoginPage: FC = () => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const { store } = useContext(Context);
@@ -58,4 +58,4 @@ const LoginForm: FC = () => {
   );
 };
 
-export default observer(LoginForm);
+export default observer(LoginPage);

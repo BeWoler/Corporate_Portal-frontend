@@ -1,5 +1,5 @@
 import { FC, useContext } from "react";
-import { Context } from "../../index";
+import { Context } from "../index";
 
 const MainPage: FC = () => {
   const { store } = useContext(Context);

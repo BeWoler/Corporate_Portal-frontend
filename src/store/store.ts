@@ -83,11 +83,10 @@ export default class Store {
 
   async getUsers() {
     try {
-      const response = await axios.get<AuthResponse>(`${API_URL}/users`, { withCredentials: true });
-      
+      await axios.get<AuthResponse>(`${API_URL}/users`, { withCredentials: true });
     }
     catch (e) {
-
+      console.log(e);
     }
   }
 }

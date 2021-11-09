@@ -5,7 +5,7 @@ import { Button, Input } from "@mui/material";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 
-const RegistrationForm: FC = () => {
+const RegistrationPage: FC = () => {
   const [email, setEmail] = useState<string>("");
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -71,4 +71,4 @@ const RegistrationForm: FC = () => {
   );
 };
 
-export default observer(RegistrationForm);
+export default observer(RegistrationPage);

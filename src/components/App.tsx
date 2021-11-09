@@ -2,8 +2,7 @@ import { useEffect, useContext } from "react";
 import "../styles/app.css";
 import { observer } from "mobx-react-lite";
 import { Context } from "../index";
-import AppRouter from "./AppRouter";
-import Header from "./Header";
+import AppRouter from "../routes/AppRouter";
 
 const App = () => {
   const { store } = useContext(Context);
@@ -27,10 +26,7 @@ const App = () => {
   return (
     <div className="main__box">
       {checkAuth()}
-      <Header />
-      <div className="main__box__container">
-        <AppRouter />
-      </div>
+      <AppRouter />
     </div>
   );
 };

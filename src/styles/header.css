@@ -22,3 +22,14 @@
 .nonAuth {
   justify-content: center;
 }
+
+.header a {
+  margin: 0 1rem;
+  transition: all ease .2s;
+}
+
+.header a:hover {
+  transform: scale(1.2);
+  border-radius: 0.2rem;
+  color: #d65a3e;
+}

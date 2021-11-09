@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 import { Input } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import SettingsIcon from "@mui/icons-material/Settings";
+import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 
 const NavBar = () => {
   return (
     <nav>
       <ul className="nav__ul">
-        <Link to="/main" className="nav__li">
+        <Link to="/" className="nav__li">
           <HomeIcon sx={{ color: "#D65A3E", verticalAlign: "bottom" }} />
           Home
         </Link>
@@ -17,7 +18,7 @@ const NavBar = () => {
           Settings
         </Link>
         <Link to="/users" className="nav__li">
-          <SettingsIcon sx={{ color: "#D65A3E", verticalAlign: "bottom" }} />
+          <PeopleAltIcon sx={{ color: "#D65A3E", verticalAlign: "bottom" }} />
           Our Users
         </Link>
         <Input

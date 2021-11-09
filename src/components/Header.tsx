@@ -1,9 +1,9 @@
 import { FC, useContext } from "react";
 import "../styles/header.css";
 import { Link } from "react-router-dom";
-import UserBar from "./UserBar";
 import { Context } from "../index";
 import { Button } from "@mui/material";
+import UserBar from "./UserBar";
 import NavBar from "./NavBar";
 
 const Header: FC = () => {
