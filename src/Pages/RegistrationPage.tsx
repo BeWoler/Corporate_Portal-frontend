@@ -14,6 +14,7 @@ const RegistrationPage: FC = () => {
   return (
     <form className="registr__form">
       <h2 className="form__h2">Join Us</h2>
+      <p className="error">{store.error}</p>
       <Input
         placeholder="Email"
         type="text"

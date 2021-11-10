@@ -13,6 +13,7 @@ const LoginPage: FC = () => {
   return (
     <form className="login__form">
       <h2 className="form__h2">Login</h2>
+      <p className="error">{store.error}</p>
       <Input
         placeholder="Username"
         type="text"
