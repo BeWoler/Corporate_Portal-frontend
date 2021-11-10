@@ -35,7 +35,7 @@ export default class Store {
 
   async login(username: string, password: string) {
     try {
-      await LoginService.login(username, password)
+      const res = await LoginService.login(username, password)
         .then((response) => {
           localStorage.setItem("token", response.data.accessToken);
           this.setAuth(true);
@@ -52,7 +52,7 @@ export default class Store {
 
   async registration(email: string, username: string, password: string) {
     try {
-      await RegistrationService.registration(email, username, password)
+      const res = await RegistrationService.registration(email, username, password)
         .then((response) => {
           localStorage.setItem("token", response.data.accessToken);
           this.setAuth(true);
