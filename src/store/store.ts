@@ -6,6 +6,7 @@ import RegistrationService from "../services/RegistrationService";
 import LogoutService from "../services/LogoutService";
 import { AuthResponse } from "../models/response/authResponse";
 import { API_URL } from "../http/axios";
+import DeleteService from "../services/DeleteService";
 
 export default class Store {
   user = {} as User;
@@ -45,6 +46,17 @@ export default class Store {
           this.setError(err.response.data.message);
           setTimeout(() => this.setError(null), 2500);
         });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async delete() {
+    try {
+      await DeleteService.delete();
+      localStorage.removeItem("token");
+      this.setAuth(false);
+      this.setUser({} as User);
     } catch (e) {
       console.log(e);
     }

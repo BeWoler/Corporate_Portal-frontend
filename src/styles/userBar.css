@@ -1,6 +1,35 @@
 .userBar__container {
   display: flex;
+  position: relative;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+}
+
+.menu__ul {
+  position: absolute;
+  list-style: none;
+  top: 2.8rem;
+  left: 11rem;
+  background-color: #fff;
+  border-radius: 0.4rem;
+  box-shadow: 0px 3px 10px #3d3d3d;
+  transition: all ease .2s;
+}
+
+.menu__li {
+  margin: 1rem 2rem;
+  cursor: pointer;
+}
+
+.open {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(0.8rem);
+}
+
+.close {
+  visibility: hidden;
+  opacity: 0;
+  transform: translateX(2rem);
 }
