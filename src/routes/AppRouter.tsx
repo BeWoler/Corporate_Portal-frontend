@@ -1,5 +1,3 @@
-import { useContext } from "react";
-import { Context } from "../index";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Layout from "../components/Layout";
 import MainPage from "../Pages/MainPage";
@@ -10,8 +8,6 @@ import AllUsers from "../Pages/AllUsers";
 import UserSettings from "../Pages/UserSettings";
 
 const AppRouter = () => {
-  const { store } = useContext(Context);
-
   const RequireAuth = ({ children }: { children: JSX.Element }) => {
     if (!localStorage.getItem("token")) {
       return <Navigate to="/login" />;

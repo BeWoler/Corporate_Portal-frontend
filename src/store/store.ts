@@ -7,6 +7,7 @@ import LogoutService from "../services/LogoutService";
 import { AuthResponse } from "../models/response/authResponse";
 import { API_URL } from "../http/axios";
 import DeleteService from "../services/DeleteService";
+import EditProfileService from "../services/EditProfileService";
 
 export default class Store {
   user = {} as User;
@@ -59,6 +60,15 @@ export default class Store {
       this.setUser({} as User);
     } catch (e) {
       console.log(e);
+    }
+  }
+
+  async editProfile(username: string, {...args}: object) {
+    try{
+      await EditProfileService.edit(username, {...args});
+    }
+    catch (e) {
+      console.log(e)
     }
   }
 
