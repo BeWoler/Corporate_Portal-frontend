@@ -19,7 +19,7 @@ const LoginPage: FC = () => {
         type="text"
         sx={{
           margin: "1.5rem 1.3rem 0.8rem 1.3rem",
-          ":after": { borderBottom: "2px solid #D65A3E" },
+          ":after": { borderBottom: "2px solid #bf4444" },
         }}
         onChange={(e) => {
           setUsername(e.target.value);
@@ -30,7 +30,7 @@ const LoginPage: FC = () => {
         type="password"
         sx={{
           margin: "1.5rem 1.3rem 0.8rem 1.3rem",
-          ":after": { borderBottom: "2px solid #D65A3E" },
+          ":after": { borderBottom: "2px solid #bf4444" },
         }}
         onChange={(e) => {
           setPassword(e.target.value);
@@ -40,9 +40,9 @@ const LoginPage: FC = () => {
         variant="contained"
         sx={{
           margin: "2rem 1.3rem 2rem 1.3rem",
-          backgroundColor: "#D65A3E",
+          backgroundColor: "#bf4444",
           ":hover": {
-            backgroundColor: "#B04A33",
+            backgroundColor: "#bc6464",
           },
         }}
         onClick={async () => {
