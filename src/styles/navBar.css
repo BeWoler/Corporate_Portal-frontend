@@ -7,11 +7,10 @@
 }
 
 .nav__li {
-  display: inline-block;
   margin-right: 1rem;
   transition: all ease 0.2s;
 }
 
 .nav__li:hover {
-  color: #b04a33;
+  color: #bf4444;
 }

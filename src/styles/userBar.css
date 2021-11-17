@@ -4,6 +4,17 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  padding: 0 .4rem;
+  transition: all ease .2s;
+}
+
+.userBar__container:hover {
+  background-color: #edeef0;
+  color: #fff;
+}
+
+.userBar__container:hover a {
+  color: #000;
 }
 
 .menu__ul {
@@ -22,14 +33,7 @@
   cursor: pointer;
 }
 
-.open {
-  visibility: visible;
-  opacity: 1;
-  transform: translateX(0.8rem);
-}
-
-.close {
-  visibility: hidden;
-  opacity: 0;
-  transform: translateX(2rem);
+.userBar__user {
+  display: flex;
+  align-items: center;
 }

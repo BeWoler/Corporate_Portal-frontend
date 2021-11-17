@@ -1,33 +1,31 @@
 import "../styles/navBar.css";
+import { FC, useContext } from 'react';
 import { Link } from "react-router-dom";
-import { Input } from "@mui/material";
+import { Context } from "../index";
 import HomeIcon from "@mui/icons-material/Home";
 import SettingsIcon from "@mui/icons-material/Settings";
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 
-const NavBar = () => {
+const NavBar: FC = () => {
+  const { store } = useContext(Context);
+  if(!store.isAuth) {
+    return null;
+  }
   return (
     <nav>
       <ul className="nav__ul">
         <Link to="/" className="nav__li">
-          <HomeIcon sx={{ color: "#D65A3E", verticalAlign: "bottom" }} />
+          <HomeIcon sx={{ color: "#bf4444", verticalAlign: "bottom" }} />
           Home
         </Link>
         <Link to="/private" className="nav__li">
-          <SettingsIcon sx={{ color: "#D65A3E", verticalAlign: "bottom" }} />
+          <SettingsIcon sx={{ color: "#bf4444", verticalAlign: "bottom" }} />
           Settings
         </Link>
         <Link to="/users" className="nav__li">
-          <PeopleAltIcon sx={{ color: "#D65A3E", verticalAlign: "bottom" }} />
+          <PeopleAltIcon sx={{ color: "#bf4444", verticalAlign: "bottom" }} />
           Our Users
         </Link>
-        <Input
-          placeholder="Search"
-          sx={{
-            marginLeft: "1rem",
-            ":after": { borderBottom: "2px solid #D65A3E" },
-          }}
-        />
       </ul>
     </nav>
   );

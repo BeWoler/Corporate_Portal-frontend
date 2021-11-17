@@ -10,7 +10,10 @@ import ChangePasswordPage from "../Pages/ChangePasswordPage";
 
 const AppRouter = () => {
   const RequireAuth = ({ children }: { children: JSX.Element }) => {
-    if (!localStorage.getItem("token")) {
+    if (
+      !localStorage.getItem("token") ||
+      localStorage.getItem("token").length < 217
+    ) {
       return <Navigate to="/login" />;
     }
     return children;
@@ -26,12 +29,54 @@ const AppRouter = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route path="private" element={<RequireAuth><PrivateComponent /></RequireAuth>}/>
-        <Route path="users" element={<RequireAuth><AllUsers /></RequireAuth>}/>
-        <Route path="login" element={<AfterAuth><LoginPage /></AfterAuth>}/>
-        <Route path="registration" element={<AfterAuth><RegistrationPage /></AfterAuth>}/>
-        <Route path="settings" element={<RequireAuth><UserSettingsPage /></RequireAuth>}/>
-        <Route path="settings/password" element={<RequireAuth><ChangePasswordPage /></RequireAuth>}/>
+        <Route
+          path="private"
+          element={
+            <RequireAuth>
+              <PrivateComponent />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="users"
+          element={
+            <RequireAuth>
+              <AllUsers />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="login"
+          element={
+            <AfterAuth>
+              <LoginPage />
+            </AfterAuth>
+          }
+        />
+        <Route
+          path="registration"
+          element={
+            <AfterAuth>
+              <RegistrationPage />
+            </AfterAuth>
+          }
+        />
+        <Route
+          path="settings"
+          element={
+            <RequireAuth>
+              <UserSettingsPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="settings/password"
+          element={
+            <RequireAuth>
+              <ChangePasswordPage />
+            </RequireAuth>
+          }
+        />
         <Route index element={<MainPage />} />
         <Route path="*" element={<MainPage />} />
       </Route>
