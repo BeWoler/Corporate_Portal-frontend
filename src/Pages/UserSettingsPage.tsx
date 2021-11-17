@@ -1,10 +1,10 @@
-import React, { FC, useContext, useState } from "react";
+import { FC, useContext, useState } from "react";
 import "../styles/userSettings.css";
 import { Button, Input, Avatar } from "@mui/material";
 import { Context } from "../index";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const UserSettings: FC = () => {
+const UserSettingsPage: FC = () => {
   const { store } = useContext(Context);
   const [firstName, setFirstName] = useState<string>();
   const [lastName, setLastName] = useState<string>();
@@ -90,7 +90,7 @@ const UserSettings: FC = () => {
             voluptatem corporis, iusto harum laboriosam ab numquam quo! Vel, non
             iste?
           </p>
-          <Link className="settings__btn" to="changepass">
+          <Link className="settings__btn" to="password">
             Change Password
           </Link>
           <p className="settings__paragraph">
@@ -108,4 +108,4 @@ const UserSettings: FC = () => {
   );
 };
 
-export default UserSettings;
+export default UserSettingsPage;

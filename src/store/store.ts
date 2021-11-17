@@ -8,6 +8,7 @@ import { AuthResponse } from "../models/response/authResponse";
 import { API_URL } from "../http/axios";
 import DeleteService from "../services/DeleteService";
 import EditProfileService from "../services/EditProfileService";
+import ChangePasswordService from "../services/ChangePasswordService";
 
 export default class Store {
   user = {} as User;
@@ -63,18 +64,32 @@ export default class Store {
     }
   }
 
-  async editProfile(username: string, {...args}: object) {
-    try{
-      await EditProfileService.edit(username, {...args});
+  async editProfile(username: string, { ...args }: object) {
+    try {
+      await EditProfileService.edit(username, { ...args });
+    } catch (e) {
+      console.log(e);
     }
-    catch (e) {
-      console.log(e)
+  }
+
+  async changePass(username: string, newPassword: string, oldPassword: string) {
+    try {
+      const res = await ChangePasswordService.change(username, newPassword, oldPassword).catch((err) => {
+        this.setError(err.response.data.message);
+        setTimeout(() => this.setError(null), 3500);
+      });
+    } catch (err) {
+      console.log(err);
     }
   }
 
   async registration(email: string, username: string, password: string) {
     try {
-      const res = await RegistrationService.registration(email, username, password)
+      const res = await RegistrationService.registration(
+        email,
+        username,
+        password
+      )
         .then((response) => {
           localStorage.setItem("token", response.data.accessToken);
           this.setAuth(true);
