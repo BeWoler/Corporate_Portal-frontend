@@ -8,6 +8,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import PersonIcon from '@mui/icons-material/Person';
 import ChatIcon from '@mui/icons-material/Chat';
 import DashboardIcon from '@mui/icons-material/Dashboard';
+import ImportContactsIcon from '@mui/icons-material/ImportContacts';
 
 const NavBar: FC = () => {
   const { store } = useContext(Context);
@@ -21,23 +22,27 @@ const NavBar: FC = () => {
           <PersonIcon sx={{ color: "#bf4444", verticalAlign: "bottom", marginRight: ".4rem" }} />
           My Profile
         </Link>
-        <Link to="/board" className="nav__li">
+        <Link to="friends" className="nav__li">
+          <ImportContactsIcon sx={{ color: "#bf4444", verticalAlign: "bottom", marginRight: ".4rem" }} />
+          Friends
+        </Link>
+        <Link to="board" className="nav__li">
           <DashboardIcon sx={{ color: "#bf4444", verticalAlign: "bottom", marginRight: ".4rem" }} />
           Board
         </Link>
-        <Link to="/messages" className="nav__li">
+        <Link to="messages" className="nav__li">
           <ChatIcon sx={{ color: "#bf4444", verticalAlign: "bottom", marginRight: ".4rem" }} />
           Messages
         </Link>
-        <Link to="/users" className="nav__li">
+        <Link to="users" className="nav__li">
           <PeopleAltIcon sx={{ color: "#bf4444", verticalAlign: "bottom", marginRight: ".4rem" }} />
           Users
         </Link>
-        <Link to="/settings" className="nav__li">
+        <Link to="settings" className="nav__li">
           <SettingsIcon sx={{ color: "#bf4444", verticalAlign: "bottom", marginRight: ".4rem" }} />
           Settings
         </Link>
-        <Link to="/logout" className="nav__li" onClick={() => store.logout()}>
+        <Link to="logout" className="nav__li" onClick={() => store.logout()}>
           <LogoutIcon sx={{ color: "#bf4444", verticalAlign: "bottom", marginRight: ".4rem" }} />
           Logout
         </Link>
