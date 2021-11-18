@@ -10,7 +10,9 @@ const Layout: FC = () => {
       <Header />
       <div className="main__box__container">
         <NavBar />
-        <Outlet />
+        <div className="main__box__outlet">
+          <Outlet />
+        </div>
       </div>
     </>
   );
