@@ -1,37 +1,36 @@
 import { FC, useContext, useState } from "react";
 import "../styles/userSettings.css";
-import { Button, Input, Avatar } from "@mui/material";
+import { Button, Input } from "@mui/material";
 import { Context } from "../index";
 import { Link } from "react-router-dom";
+import { observer } from "mobx-react-lite";
 
 const UserSettingsPage: FC = () => {
   const { store } = useContext(Context);
   const [firstName, setFirstName] = useState<string>();
   const [lastName, setLastName] = useState<string>();
-  const [age, setAge] = useState<number>();
+  const [birthday, setBirthday] = useState<Date>();
+  const [stack, setStack] = useState<string>();
+  const [position, setPosition] = useState<string>();
+  const [department, setDepartment] = useState<string>();
+  const [education, setEducation] = useState<string>();
+  const [skype, setSkype] = useState<string>();
+  const [phone, setPhone] = useState<number>();
   const [description, setDescription] = useState<string>();
 
   return (
     <div className="settings__container">
-      <h2 className="settings__title">Settigns</h2>
-      <div className="settings__info">
-        <Avatar
-          sx={{
-            marginRight: "1rem",
-            bgcolor: "#D65A3E",
-          }}
-        ></Avatar>
-        {store.user.email}
-      </div>
+      <h2 className="settings__title">Editing Profile</h2>
       <div className="settings__box">
         <form className="settings__form">
+          <h3 className="settings__notification">{store.successMessage}</h3>
           <Input
             onChange={(e) => setFirstName(e.target.value)}
             placeholder="First Name"
             type="text"
             sx={{
-              margin: "1.5rem 1.3rem 0.8rem 1.3rem",
-              ":after": { borderBottom: "2px solid #D65A3E" },
+              margin: "0rem 1.3rem 1rem 1.3rem",
+              ":after": { borderBottom: "2px solid #bf4444" },
             }}
           />
           <Input
@@ -39,26 +38,83 @@ const UserSettingsPage: FC = () => {
             placeholder="Last Name"
             type="text"
             sx={{
-              margin: "1.5rem 1.3rem 0.8rem 1.3rem",
-              ":after": { borderBottom: "2px solid #D65A3E" },
+              margin: "0rem 1.3rem 1rem 1.3rem",
+              ":after": { borderBottom: "2px solid #bf4444" },
             }}
           />
           <Input
-            onChange={(e) => setAge(parseFloat(e.target.value))}
+            onChange={(e) => setBirthday(new Date(e.target.value))}
             placeholder="Age"
-            type="number"
+            type="date"
             sx={{
-              margin: "1.5rem 1.3rem 0.8rem 1.3rem",
-              ":after": { borderBottom: "2px solid #D65A3E" },
+              margin: "0rem 1.3rem 1rem 1.3rem",
+              ":after": { borderBottom: "2px solid #bf4444" },
+            }}
+          />
+          <Input
+            onChange={(e) => setStack(e.target.value)}
+            multiline={true}
+            placeholder="Stack"
+            type="text"
+            sx={{
+              margin: "0rem 1.3rem 1rem 1.3rem",
+              ":after": { borderBottom: "2px solid #bf4444" },
+            }}
+          />
+          <Input
+            onChange={(e) => setPosition(e.target.value)}
+            placeholder="Position"
+            type="text"
+            sx={{
+              margin: "0rem 1.3rem 1rem 1.3rem",
+              ":after": { borderBottom: "2px solid #bf4444" },
+            }}
+          />
+          <Input
+            onChange={(e) => setDepartment(e.target.value)}
+            placeholder="Department"
+            type="text"
+            sx={{
+              margin: "0rem 1.3rem 1rem 1.3rem",
+              ":after": { borderBottom: "2px solid #bf4444" },
+            }}
+          />
+          <Input
+            onChange={(e) => setEducation(e.target.value)}
+            multiline={true}
+            placeholder="Education"
+            type="text"
+            sx={{
+              margin: "0rem 1.3rem 1rem 1.3rem",
+              ":after": { borderBottom: "2px solid #bf4444" },
+            }}
+          />
+          <Input
+            onChange={(e) => setSkype(e.target.value)}
+            placeholder="Skype"
+            type="text"
+            sx={{
+              margin: "0rem 1.3rem 1rem 1.3rem",
+              ":after": { borderBottom: "2px solid #bf4444" },
+            }}
+          />
+          <Input
+            onChange={(e) => setPhone(+e.target.value)}
+            placeholder="Phone"
+            type="tel"
+            sx={{
+              margin: "0rem 1.3rem 1rem 1.3rem",
+              ":after": { borderBottom: "2px solid #bf4444" },
             }}
           />
           <Input
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Description"
             type="text"
+            multiline={true}
             sx={{
-              margin: "1.5rem 1.3rem 0.8rem 1.3rem",
-              ":after": { borderBottom: "2px solid #D65A3E" },
+              margin: "0rem 1.3rem 1rem 1.3rem",
+              ":after": { borderBottom: "2px solid #bf4444" },
             }}
           />
           <Button
@@ -66,17 +122,22 @@ const UserSettingsPage: FC = () => {
               await store.editProfile(store.user.username, {
                 firstName,
                 lastName,
-                age,
+                birthday,
+                stack,
+                position,
+                department,
+                education,
+                skype,
+                phone,
                 description,
               });
-              store.checkAuth();
             }}
             variant="contained"
             sx={{
               margin: "2rem 1.3rem 2rem 1.3rem",
-              backgroundColor: "#D65A3E",
+              backgroundColor: "#bf4444",
               ":hover": {
-                backgroundColor: "#B04A33",
+                backgroundColor: "#bc6464",
               },
             }}
           >
@@ -85,19 +146,14 @@ const UserSettingsPage: FC = () => {
         </form>
         <form className="settings__form">
           <p className="settings__paragraph">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
-            minus blanditiis doloribus sed officiis in sit est at impedit
-            voluptatem corporis, iusto harum laboriosam ab numquam quo! Vel, non
-            iste?
+            Minimum password length - 3 characters, maximum - 16 characters. You
+            can change the password all the time.
           </p>
           <Link className="settings__btn" to="password">
             Change Password
           </Link>
           <p className="settings__paragraph">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
-            minus blanditiis doloribus sed officiis in sit est at impedit
-            voluptatem corporis, iusto harum laboriosam ab numquam quo! Vel, non
-            iste?
+            You can also delete your profile.
           </p>
           <Link className="settings__btn" to="#" onClick={() => store.delete()}>
             Delete Profile
@@ -108,4 +164,4 @@ const UserSettingsPage: FC = () => {
   );
 };
 
-export default UserSettingsPage;
+export default observer(UserSettingsPage);

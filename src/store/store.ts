@@ -15,6 +15,7 @@ export default class Store {
   isAuth = false;
   isLoading = false;
   error: string;
+  successMessage: string;
 
   constructor() {
     makeAutoObservable(this);
@@ -34,6 +35,10 @@ export default class Store {
 
   setError(err: string) {
     this.error = err;
+  }
+
+  setSuccessMessage(msg: string) {
+    this.successMessage = msg;
   }
 
   async login(username: string, password: string) {
@@ -67,6 +72,8 @@ export default class Store {
   async editProfile(username: string, { ...args }: object) {
     try {
       await EditProfileService.edit(username, { ...args });
+      this.setSuccessMessage("Successfully changed");
+      setTimeout(() => this.setSuccessMessage(null), 3500);
     } catch (e) {
       console.log(e);
     }
