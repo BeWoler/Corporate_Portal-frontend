@@ -34,18 +34,6 @@ a {
   margin: 0 auto;
 }
 
-.users__ul {
-  list-style: none;
-}
-
-.users__li {
-  padding: 0.5rem;
-  margin: 0.8rem;
-  border-radius: 0.5rem;
-  background-color: #fff;
-  box-shadow: 0px 2px 5px #3d3d3d;
-}
-
 .error {
   text-align: center;
   font-size: 1.2rem;

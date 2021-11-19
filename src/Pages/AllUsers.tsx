@@ -2,6 +2,7 @@ import { FC, useState } from "react";
 import { User } from "../models/user";
 import { Button } from "@mui/material";
 import UserService from "../services/UserService";
+import "../styles/allUsers.css";
 
 const AllUsers: FC = () => {
   const [users, setUsers] = useState<User[]>([]);
@@ -11,27 +12,30 @@ const AllUsers: FC = () => {
     setUsers(response.data);
   };
   return (
-    <ul className="users__ul">
+    <div className="users__container">
+      <h2 className="users__title">All Users</h2>
       <Button
         onClick={getUsers}
         variant="contained"
         sx={{
-          margin: "-0.2rem 0 0 1rem",
+          margin: "0 0 1rem 0",
           height: "1.5rem",
-          backgroundColor: "#D65A3E",
+          backgroundColor: "#bf4444",
           ":hover": {
-            backgroundColor: "#B04A33",
+            backgroundColor: "#bc6464",
           },
         }}
       >
         Get users
       </Button>
-      {users.map((user) => (
-        <li className="users__li" key={user.email}>
-          {user.email}
-        </li>
-      ))}
-    </ul>
+      <ul className="users__ul">
+        {users.map((user) => (
+          <li className="users__li" key={user.email}>
+            {user.email}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 
