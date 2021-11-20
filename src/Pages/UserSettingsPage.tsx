@@ -101,7 +101,7 @@ const UserSettingsPage: FC = () => {
           <Input
             onChange={(e) => setPhone(+e.target.value)}
             placeholder="Phone"
-            type="tel"
+            type="number"
             sx={{
               margin: "0rem 1.3rem 1rem 1.3rem",
               ":after": { borderBottom: "2px solid #bf4444" },
@@ -131,6 +131,7 @@ const UserSettingsPage: FC = () => {
                 phone,
                 description,
               });
+              store.checkAuth();
             }}
             variant="contained"
             sx={{
@@ -145,16 +146,12 @@ const UserSettingsPage: FC = () => {
           </Button>
         </form>
         <form className="settings__form">
-          <p className="settings__paragraph">
-            Minimum password length - 3 characters, maximum - 16 characters. You
-            can change the password all the time.
-          </p>
           <Link className="settings__btn" to="password">
             Change Password
           </Link>
-          <p className="settings__paragraph">
-            You can also delete your profile.
-          </p>
+          <Link className="settings__btn" to="avatar">
+            Change Avatar
+          </Link>
           <Link className="settings__btn" to="#" onClick={() => store.delete()}>
             Delete Profile
           </Link>

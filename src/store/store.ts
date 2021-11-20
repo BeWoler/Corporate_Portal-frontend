@@ -43,7 +43,7 @@ export default class Store {
 
   async login(username: string, password: string) {
     try {
-      const res = await LoginService.login(username, password)
+      await LoginService.login(username, password)
         .then((response) => {
           localStorage.setItem("token", response.data.accessToken);
           this.setAuth(true);
@@ -71,7 +71,7 @@ export default class Store {
 
   async editProfile(username: string, { ...args }: object) {
     try {
-      await EditProfileService.edit(username, { ...args });
+      await EditProfileService.edit(username, { ...args }); 
       this.setSuccessMessage("Successfully changed");
       setTimeout(() => this.setSuccessMessage(null), 3500);
     } catch (e) {
@@ -81,7 +81,7 @@ export default class Store {
 
   async changePass(username: string, newPassword: string, oldPassword: string) {
     try {
-      const res = await ChangePasswordService.change(username, newPassword, oldPassword).catch((err) => {
+      await ChangePasswordService.change(username, newPassword, oldPassword).catch((err) => {
         this.setError(err.response.data.message);
         setTimeout(() => this.setError(null), 3500);
       });
@@ -92,7 +92,7 @@ export default class Store {
 
   async registration(email: string, username: string, password: string) {
     try {
-      const res = await RegistrationService.registration(
+      await RegistrationService.registration(
         email,
         username,
         password

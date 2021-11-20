@@ -3,10 +3,10 @@ import Layout from "../components/Layout";
 import MainPage from "../Pages/MainPage";
 import LoginPage from "../Pages/LoginPage";
 import RegistrationPage from "../Pages/RegistrationPage";
-import PrivateComponent from "../Pages/PrivateComponent";
 import AllUsers from "../Pages/AllUsers";
 import UserSettingsPage from "../Pages/UserSettingsPage";
 import ChangePasswordPage from "../Pages/ChangePasswordPage";
+import UserProfilePage from "../Pages/UserProfilePage";
 
 const AppRouter = () => {
   const RequireAuth = ({ children }: { children: JSX.Element }) => {
@@ -21,7 +21,7 @@ const AppRouter = () => {
 
   const AfterAuth = ({ children }: { children: JSX.Element }) => {
     if (localStorage.getItem("token")) {
-      return <Navigate to="/" />;
+      return <Navigate to="/settings" />;
     }
     return children;
   };
@@ -29,14 +29,6 @@ const AppRouter = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route
-          path="private"
-          element={
-            <RequireAuth>
-              <PrivateComponent />
-            </RequireAuth>
-          }
-        />
         <Route
           path="users"
           element={
@@ -46,7 +38,15 @@ const AppRouter = () => {
           }
         />
         <Route
-          path="login"
+          path=":username/profile"
+          element={
+            <RequireAuth>
+              <UserProfilePage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/login"
           element={
             <AfterAuth>
               <LoginPage />

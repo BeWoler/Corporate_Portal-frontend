@@ -42,7 +42,7 @@ const NavBar: FC = () => {
           <SettingsIcon sx={{ color: "#bf4444", verticalAlign: "bottom", marginRight: ".4rem" }} />
           Settings
         </Link>
-        <Link to="logout" className="nav__li" onClick={() => store.logout()}>
+        <Link to="/login" className="nav__li" onClick={() => store.logout()}>
           <LogoutIcon sx={{ color: "#bf4444", verticalAlign: "bottom", marginRight: ".4rem" }} />
           Logout
         </Link>
