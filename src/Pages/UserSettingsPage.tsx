@@ -9,7 +9,7 @@ const UserSettingsPage: FC = () => {
   const { store } = useContext(Context);
   const [firstName, setFirstName] = useState<string>();
   const [lastName, setLastName] = useState<string>();
-  const [birthday, setBirthday] = useState<Date>();
+  const [birthday, setBirthday] = useState<string>();
   const [stack, setStack] = useState<string>();
   const [position, setPosition] = useState<string>();
   const [department, setDepartment] = useState<string>();
@@ -24,6 +24,7 @@ const UserSettingsPage: FC = () => {
       <div className="settings__box">
         <form className="settings__form">
           <h3 className="settings__notification">{store.successMessage}</h3>
+          <h4 className="settings__text">If this is your first time here, fill out your profile.</h4>
           <Input
             onChange={(e) => setFirstName(e.target.value)}
             placeholder="First Name"
@@ -43,7 +44,7 @@ const UserSettingsPage: FC = () => {
             }}
           />
           <Input
-            onChange={(e) => setBirthday(new Date(e.target.value))}
+            onChange={(e) => setBirthday(e.target.value)}
             placeholder="Age"
             type="date"
             sx={{

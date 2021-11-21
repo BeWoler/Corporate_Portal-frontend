@@ -7,7 +7,7 @@
   display: flex;
   flex-direction: column;
   margin: 0 1.5rem 0 0;
-  max-width: 228px;
+  width: 330px;
 }
 
 .profile__second__column {
@@ -22,16 +22,13 @@
   height: 250px;
   padding: 1rem;
   background-color: #fff;
-  box-shadow: 0px 1px 8px #3d3d3d;
   margin: 0 0 1.5rem 0;
 }
 
 .profile__info {
   border-radius: 0.3rem;
   list-style: none;
-  padding: .5rem;
   background-color: #fff;
-  box-shadow: 0px 1px 8px #3d3d3d;
 }
 
 .profile__info__list {
@@ -55,7 +52,6 @@
   font-size: 20px;
   padding: 1rem;
   background-color: #fff;
-  box-shadow: 0px 1px 8px #3d3d3d;
 }
 
 .profile__board__list {
@@ -69,5 +65,4 @@
   width: fit-content;
   border-radius: 0.3rem;
   background-color: #fff;
-  box-shadow: 0px 1px 8px #3d3d3d;
 }

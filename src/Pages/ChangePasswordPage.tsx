@@ -20,7 +20,7 @@ const ChangePasswordPage: FC = () => {
             required
             type="password"
             sx={{
-              margin: "1.5rem 1.3rem 0.8rem 1.3rem",
+              margin: "1rem 1.3rem 0.8rem 1.3rem",
               ":after": { borderBottom: "2px solid #bf4444" },
             }}
             onChange={(e) => setOldPassword(e.target.value)}
@@ -30,7 +30,7 @@ const ChangePasswordPage: FC = () => {
             required
             type="password"
             sx={{
-              margin: "1.5rem 1.3rem 0.8rem 1.3rem",
+              margin: "1rem 1.3rem 0.8rem 1.3rem",
               ":after": { borderBottom: "2px solid #bf4444" },
             }}
             onChange={(e) => setNewPassword(e.target.value)}
