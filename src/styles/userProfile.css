@@ -33,6 +33,7 @@
 
 .profile__info__list {
   padding: .5rem;
+  font-weight: 500;
 }
 
 .profile__name {
@@ -63,6 +64,24 @@
 .profile__about {
   padding: 1rem;
   width: fit-content;
+  font-weight: 500;
+  margin: 0 0 1.5rem 0;
   border-radius: 0.3rem;
   background-color: #fff;
+}
+
+.profile__posts {
+
+}
+
+.posts__create {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: .3rem;
+}
+
+#file-upload-data {
+  background-color: aqua !important;
 }
