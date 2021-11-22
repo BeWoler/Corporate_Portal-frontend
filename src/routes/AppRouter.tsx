@@ -7,6 +7,7 @@ import AllUsers from "../Pages/AllUsers";
 import UserSettingsPage from "../Pages/UserSettingsPage";
 import ChangePasswordPage from "../Pages/ChangePasswordPage";
 import UserProfilePage from "../Pages/UserProfilePage";
+import Board from "../Pages/Board";
 
 const AppRouter = () => {
   const RequireAuth = ({ children }: { children: JSX.Element }) => {
@@ -74,6 +75,14 @@ const AppRouter = () => {
           element={
             <RequireAuth>
               <ChangePasswordPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="board"
+          element={
+            <RequireAuth>
+              <Board />
             </RequireAuth>
           }
         />

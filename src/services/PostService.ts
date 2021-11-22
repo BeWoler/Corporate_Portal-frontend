@@ -11,7 +11,7 @@ export default class PostService {
     return api.get("/userPosts");
   }
 
-  static getAllPosts = (): Promise<AxiosResponse<PostResponse[]>> => {
-    return api.get<PostResponse[]>("/allPosts");
+  static getAllPosts = (): Promise<AxiosResponse> => {
+    return api.get("/allPosts");
   }
 }
