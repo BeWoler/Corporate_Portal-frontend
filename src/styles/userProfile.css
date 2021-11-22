@@ -70,18 +70,11 @@
   background-color: #fff;
 }
 
-.profile__posts {
-
-}
-
 .posts__create {
   display: flex;
   flex-direction: column;
   background-color: #fff;
   padding: 2rem;
   border-radius: .3rem;
-}
-
-#file-upload-data {
-  background-color: aqua !important;
+  margin: 0 0 1.5rem 0;
 }
