@@ -10,6 +10,7 @@ import UserPosts from "../components/UserPosts";
 const UserProfilePage: FC = () => {
   const { store } = useContext(Context);
   const [postText, setPostText] = useState<string>();
+  const [post, setPost ] = useState<string>();
 
   return (
     <div className="profile__container">
@@ -105,8 +106,8 @@ const UserProfilePage: FC = () => {
             />
             <Button
               onClick={async () => {
-                await PostService.createPost(postText);
-                await store.checkAuth();
+                await PostService.createPost(postText)
+                setPost(postText);
               }}
               variant="contained"
               sx={{
@@ -120,7 +121,7 @@ const UserProfilePage: FC = () => {
               Create Post
             </Button>
           </form>
-          <UserPosts />
+          <UserPosts children={post}/>
         </div>
       </div>
     </div>

@@ -5,8 +5,9 @@ import "../styles/userPosts.css";
 import { Button } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
-const UserPosts: FC = () => {
+const UserPosts: FC = ({ children }) => {
   const [posts, setPosts] = useState<Post[]>([]);
+  const [postCounter, setPostCounter] = useState(posts.length);
 
   const getUserPosts = async () => {
     const response = await PostService.getUserPost();
@@ -18,11 +19,11 @@ const UserPosts: FC = () => {
     return () => {
       setPosts([]);
     };
-  }, []);
+  }, [postCounter, children]);
 
   return (
     <div className="userPosts__container">
-      {posts.map((post) => {
+      {posts.map((post, position) => {
         return (
           <div key={post._id} className="userPosts__post">
             <h4 className="post__author">{post.author}</h4>
@@ -53,6 +54,10 @@ const UserPosts: FC = () => {
                   Edit
                 </Button>
                 <Button
+                  onClick={async () => {
+                    await PostService.delete(posts[position]._id);
+                    setPostCounter(posts.length - 1);
+                  }}
                   variant="contained"
                   sx={{
                     margin: "0 0 0 1rem",
