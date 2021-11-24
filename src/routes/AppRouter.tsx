@@ -22,7 +22,7 @@ const AppRouter = () => {
 
   const AfterAuth = ({ children }: { children: JSX.Element }) => {
     if (localStorage.getItem("token")) {
-      return <Navigate to="/settings" />;
+      return <Navigate to="/board" />;
     }
     return children;
   };

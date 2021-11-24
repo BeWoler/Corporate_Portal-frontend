@@ -30,3 +30,12 @@
   flex-direction: row;
   align-items: center;
 }
+
+.posts__create {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: .3rem;
+  margin: 0 0 1.5rem 0;
+}
