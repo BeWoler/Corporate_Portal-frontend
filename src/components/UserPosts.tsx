@@ -4,6 +4,7 @@ import { Input, Button } from "@mui/material";
 import "../styles/userPosts.css";
 import PostService from "../services/PostService";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import AddCommentIcon from "@mui/icons-material/AddComment";
 
 const UserPosts: FC = () => {
   const [postText, setPostText] = useState<string>();
@@ -85,6 +86,18 @@ const UserPosts: FC = () => {
                     }}
                   />
                   <span>{post.likes}</span>
+                  <AddCommentIcon
+                    onClick={() => {
+                      setLikesCounter(++post.likes);
+                    }}
+                    sx={{
+                      color: "#bf4444",
+                      verticalAlign: "middle",
+                      margin: "0 .2rem 0 0",
+                      transition: "all ease .2s",
+                      ":hover": { transform: "scale(1.2)" },
+                    }}
+                  />
                 </div>
                 <div className="post__btns">
                   <Button
@@ -125,6 +138,48 @@ const UserPosts: FC = () => {
                   </Button>
                 </div>
               </div>
+              <hr className="post__hr" />
+              <div className="post__comment__create">
+                <form className="comment__create__form">
+                  <Button
+                    variant="contained"
+                    sx={{
+                      margin: "0 1rem 0 0",
+                      fontSize: ".7rem",
+                      backgroundColor: "#bf4444",
+                      ":hover": {
+                        backgroundColor: "#bc6464",
+                      },
+                    }}
+                  >
+                    Add
+                  </Button>
+                  <Input
+                    type="text"
+                    placeholder="Comment"
+                    multiline={true}
+                    sx={{
+                      margin: "0 0 1rem 0",
+                      width: "80%",
+                      ":after": { borderBottom: "2px solid #bf4444" },
+                    }}
+                  />
+                </form>
+              </div>
+
+              {post.comments.map((comment) => {
+                return console.log(comment.author);
+              })}
+              {post.comments.length > 0
+                ? post.comments.map((comment) => {
+                    return (
+                      <div key={comment._id} className="post__comment">
+                        <h5 className="comment__author">{comment.author}</h5>
+                        <p className="comment__text">{comment.text}</p>
+                      </div>
+                    );
+                  })
+                : null}
             </div>
           );
         })}

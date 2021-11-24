@@ -11,6 +11,10 @@ export default class PostService {
     return api.post("/deletePost", { id });
   }
 
+  static createComment(text: string): Promise<AxiosResponse<PostResponse>> {
+    return api.post<PostResponse>("/post/comment", { text });
+  }
+
   static getUserPost = (): Promise<AxiosResponse> => {
     return api.get("/userPosts");
   }

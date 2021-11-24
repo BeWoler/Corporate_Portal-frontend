@@ -3,5 +3,10 @@ export interface Post {
   author: string;
   text: string;
   likes: number;
-  comments: [];
+  comments: [{
+    post: string;
+    author: string;
+    text: string;
+    _id: string;
+  }];
 }
