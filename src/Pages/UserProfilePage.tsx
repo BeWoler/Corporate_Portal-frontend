@@ -1,16 +1,12 @@
-import { FC, useContext, useState } from "react";
+import { FC, useContext } from "react";
 import { Context } from "../index";
 import { Avatar } from "@mui/material";
 import { observer } from "mobx-react-lite";
-import { Input, Button } from "@mui/material";
 import "../styles/userProfile.css";
-import PostService from "../services/PostService";
 import UserPosts from "../components/UserPosts";
 
 const UserProfilePage: FC = () => {
   const { store } = useContext(Context);
-  const [postText, setPostText] = useState<string>();
-  const [post, setPost ] = useState<string>();
 
   return (
     <div className="profile__container">
@@ -82,47 +78,7 @@ const UserProfilePage: FC = () => {
             ? `About me: ${store.user.description}`
             : "Nothing at now..."}
         </p>
-        <div className="profile__posts">
-          <form className="posts__create">
-            <Input
-              type="file"
-              sx={{
-                margin: "0 0 1rem 0",
-                width: "fit-content",
-                ":after": { borderBottom: "2px solid #bf4444" },
-              }}
-            />
-            <Input
-              onChange={(e) => {
-                setPostText(e.target.value);
-              }}
-              type="text"
-              placeholder="Tell us something"
-              multiline={true}
-              sx={{
-                margin: "0 0 1rem 0",
-                ":after": { borderBottom: "2px solid #bf4444" },
-              }}
-            />
-            <Button
-              onClick={async () => {
-                await PostService.createPost(postText)
-                setPost(postText);
-              }}
-              variant="contained"
-              sx={{
-                margin: "2rem 2rem 1rem 2rem",
-                backgroundColor: "#bf4444",
-                ":hover": {
-                  backgroundColor: "#bc6464",
-                },
-              }}
-            >
-              Create Post
-            </Button>
-          </form>
-          <UserPosts children={post}/>
-        </div>
+        <UserPosts />
       </div>
     </div>
   );
