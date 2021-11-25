@@ -9,6 +9,7 @@ import AddCommentIcon from "@mui/icons-material/AddComment";
 const UserPosts: FC = () => {
   const [postText, setPostText] = useState<string>();
   const [posts, setPosts] = useState<Post[]>([]);
+  const [comment, setComment] = useState<string>();
   const [editPostText, setEditPostText] = useState<string>();
   const [likesCounter, setLikesCounter] = useState<number>();
 
@@ -142,6 +143,11 @@ const UserPosts: FC = () => {
               <div className="post__comment__create">
                 <form className="comment__create__form">
                   <Button
+                    onClick={async(e) => {
+                      e.preventDefault();
+                      await PostService.createComment(posts[position]._id, comment);
+                      getUserPosts();
+                    }}
                     variant="contained"
                     sx={{
                       margin: "0 1rem 0 0",
@@ -155,6 +161,7 @@ const UserPosts: FC = () => {
                     Add
                   </Button>
                   <Input
+                    onChange={(e) => setComment(e.target.value)}
                     type="text"
                     placeholder="Comment"
                     multiline={true}
@@ -166,10 +173,6 @@ const UserPosts: FC = () => {
                   />
                 </form>
               </div>
-
-              {post.comments.map((comment) => {
-                return console.log(comment.author);
-              })}
               {post.comments.length > 0
                 ? post.comments.map((comment) => {
                     return (
