@@ -28,6 +28,11 @@ const UserProfilePage: FC = () => {
               My Birthday: {store.user.birthday.split("-").reverse().join(".")}
             </li>
           ) : null}
+          {store.user.stack ? (
+            <li className="profile__info__list">
+              Stack: {store.user.stack}
+            </li>
+          ) : null}
           {store.user.position ? (
             <li className="profile__info__list">
               Position: {store.user.position}
@@ -57,7 +62,7 @@ const UserProfilePage: FC = () => {
             ? `${store.user.firstName} ${store.user.lastName}`
             : "I don't have a name"}
         </p>
-        <div>
+        {/* <div>
           <ul className="profile__board">
             <li className="profile__board__list">
               Friends
@@ -72,7 +77,7 @@ const UserProfilePage: FC = () => {
               <span>10</span>
             </li>
           </ul>
-        </div>
+        </div> */}
         <p className="profile__about">
           {store.user.description
             ? `About me: ${store.user.description}`

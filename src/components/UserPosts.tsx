@@ -70,7 +70,13 @@ const UserPosts: FC = () => {
         {posts.map((post, position) => {
           return (
             <div key={post._id} className="userPosts__post">
-              <h4 className="post__author">{post.author}</h4>
+              <div className="post__info">
+                <h4 className="post__author">{post.author}</h4>
+                <p className="post__time">
+                  {post.time.day}.{post.time.month}.{post.time.year}. At{" "}
+                  {post.time.hours}.{post.time.minutes}
+                </p>
+              </div>
               <p className="post__text">{post.text}</p>
               <div className="post__functions">
                 <div className="post__likes">
@@ -143,9 +149,12 @@ const UserPosts: FC = () => {
               <div className="post__comment__create">
                 <form className="comment__create__form">
                   <Button
-                    onClick={async(e) => {
+                    onClick={async (e) => {
                       e.preventDefault();
-                      await PostService.createComment(posts[position]._id, comment);
+                      await PostService.createComment(
+                        posts[position]._id,
+                        comment
+                      );
                       getUserPosts();
                     }}
                     variant="contained"
@@ -177,7 +186,14 @@ const UserPosts: FC = () => {
                 ? post.comments.map((comment) => {
                     return (
                       <div key={comment._id} className="post__comment">
-                        <h5 className="comment__author">{comment.author}</h5>
+                        <div className="comment__info">
+                          <h5 className="comment__author">{comment.author}</h5>
+                          <p className="comment__time">
+                            {comment.time.day}.{comment.time.month}.
+                            {comment.time.year}. At {comment.time.hours}.
+                            {comment.time.minutes}
+                          </p>
+                        </div>
                         <p className="comment__text">{comment.text}</p>
                       </div>
                     );

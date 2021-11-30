@@ -11,6 +11,18 @@
   border-radius: .3rem;
 }
 
+.post__info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 0 .3rem 0;
+}
+
+.post__time {
+  font-size: 16px;
+  font-weight: 500;
+}
+
 .post__author {
   margin: 0 0 .3rem 0;
 }
@@ -58,4 +70,16 @@
 
 .post__comment:hover {
   box-shadow: 0px 1px 5px #3d3d3d;
+}
+
+.comment__info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 0 .2rem 0;
+}
+
+.comment__time {
+  font-size: 14px;
+  font-weight: 500;
 }

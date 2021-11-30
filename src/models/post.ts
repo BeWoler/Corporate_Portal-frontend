@@ -3,10 +3,26 @@ export interface Post {
   author: string;
   text: string;
   likes: number;
-  comments: [{
-    post: string;
-    author: string;
-    text: string;
-    _id: string;
-  }];
+  time: {
+    year: number;
+    month: number;
+    day: number;
+    hours: number;
+    minutes: number;
+  };
+  comments: [
+    {
+      post: string;
+      author: string;
+      text: string;
+      time: {
+        year: number;
+        month: number;
+        day: number;
+        hours: number;
+        minutes: number;
+      };
+      _id: string;
+    }
+  ];
 }

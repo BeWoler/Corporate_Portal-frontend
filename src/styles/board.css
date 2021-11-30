@@ -22,7 +22,7 @@
 }
 
 .board__author {
-  margin: 0 0 .3rem 0;
+  margin: 0 1rem .3rem 0;
 }
 
 .board__text {
@@ -33,4 +33,15 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+.board__info {
+  display: flex;
+  flex-direction: row;
+  margin: 0 0 .2rem 0;
+}
+
+.board__time {
+  font-size: 16px;
+  font-weight: 500;
 }

@@ -26,7 +26,13 @@ const Board: FC = () => {
         {posts.map((post) => {
           return (
             <div key={post._id} className="board__post">
-              <h4 className="board__author">{post.author}</h4>
+              <div className="board__info">
+                <h4 className="board__author">{post.author}</h4>
+                <p className="board__time">
+                  {post.time.day}.{post.time.month}.{post.time.year}. At{" "}
+                  {post.time.hours}.{post.time.minutes}
+                </p>
+              </div>
               <p className="board__text">{post.text}</p>
               <div className="board__likes">
                 <FavoriteIcon
