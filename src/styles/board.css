@@ -18,7 +18,8 @@
   word-break: break-all;
   padding: 1rem;
   margin: 0rem 1rem 1rem 0;
-  border-radius: .3rem; 
+  border-radius: .3rem;
+  height: fit-content; 
 }
 
 .board__author {
@@ -38,6 +39,7 @@
 .board__info {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   margin: 0 0 .2rem 0;
 }
 

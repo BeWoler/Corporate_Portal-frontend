@@ -29,9 +29,7 @@ const UserProfilePage: FC = () => {
             </li>
           ) : null}
           {store.user.stack ? (
-            <li className="profile__info__list">
-              Stack: {store.user.stack}
-            </li>
+            <li className="profile__info__list">Stack: {store.user.stack}</li>
           ) : null}
           {store.user.position ? (
             <li className="profile__info__list">
@@ -62,22 +60,6 @@ const UserProfilePage: FC = () => {
             ? `${store.user.firstName} ${store.user.lastName}`
             : "I don't have a name"}
         </p>
-        {/* <div>
-          <ul className="profile__board">
-            <li className="profile__board__list">
-              Friends
-              <span>20</span>
-            </li>
-            <li className="profile__board__list">
-              Posts
-              <span>25</span>
-            </li>
-            <li className="profile__board__list">
-              Projects
-              <span>10</span>
-            </li>
-          </ul>
-        </div> */}
         <p className="profile__about">
           {store.user.description
             ? `About me: ${store.user.description}`

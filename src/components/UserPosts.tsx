@@ -10,6 +10,7 @@ const UserPosts: FC = () => {
   const [postText, setPostText] = useState<string>();
   const [posts, setPosts] = useState<Post[]>([]);
   const [comment, setComment] = useState<string>();
+  const [isOpen, setIsOpen] = useState<number>();
   const [editPostText, setEditPostText] = useState<string>();
   const [likesCounter, setLikesCounter] = useState<number>();
 
@@ -95,7 +96,7 @@ const UserPosts: FC = () => {
                   <span>{post.likes}</span>
                   <AddCommentIcon
                     onClick={() => {
-                      setLikesCounter(++post.likes);
+                      return isOpen !== position ? setIsOpen(position) : -1;
                     }}
                     sx={{
                       color: "#bf4444",
@@ -146,59 +147,67 @@ const UserPosts: FC = () => {
                 </div>
               </div>
               <hr className="post__hr" />
-              <div className="post__comment__create">
-                <form className="comment__create__form">
-                  <Button
-                    onClick={async (e) => {
-                      e.preventDefault();
-                      await PostService.createComment(
-                        posts[position]._id,
-                        comment
-                      );
-                      getUserPosts();
-                    }}
-                    variant="contained"
-                    sx={{
-                      margin: "0 1rem 0 0",
-                      fontSize: ".7rem",
-                      backgroundColor: "#bf4444",
-                      ":hover": {
-                        backgroundColor: "#bc6464",
-                      },
-                    }}
-                  >
-                    Add
-                  </Button>
-                  <Input
-                    onChange={(e) => setComment(e.target.value)}
-                    type="text"
-                    placeholder="Comment"
-                    multiline={true}
-                    sx={{
-                      margin: "0 0 1rem 0",
-                      width: "80%",
-                      ":after": { borderBottom: "2px solid #bf4444" },
-                    }}
-                  />
-                </form>
+              <div
+                className={`post__comment__container ${
+                  isOpen === position ? "open" : ""
+                }`}
+              >
+                <div className="post__comment__create">
+                  <form className="comment__create__form">
+                    <Button
+                      onClick={async (e) => {
+                        e.preventDefault();
+                        await PostService.createComment(
+                          posts[position]._id,
+                          comment
+                        );
+                        getUserPosts();
+                      }}
+                      variant="contained"
+                      sx={{
+                        margin: "0 1rem 0 0",
+                        fontSize: ".7rem",
+                        backgroundColor: "#bf4444",
+                        ":hover": {
+                          backgroundColor: "#bc6464",
+                        },
+                      }}
+                    >
+                      Add
+                    </Button>
+                    <Input
+                      onChange={(e) => setComment(e.target.value)}
+                      type="text"
+                      placeholder="Comment"
+                      multiline={true}
+                      sx={{
+                        margin: "0 0 1rem 0",
+                        width: "80%",
+                        ":after": { borderBottom: "2px solid #bf4444" },
+                      }}
+                    />
+                  </form>
+                  {post.comments.length > 0
+                    ? post.comments.map((comment) => {
+                        return (
+                          <div key={comment._id} className="post__comment">
+                            <div className="comment__info">
+                              <h5 className="comment__author">
+                                {comment.author}
+                              </h5>
+                              <p className="comment__time">
+                                {comment.time.day}.{comment.time.month}.
+                                {comment.time.year}. At {comment.time.hours}.
+                                {comment.time.minutes}
+                              </p>
+                            </div>
+                            <p className="comment__text">{comment.text}</p>
+                          </div>
+                        );
+                      })
+                    : null}
+                </div>
               </div>
-              {post.comments.length > 0
-                ? post.comments.map((comment) => {
-                    return (
-                      <div key={comment._id} className="post__comment">
-                        <div className="comment__info">
-                          <h5 className="comment__author">{comment.author}</h5>
-                          <p className="comment__time">
-                            {comment.time.day}.{comment.time.month}.
-                            {comment.time.year}. At {comment.time.hours}.
-                            {comment.time.minutes}
-                          </p>
-                        </div>
-                        <p className="comment__text">{comment.text}</p>
-                      </div>
-                    );
-                  })
-                : null}
             </div>
           );
         })}
