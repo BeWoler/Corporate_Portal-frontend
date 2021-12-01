@@ -93,6 +93,15 @@
   display: none;
 }
 
+.post__edit {
+  display: none;
+  align-items: center;
+}
+
+.edit {
+  display: flex;
+}
+
 .open {
   display: block;
 }

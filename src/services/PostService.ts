@@ -8,7 +8,11 @@ export default class PostService {
   }
 
   static delete = (id: string): Promise<AxiosResponse> => {
-    return api.post("/deletePost", { id });
+    return api.post("/post/delete", { id });
+  }
+
+  static edit = (id: string, text: string): Promise<AxiosResponse> => {
+    return api.patch("/post/edit", { id, text });
   }
 
   static createComment(id: string, text: string): Promise<AxiosResponse<PostResponse>> {

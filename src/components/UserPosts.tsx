@@ -11,7 +11,7 @@ const UserPosts: FC = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [comment, setComment] = useState<string>();
   const [isOpen, setIsOpen] = useState<number>();
-  const [editPostText, setEditPostText] = useState<string>();
+  const [edit, setEdit] = useState<number>();
   const [likesCounter, setLikesCounter] = useState<number>();
 
   const getUserPosts = async () => {
@@ -75,7 +75,7 @@ const UserPosts: FC = () => {
                 <h4 className="post__author">{post.author}</h4>
                 <p className="post__time">
                   {post.time.day}.{post.time.month}.{post.time.year}. At{" "}
-                  {post.time.hours}.{post.time.minutes}
+                  {post.time.hours}:{post.time.minutes}
                 </p>
               </div>
               <p className="post__text">{post.text}</p>
@@ -111,8 +111,7 @@ const UserPosts: FC = () => {
                   <Button
                     onClick={(e) => {
                       e.preventDefault();
-                      getUserPosts();
-                      return <div>123</div>;
+                      return edit !== position ? setEdit(position) : -1;
                     }}
                     variant="contained"
                     sx={{
@@ -147,6 +146,40 @@ const UserPosts: FC = () => {
                 </div>
               </div>
               <hr className="post__hr" />
+              <div className={`post__edit ${edit === position ? "edit" : ""}`}>
+                <Input
+                  onChange={(e) => {
+                    setPostText(e.target.value);
+                  }}
+                  type="text"
+                  placeholder="Enter new data"
+                  multiline={true}
+                  sx={{
+                    margin: "0 0 1rem 0",
+                    width: "100%",
+                    ":after": { borderBottom: "2px solid #bf4444" },
+                  }}
+                />
+                <Button
+                  onClick={async (e) => {
+                    e.preventDefault();
+                    await PostService.edit(posts[position]._id, postText);
+                    getUserPosts();
+                    setEdit(-1);
+                  }}
+                  variant="contained"
+                  sx={{
+                    margin: "0 1rem 0 1rem",
+                    fontSize: ".7rem",
+                    backgroundColor: "#bf4444",
+                    ":hover": {
+                      backgroundColor: "#bc6464",
+                    },
+                  }}
+                >
+                  Save
+                </Button>
+              </div>
               <div
                 className={`post__comment__container ${
                   isOpen === position ? "open" : ""
