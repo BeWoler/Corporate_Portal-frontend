@@ -8,6 +8,7 @@ import UserSettingsPage from "../Pages/UserSettingsPage";
 import ChangePasswordPage from "../Pages/ChangePasswordPage";
 import UserProfilePage from "../Pages/UserProfilePage";
 import Board from "../Pages/Board";
+import MessagesPage from "../Pages/MessagesPage";
 
 const AppRouter = () => {
   const RequireAuth = ({ children }: { children: JSX.Element }) => {
@@ -83,6 +84,14 @@ const AppRouter = () => {
           element={
             <RequireAuth>
               <Board />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="chat"
+          element={
+            <RequireAuth>
+              <MessagesPage />
             </RequireAuth>
           }
         />

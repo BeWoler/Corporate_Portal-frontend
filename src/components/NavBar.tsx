@@ -30,7 +30,7 @@ const NavBar: FC = () => {
           <DashboardIcon sx={{ color: "#bf4444", verticalAlign: "bottom", marginRight: ".4rem" }} />
           Board
         </Link>
-        <Link to="messages" className="nav__li">
+        <Link to="chat" className="nav__li">
           <ChatIcon sx={{ color: "#bf4444", verticalAlign: "bottom", marginRight: ".4rem" }} />
           Messages
         </Link>
