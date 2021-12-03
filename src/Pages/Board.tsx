@@ -1,5 +1,6 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState, useContext } from "react";
 import { Post } from "../models/post";
+import { Context } from "../index"
 import PostService from "../services/PostService";
 import { Button, Input } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -7,6 +8,7 @@ import AddCommentIcon from "@mui/icons-material/AddComment";
 import "../styles/board.css";
 
 const Board: FC = () => {
+  const { store } = useContext(Context);
   const [posts, setPosts] = useState<Post[]>([]);
   const [comment, setComment] = useState<string>();
   const [isOpen, setIsOpen] = useState<number>();
@@ -40,8 +42,9 @@ const Board: FC = () => {
               <p className="board__text">{post.text}</p>
               <div className="board__likes">
                 <FavoriteIcon
-                  onClick={() => {
-                    // setLikesCounter(++post.likes);
+                  onClick={async () => {
+                    await PostService.like(posts[position]._id, store.user.id);
+                    setTimeout(() => getAllPosts(), 100);
                   }}
                   sx={{
                     color: "#bf4444",
@@ -51,7 +54,7 @@ const Board: FC = () => {
                     ":hover": { transform: "scale(1.2)" },
                   }}
                 />
-                <span>{post.likes}</span>
+                <span>{post.likes.length}</span>
                 <AddCommentIcon
                   onClick={() => {
                     return isOpen !== position ? setIsOpen(position) : -1;

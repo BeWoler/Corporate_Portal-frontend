@@ -1,8 +1,9 @@
 export interface Post {
   _id: string;
   author: string;
+  user: string;
   text: string;
-  likes: number;
+  likes: string[];
   time: {
     year: number;
     month: number;

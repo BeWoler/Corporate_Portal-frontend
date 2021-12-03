@@ -1,18 +1,19 @@
-import { FC, useState, useEffect } from "react";
+import { FC, useState, useEffect, useContext } from "react";
 import { Post } from "../models/post";
 import { Input, Button } from "@mui/material";
+import { Context } from "../index"
 import "../styles/userPosts.css";
 import PostService from "../services/PostService";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AddCommentIcon from "@mui/icons-material/AddComment";
 
 const UserPosts: FC = () => {
+  const { store } = useContext(Context);
   const [postText, setPostText] = useState<string>();
   const [posts, setPosts] = useState<Post[]>([]);
   const [comment, setComment] = useState<string>();
   const [isOpen, setIsOpen] = useState<number>();
   const [edit, setEdit] = useState<number>();
-  const [likesCounter, setLikesCounter] = useState<number>();
 
   const getUserPosts = async () => {
     const response = await PostService.getUserPost();
@@ -82,8 +83,9 @@ const UserPosts: FC = () => {
               <div className="post__functions">
                 <div className="post__likes">
                   <FavoriteIcon
-                    onClick={() => {
-                      setLikesCounter(++post.likes);
+                    onClick={async () => {
+                      await PostService.like(posts[position]._id, store.user.id);
+                      getUserPosts();
                     }}
                     sx={{
                       color: "#bf4444",
@@ -93,7 +95,7 @@ const UserPosts: FC = () => {
                       ":hover": { transform: "scale(1.2)" },
                     }}
                   />
-                  <span>{post.likes}</span>
+                  <span>{post.likes.length}</span>
                   <AddCommentIcon
                     onClick={() => {
                       return isOpen !== position ? setIsOpen(position) : -1;

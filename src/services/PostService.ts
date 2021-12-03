@@ -26,4 +26,8 @@ export default class PostService {
   static getAllPosts = (): Promise<AxiosResponse> => {
     return api.get("/allPosts");
   }
+
+  static like = (post: string, user: string): Promise<AxiosResponse> => {
+    return api.post("/like", { post, user });
+  }
 }
