@@ -1,0 +1,40 @@
+.upload__container {
+  display: flex;
+  flex-direction: column;
+}
+
+.upload__title {
+  margin: 0 0 1.5rem 0;
+}
+
+.upload__form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-radius: .3rem;
+  background-color: #fff;
+}
+
+#file-upload-button {
+  background-color: black;
+}
+
+.upload__view {
+ margin: 1rem 0;
+ text-align: center;
+}
+
+.avatar__preview {
+  width: 90%;
+  height: 90%;
+  box-shadow: 1px 0px 5px #3d3d3d;
+  cursor: pointer;
+}
+
+.upload__avatar__preview {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1rem 0;
+}
