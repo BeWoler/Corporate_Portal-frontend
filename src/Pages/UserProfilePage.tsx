@@ -2,6 +2,7 @@ import { FC, useContext } from "react";
 import { Context } from "../index";
 import { Avatar } from "@mui/material";
 import { observer } from "mobx-react-lite";
+import { URL } from "../http/axios";
 import "../styles/userProfile.css";
 import UserPosts from "../components/UserPosts";
 
@@ -12,6 +13,7 @@ const UserProfilePage: FC = () => {
     <div className="profile__container">
       <div className="profile__first__column">
         <Avatar
+          src={`${URL}/${store.user.avatar}`}
           sx={{
             width: "200px",
             height: "200px",

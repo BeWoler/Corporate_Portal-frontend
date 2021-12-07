@@ -1,20 +1,29 @@
-import { FC, useState } from "react";
+import { FC, useState, useContext } from "react";
 import { Avatar, Button, Input } from "@mui/material";
+import { Context } from "../index";
 import "../styles/changeAvatar.css";
+import api from "../http/axios";
 
 const ChangeAvatar: FC = () => {
+  const { store } = useContext(Context);
   const [img, setImg] = useState<any>();
   const [file, setFile] = useState<any>();
 
-  const imageUpload = (e: any) => {
+  const imageUpload = async (e: any) => {
     e.preventDefault();
-    console.log(file);
+    const formData = new FormData();
+    formData.append("image", file);
+    await api.post("/avatar", formData, {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    });
+    store.checkAuth();
   };
 
   const imageChange = (e: any) => {
     let reader = new FileReader();
     const file = e.target.files[0];
-
     reader.onloadend = () => {
       setImg(reader.result);
     };

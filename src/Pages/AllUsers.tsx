@@ -1,6 +1,7 @@
 import { FC, useState } from "react";
 import { User } from "../models/user";
-import { Button } from "@mui/material";
+import { Button, Avatar } from "@mui/material";
+import { URL } from "../http/axios";
 import UserService from "../services/UserService";
 import "../styles/allUsers.css";
 
@@ -31,6 +32,16 @@ const AllUsers: FC = () => {
       <ul className="users__ul">
         {users.map((user) => (
           <li className="users__li" key={user.email}>
+            <Avatar
+              src={`${URL}/${user.avatar}`}
+              sx={{
+                width: "100px",
+                height: "100px",
+                margin: "0 auto 1rem auto",
+                backgroundColor: "#bf4444",
+                fontSize: "50px",
+              }}
+            ></Avatar>
             {user.email}
           </li>
         ))}
