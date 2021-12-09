@@ -1,9 +1,10 @@
 import { FC, useEffect, useState, useContext } from "react";
 import { Post } from "../models/post";
-import { Context } from "../index"
+import { Context } from "../index";
 import PostService from "../services/PostService";
 import { Button, Input } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
 import AddCommentIcon from "@mui/icons-material/AddComment";
 import "../styles/board.css";
 
@@ -36,9 +37,33 @@ const Board: FC = () => {
                 <h4 className="board__author">{post.author}</h4>
                 <p className="board__time">
                   {post.time.day}.{post.time.month}.{post.time.year}. At{" "}
-                  {post.time.hours}.{post.time.minutes}
+                  {post.time.hours}:{post.time.minutes}
                 </p>
               </div>
+              {post.file.split(".").reverse()[0] === "jpg" ||
+              post.file.split(".").reverse()[0] === "png" ||
+              post.file.split(".").reverse()[0] === "jpeg" ? (
+                <a href={post.file} download target="__blank">
+                  <img
+                    src={post.file}
+                    className="file__preview"
+                    alt="preview"
+                  />
+                </a>
+              ) : post.file.split("/").reverse()[0] !== "null" ? (
+                <a href={post.file} download target="__blank">
+                  <InsertDriveFileIcon
+                    sx={{
+                      color: "#BF4444",
+                      width: "30px",
+                      height: "30px",
+                      verticalAlign: "middle",
+                      margin: "1rem 0",
+                    }}
+                  />
+                  {post.file.split("-").reverse()[0]}
+                </a>
+              ) : null}
               <p className="board__text">{post.text}</p>
               <div className="board__likes">
                 <FavoriteIcon
