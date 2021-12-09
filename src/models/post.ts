@@ -4,6 +4,7 @@ export interface Post {
   user: string;
   text: string;
   likes: string[];
+  file: string;
   time: {
     year: number;
     month: number;

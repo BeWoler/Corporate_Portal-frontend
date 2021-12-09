@@ -9,7 +9,7 @@ import ChangePasswordPage from "../Pages/ChangePasswordPage";
 import UserProfilePage from "../Pages/UserProfilePage";
 import Board from "../Pages/Board";
 import MessagesPage from "../Pages/MessagesPage";
-import ChangeAvatar from "../components/ChangeAvatar";
+import ChangeAvatar from "../Pages/ChangeAvatar";
 
 const AppRouter = () => {
   const RequireAuth = ({ children }: { children: JSX.Element }) => {

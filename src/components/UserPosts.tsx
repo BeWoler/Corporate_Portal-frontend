@@ -1,9 +1,11 @@
 import { FC, useState, useEffect, useContext } from "react";
 import { Post } from "../models/post";
 import { Input, Button } from "@mui/material";
-import { Context } from "../index"
+import { Context } from "../index";
+import api from "../http/axios";
 import "../styles/userPosts.css";
 import PostService from "../services/PostService";
+import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AddCommentIcon from "@mui/icons-material/AddComment";
 
@@ -15,9 +17,75 @@ const UserPosts: FC = () => {
   const [isOpen, setIsOpen] = useState<number>();
   const [edit, setEdit] = useState<number>();
 
+  const [img, setImg] = useState<any>();
+  const [file, setFile] = useState<any>();
+
+  const fileUpload = async (e: any) => {
+    try {
+      e.preventDefault();
+      const formData = new FormData();
+      formData.append("files", file);
+      const res = await api.post("/post/upload", formData, {
+        headers: {
+          "content-type": "multipart/form-data",
+        },
+      });
+      await PostService.createPost(postText, res.data.path);
+    } catch (e) {
+      await PostService.createPost(postText, null);
+    }
+  };
+
+  const fileChange = (e: any) => {
+    let reader = new FileReader();
+    const file = e.target.files[0];
+    if (file) {
+      reader.onloadend = () => {
+        setImg(reader.result);
+      };
+      reader.readAsDataURL(file);
+      setFile(file);
+    } else {
+      setImg(null);
+      setFile(null);
+    }
+  };
+
+  let filePreview = img;
+
+  if (img) {
+    filePreview = (
+      <div>
+        <a href={img} download>
+          {file.type === "image/jpeg" ||
+          file.type === "image/jpg" || 
+          file.type === "image/png" 
+          ? (
+            <img src={img} className="file__preview" alt={file.name} />
+          ) : (
+            <div>
+              <InsertDriveFileIcon
+                sx={{
+                  color: "#BF4444",
+                  width: "30px",
+                  height: "30px",
+                  verticalAlign: "middle",
+                  margin: "1rem 0",
+                }}
+              />
+              {file.name}
+            </div>
+          )}
+        </a>
+      </div>
+    );
+  } else {
+    filePreview = null;
+  }
+
   const getUserPosts = async () => {
     const response = await PostService.getUserPost();
-    await setPosts(response.data.reverse());
+    setPosts(response.data.reverse());
   };
 
   useEffect(() => {
@@ -29,15 +97,20 @@ const UserPosts: FC = () => {
 
   return (
     <div className="profile__posts">
-      <form className="posts__create">
+      <form className="posts__create" encType="miltipart/form-data">
         <Input
+          name="files"
           type="file"
           sx={{
             margin: "0 0 1rem 0",
             width: "fit-content",
             ":after": { borderBottom: "2px solid #bf4444" },
           }}
+          onChange={(e) => {
+            fileChange(e);
+          }}
         />
+        {filePreview}
         <Input
           onChange={(e) => {
             setPostText(e.target.value);
@@ -53,7 +126,7 @@ const UserPosts: FC = () => {
         <Button
           onClick={async (e) => {
             e.preventDefault();
-            await PostService.createPost(postText);
+            await fileUpload(e);
             getUserPosts();
           }}
           variant="contained"
@@ -79,12 +152,41 @@ const UserPosts: FC = () => {
                   {post.time.hours}:{post.time.minutes}
                 </p>
               </div>
+              <div className="post__files">
+                {post.file.split(".").reverse()[0] === "jpg" ||
+                post.file.split(".").reverse()[0] === "png" ||
+                post.file.split(".").reverse()[0] === "jpeg" ? (
+                  <a href={post.file} download target="__blank">
+                    <img
+                      src={post.file}
+                      className="file__preview"
+                      alt="preview"
+                    />
+                  </a>
+                ) : post.file.split("/").reverse()[0] !== "null" ? (
+                  <a href={post.file} download target="__blank">
+                    <InsertDriveFileIcon
+                      sx={{
+                        color: "#BF4444",
+                        width: "30px",
+                        height: "30px",
+                        verticalAlign: "middle",
+                        margin: "1rem 0",
+                      }}
+                    />
+                    {post.file.split("-").reverse()[0]}
+                  </a>
+                ) : null}
+              </div>
               <p className="post__text">{post.text}</p>
               <div className="post__functions">
                 <div className="post__likes">
                   <FavoriteIcon
                     onClick={async () => {
-                      await PostService.like(posts[position]._id, store.user.id);
+                      await PostService.like(
+                        posts[position]._id,
+                        store.user.id
+                      );
                       getUserPosts();
                     }}
                     sx={{
