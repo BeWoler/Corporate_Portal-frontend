@@ -9,6 +9,16 @@ const ChangePasswordPage: FC = () => {
   const [oldPassword, setOldPassword] = useState<string>();
   const [newPassword, setNewPassword] = useState<string>();
 
+  const inputStyles = {
+    margin: "1rem 1.3rem 0.8rem 1.3rem",
+    ":after": { borderBottom: "2px solid #bf4444" },
+  };
+  const btnStyles = {
+    margin: "0rem 2rem 0rem 2rem",
+    backgroundColor: "#bf4444",
+    ":hover": { backgroundColor: "#bc6464" },
+  };
+
   return (
     <div className="change__container">
       <h2 className="change__title">Change Password</h2>
@@ -19,31 +29,19 @@ const ChangePasswordPage: FC = () => {
             placeholder="Old Password"
             required
             type="password"
-            sx={{
-              margin: "1rem 1.3rem 0.8rem 1.3rem",
-              ":after": { borderBottom: "2px solid #bf4444" },
-            }}
+            sx={inputStyles}
             onChange={(e) => setOldPassword(e.target.value)}
           />
           <Input
             placeholder="New Password"
             required
             type="password"
-            sx={{
-              margin: "1rem 1.3rem 0.8rem 1.3rem",
-              ":after": { borderBottom: "2px solid #bf4444" },
-            }}
+            sx={inputStyles}
             onChange={(e) => setNewPassword(e.target.value)}
           />
           <Button
             variant="contained"
-            sx={{
-              margin: "0rem 2rem 0rem 2rem",
-              backgroundColor: "#bf4444",
-              ":hover": {
-                backgroundColor: "#bc6464",
-              },
-            }}
+            sx={btnStyles}
             onClick={async () => {
               await store.changePass(
                 store.user.username,
