@@ -24,11 +24,16 @@ const ChangeAvatar: FC = () => {
   const imageChange = (e: any) => {
     let reader = new FileReader();
     const file = e.target.files[0];
-    reader.onloadend = () => {
-      setImg(reader.result);
-    };
-    reader.readAsDataURL(file);
-    setFile(file);
+    if (file) {
+      reader.onloadend = () => {
+        setImg(reader.result);
+      };
+      reader.readAsDataURL(file);
+      setFile(file);
+    } else {
+      setImg(null);
+      setFile(null);
+    }
   };
 
   let imgPreview = img;
