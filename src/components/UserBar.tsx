@@ -7,22 +7,23 @@ import "../styles/userBar.css";
 
 const UserBar: FC = () => {
   const { store } = useContext(Context);
+  const avatarStyles = {
+    cursor: "pointer",
+    width: "30px",
+    height: "30px",
+    marginLeft: "0.5rem",
+    bgcolor: "#bf4444",
+  };
 
   return (
     <div className="userBar__container">
       <Link className="userBar__user" to={`${store.user.username}/profile`}>
-      {store.user.email}
-      <Avatar
-        src={`${URL}/${store.user.avatar}`}
-        className="avatar"
-        sx={{
-          cursor: "pointer",
-          width: "30px",
-          height: "30px",
-          marginLeft: "0.5rem",
-          bgcolor: "#bf4444",
-        }}
-      ></Avatar>
+        {store.user.email}
+        <Avatar
+          src={`${URL}/${store.user.avatar}`}
+          className="avatar"
+          sx={avatarStyles}
+        ></Avatar>
       </Link>
     </div>
   );
