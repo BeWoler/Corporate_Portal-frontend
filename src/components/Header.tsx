@@ -8,31 +8,28 @@ import UserBar from "./UserBar";
 
 const Header: FC = () => {
   const { store } = useContext(Context);
+  const apiIconStyles = {
+    color: "#bf4444",
+    verticalAlign: "bottom",
+    marginRight: ".4rem",
+    width: "1.8rem",
+    height: "1.8rem",
+  };
+  const inputStyles = {
+    marginLeft: "4rem",
+    ":after": { borderBottom: "2px solid #bf4444" },
+  };
 
   if (store.isAuth) {
     return (
       <header className="header">
         <div className="header__main">
           <div className="header__logo">
-            <ApiIcon
-              sx={{
-                color: "#bf4444",
-                verticalAlign: "bottom",
-                marginRight: ".4rem",
-                width: "1.8rem",
-                height: "1.8rem",
-              }}
-            />
+            <ApiIcon sx={apiIconStyles} />
             <p className="header__title">
               <Link to="/">Corporate Portal</Link>
             </p>
-            <Input
-              placeholder="Search"
-              sx={{
-                marginLeft: "4rem",
-                ":after": { borderBottom: "2px solid #bf4444" },
-              }}
-            />
+            <Input placeholder="Search" sx={inputStyles} />
           </div>
           <UserBar />
         </div>
@@ -44,15 +41,7 @@ const Header: FC = () => {
     <header className="header">
       <div className="header__main nonAuth">
         <div className="header__logo">
-          <ApiIcon
-            sx={{
-              color: "#bf4444",
-              verticalAlign: "bottom",
-              marginRight: ".4rem",
-              width: "1.8rem",
-              height: "1.8rem",
-            }}
-          />
+          <ApiIcon sx={apiIconStyles} />
           <p className="header__title">
             <Link to="/">Corporate Portal</Link>
           </p>

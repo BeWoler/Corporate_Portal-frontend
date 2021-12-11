@@ -18,105 +18,87 @@ const UserSettingsPage: FC = () => {
   const [phone, setPhone] = useState<number>();
   const [description, setDescription] = useState<string>();
 
+  const inputStyles = {
+    margin: "0rem 1.3rem 1rem 1.3rem",
+    ":after": { borderBottom: "2px solid #bf4444" },
+  };
+  const btnStyles = {
+    margin: "2rem 1.3rem 2rem 1.3rem",
+    backgroundColor: "#bf4444",
+    ":hover": { backgroundColor: "#bc6464" },
+  };
+
   return (
     <div className="settings__container">
       <h2 className="settings__title">Editing Profile</h2>
       <div className="settings__box">
         <form className="settings__form">
           <h3 className="settings__notification">{store.successMessage}</h3>
-          <h4 className="settings__text">If this is your first time here, fill out your profile.</h4>
+          <h4 className="settings__text">
+            If this is your first time here, fill out your profile.
+          </h4>
           <Input
             onChange={(e) => setFirstName(e.target.value)}
             placeholder="First Name"
             type="text"
-            sx={{
-              margin: "0rem 1.3rem 1rem 1.3rem",
-              ":after": { borderBottom: "2px solid #bf4444" },
-            }}
+            sx={inputStyles}
           />
           <Input
             onChange={(e) => setLastName(e.target.value)}
             placeholder="Last Name"
             type="text"
-            sx={{
-              margin: "0rem 1.3rem 1rem 1.3rem",
-              ":after": { borderBottom: "2px solid #bf4444" },
-            }}
+            sx={inputStyles}
           />
           <Input
             onChange={(e) => setBirthday(e.target.value)}
             placeholder="Age"
             type="date"
-            sx={{
-              margin: "0rem 1.3rem 1rem 1.3rem",
-              ":after": { borderBottom: "2px solid #bf4444" },
-            }}
+            sx={inputStyles}
           />
           <Input
             onChange={(e) => setStack(e.target.value)}
             multiline={true}
             placeholder="Stack"
             type="text"
-            sx={{
-              margin: "0rem 1.3rem 1rem 1.3rem",
-              ":after": { borderBottom: "2px solid #bf4444" },
-            }}
+            sx={inputStyles}
           />
           <Input
             onChange={(e) => setPosition(e.target.value)}
             placeholder="Position"
             type="text"
-            sx={{
-              margin: "0rem 1.3rem 1rem 1.3rem",
-              ":after": { borderBottom: "2px solid #bf4444" },
-            }}
+            sx={inputStyles}
           />
           <Input
             onChange={(e) => setDepartment(e.target.value)}
             placeholder="Department"
             type="text"
-            sx={{
-              margin: "0rem 1.3rem 1rem 1.3rem",
-              ":after": { borderBottom: "2px solid #bf4444" },
-            }}
+            sx={inputStyles}
           />
           <Input
             onChange={(e) => setEducation(e.target.value)}
             multiline={true}
             placeholder="Education"
             type="text"
-            sx={{
-              margin: "0rem 1.3rem 1rem 1.3rem",
-              ":after": { borderBottom: "2px solid #bf4444" },
-            }}
+            sx={inputStyles}
           />
           <Input
             onChange={(e) => setSkype(e.target.value)}
             placeholder="Skype"
             type="text"
-            sx={{
-              margin: "0rem 1.3rem 1rem 1.3rem",
-              ":after": { borderBottom: "2px solid #bf4444" },
-            }}
+            sx={inputStyles}
           />
           <Input
             onChange={(e) => setPhone(+e.target.value)}
             placeholder="Phone"
             type="number"
-            sx={{
-              margin: "0rem 1.3rem 1rem 1.3rem",
-              ":after": { borderBottom: "2px solid #bf4444" },
-            }}
+            sx={inputStyles}
           />
           <Input
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Description"
             type="text"
             multiline={true}
-            sx={{
-              margin: "0rem 1.3rem 1rem 1.3rem",
-              ":after": { borderBottom: "2px solid #bf4444" },
-            }}
+            sx={inputStyles}
           />
           <Button
             onClick={async () => {
@@ -135,13 +117,7 @@ const UserSettingsPage: FC = () => {
               store.checkAuth();
             }}
             variant="contained"
-            sx={{
-              margin: "2rem 1.3rem 2rem 1.3rem",
-              backgroundColor: "#bf4444",
-              ":hover": {
-                backgroundColor: "#bc6464",
-              },
-            }}
+            sx={btnStyles}
           >
             Save
           </Button>
