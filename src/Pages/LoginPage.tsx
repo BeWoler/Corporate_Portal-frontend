@@ -10,6 +10,16 @@ const LoginPage: FC = () => {
   const [password, setPassword] = useState<string>("");
   const { store } = useContext(Context);
 
+  const inputStyles = {
+    margin: "1.5rem 1.3rem 0.8rem 1.3rem",
+    ":after": { borderBottom: "2px solid #bf4444" },
+  };
+  const btnStyles = {
+    margin: "2rem 1.3rem 2rem 1.3rem",
+    backgroundColor: "#bf4444",
+    ":hover": { backgroundColor: "#bc6464" },
+  };
+
   return (
     <form className="login__form">
       <h2 className="form__h2">Login</h2>
@@ -17,10 +27,7 @@ const LoginPage: FC = () => {
       <Input
         placeholder="Username"
         type="text"
-        sx={{
-          margin: "1.5rem 1.3rem 0.8rem 1.3rem",
-          ":after": { borderBottom: "2px solid #bf4444" },
-        }}
+        sx={inputStyles}
         onChange={(e) => {
           setUsername(e.target.value);
         }}
@@ -28,23 +35,14 @@ const LoginPage: FC = () => {
       <Input
         placeholder="Password"
         type="password"
-        sx={{
-          margin: "1.5rem 1.3rem 0.8rem 1.3rem",
-          ":after": { borderBottom: "2px solid #bf4444" },
-        }}
+        sx={inputStyles}
         onChange={(e) => {
           setPassword(e.target.value);
         }}
       />
       <Button
         variant="contained"
-        sx={{
-          margin: "2rem 1.3rem 2rem 1.3rem",
-          backgroundColor: "#bf4444",
-          ":hover": {
-            backgroundColor: "#bc6464",
-          },
-        }}
+        sx={btnStyles}
         onClick={async () => {
           await store.login(username, password);
           store.checkAuth();
