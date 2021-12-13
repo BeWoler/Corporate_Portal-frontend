@@ -1,0 +1,33 @@
+.conversation {
+  display: flex;
+  margin: 0 1rem 1rem 0;
+  background-color: #fff;
+  border-radius: .3rem;
+  max-height: 600px;
+  overflow: auto;
+  height: fit-content;
+}
+
+.conversation__users__column {
+  display: flex;
+  flex-direction: column;
+  word-break: break-all;
+  width: fit-content;
+  height: fit-content;
+}
+
+.chat__users__li {
+  display: inline-flex;
+  align-items: center;
+  padding: .8rem;
+  font-weight: 500;
+  list-style: none;
+  cursor: pointer;
+  width: fit-content;
+  transition: all ease .2s;
+}
+
+.chat__users__li:hover {
+  background-color: #fff;
+  border-radius: .3rem;
+}

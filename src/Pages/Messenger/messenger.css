@@ -1,0 +1,32 @@
+.messenger__container {
+  display: flex;
+  flex-direction: column;
+}
+
+.messenger__title {
+  margin: 0 0 1.5rem 0;
+}
+
+.messenger__box {
+  display: flex;
+  flex-direction: row;
+}
+
+.messenger__chat__column {
+  background-color: #fff;
+  border-radius: .3rem;
+}
+
+.messenger__chat {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  height: 600px;
+  overflow: auto;
+  width: 580px;
+}
+
+hr {
+  background-color: none;
+  border: 1px solid #edeef0;
+}

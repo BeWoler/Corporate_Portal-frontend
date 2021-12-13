@@ -1,8 +1,0 @@
-.messages__container {
-  display: flex;
-  flex-direction: column;
-}
-
-.messages__title {
-  margin: 0 0 1.5rem 0;
-}
