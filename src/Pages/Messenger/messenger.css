@@ -15,6 +15,9 @@
 .messenger__chat__column {
   background-color: #fff;
   border-radius: .3rem;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border: 1px solid #edeef0;
 }
 
 .messenger__chat {
