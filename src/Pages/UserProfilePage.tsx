@@ -1,8 +1,8 @@
 import { FC, useContext, useEffect, useState } from "react";
 import { Context } from "../index";
 import { observer } from "mobx-react-lite";
-import UserProfile from "../components/usersProfile/UserProfile";
-import OtherUserProfile from "../components/usersProfile/OtherUserProfile";
+import UserProfile from "../components/UsersProfile/UserProfile";
+import OtherUserProfile from "../components/UsersProfile/OtherUserProfile";
 
 const UserProfilePage: FC = () => {
   const { store } = useContext(Context);

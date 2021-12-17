@@ -1,7 +1,7 @@
-import "../styles/navBar.css";
+import "./navBar.css";
 import { FC, useContext } from "react";
 import { Link } from "react-router-dom";
-import { Context } from "../index";
+import { Context } from "../../index";
 import SettingsIcon from "@mui/icons-material/Settings";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import LogoutIcon from "@mui/icons-material/Logout";

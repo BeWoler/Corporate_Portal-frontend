@@ -1,12 +1,12 @@
 import { FC, useEffect, useState, useContext } from "react";
-import { Post } from "../models/post";
-import { Context } from "../index";
-import PostService from "../services/PostService";
+import { Post } from "../../models/post";
+import { Context } from "../../index";
+import PostService from "../../services/PostService";
 import { Button, Input } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
 import AddCommentIcon from "@mui/icons-material/AddComment";
-import "../styles/board.css";
+import "./board.css";
 
 const BoardPosts: FC = () => {
   const { store } = useContext(Context);

@@ -1,10 +1,10 @@
 import { FC, useContext } from "react";
-import "../styles/header.css";
+import "./header.css";
 import { Link } from "react-router-dom";
-import { Context } from "../index";
+import { Context } from "../../index";
 import ApiIcon from "@mui/icons-material/Api";
 import { Input } from "@mui/material";
-import UserBar from "./UserBar";
+import UserBar from "../UserBar/UserBar";
 
 const Header: FC = () => {
   const { store } = useContext(Context);

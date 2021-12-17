@@ -1,9 +1,9 @@
 import { FC, useState, useEffect } from "react";
-import { Post } from "../models/post";
+import { Post } from "../../models/post";
 import { Input, Button } from "@mui/material";
-import api from "../http/axios";
-import "../styles/userPosts.css";
-import PostService from "../services/PostService";
+import api from "../../http/axios";
+import "./userPosts.css";
+import PostService from "../../services/PostService";
 import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AddCommentIcon from "@mui/icons-material/AddComment";

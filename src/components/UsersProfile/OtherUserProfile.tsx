@@ -4,7 +4,7 @@ import { Avatar } from "@mui/material";
 import { observer } from "mobx-react-lite";
 import { URL } from "../../http/axios";
 import "./userProfile.css";
-import OtherUserPosts from "../../components/otherUserPosts/OtherUserPosts";
+import OtherUserPosts from "../OtherUserPosts/OtherUserPosts";
 
 const UserProfilePage: FC = () => {
   const { store } = useContext(Context);
