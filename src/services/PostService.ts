@@ -25,12 +25,16 @@ export default class PostService {
     return api.post<PostResponse>("/post/comment", { id, text });
   }
 
-  static getUserPost = (): Promise<AxiosResponse> => {
-    return api.get("/userPosts");
+  static getUserPostByUsername = (username: string): Promise<AxiosResponse> => {
+    return api.get(`/post/username/${username}`);
+  };
+
+  static getUserPostByUserId = (userId: string): Promise<AxiosResponse> => {
+    return api.get(`/post/id/${userId}`);
   };
 
   static getAllPosts = (): Promise<AxiosResponse> => {
-    return api.get("/allPosts");
+    return api.get("/post/all");
   };
 
   static like = (post: string, user: string): Promise<AxiosResponse> => {

@@ -16,8 +16,8 @@ const UserBar: FC = () => {
   };
 
   return (
-    <div className="userBar__container">
-      <Link className="userBar__user" to={`${store.user.username}/profile`}>
+    <div className="userBar__container" onClick={() => store.checkAuth()}>
+      <Link className="userBar__user" to={`profile/${store.user.id}`}>
         {store.user.email}
         <Avatar
           src={`${URL}/${store.user.avatar}`}

@@ -9,9 +9,11 @@ import { API_URL } from "../http/axios";
 import DeleteService from "../services/DeleteService";
 import EditProfileService from "../services/EditProfileService";
 import ChangePasswordService from "../services/ChangePasswordService";
+import UserService from "../services/UserService";
 
 export default class Store {
   user = {} as User;
+  otherUser = {} as User;
   isAuth = false;
   isLoading = false;
   error: string;
@@ -29,6 +31,10 @@ export default class Store {
     this.user = user;
   }
 
+  setOtherUser(user: User) {
+    this.otherUser = user;
+  }
+
   setLoading(bool: boolean) {
     this.isLoading = bool;
   }
@@ -39,6 +45,20 @@ export default class Store {
 
   setSuccessMessage(msg: string) {
     this.successMessage = msg;
+  }
+
+  async getOtherUser(userId: string) {
+    try {
+      await UserService.getUserInfo(userId)
+      .then(response => {
+        this.setOtherUser(response.data.user);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   async login(username: string, password: string) {
@@ -71,7 +91,7 @@ export default class Store {
 
   async editProfile(username: string, { ...args }: object) {
     try {
-      await EditProfileService.edit(username, { ...args }); 
+      await EditProfileService.edit(username, { ...args });
       this.setSuccessMessage("Successfully changed");
       setTimeout(() => this.setSuccessMessage(null), 3500);
     } catch (e) {
@@ -81,7 +101,11 @@ export default class Store {
 
   async changePass(username: string, newPassword: string, oldPassword: string) {
     try {
-      await ChangePasswordService.change(username, newPassword, oldPassword).catch((err) => {
+      await ChangePasswordService.change(
+        username,
+        newPassword,
+        oldPassword
+      ).catch((err) => {
         this.setError(err.response.data.message);
         setTimeout(() => this.setError(null), 3500);
       });
@@ -92,11 +116,7 @@ export default class Store {
 
   async registration(email: string, username: string, password: string) {
     try {
-      await RegistrationService.registration(
-        email,
-        username,
-        password
-      )
+      await RegistrationService.registration(email, username, password)
         .then((response) => {
           localStorage.setItem("token", response.data.accessToken);
           this.setAuth(true);
@@ -135,16 +155,6 @@ export default class Store {
       console.log(e);
     } finally {
       this.setLoading(false);
-    }
-  }
-
-  async getUsers() {
-    try {
-      await axios.get<AuthResponse>(`${API_URL}/users`, {
-        withCredentials: true,
-      });
-    } catch (e) {
-      console.log(e);
     }
   }
 }

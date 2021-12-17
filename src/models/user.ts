@@ -12,5 +12,6 @@ export interface User {
   skype: string;
   phone: number;
   description: string;
+  _id: string;
   id: string;
 }
