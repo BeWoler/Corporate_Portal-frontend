@@ -1,12 +1,13 @@
 import { FC, useState, useEffect } from "react";
 import { Post } from "../../models/post";
 import { Input, Button } from "@mui/material";
-import api from "../../http/axios";
+import api, { URL } from "../../http/axios";
 import "./userPosts.css";
 import PostService from "../../services/PostService";
 import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AddCommentIcon from "@mui/icons-material/AddComment";
+import { Avatar } from "@mui/material";
 
 const UserPosts: FC = () => {
   const [postText, setPostText] = useState<string>();
@@ -58,15 +59,14 @@ const UserPosts: FC = () => {
       <div>
         <a href={img} download>
           {file.type === "image/jpeg" ||
-          file.type === "image/jpg" || 
-          file.type === "image/png" 
-          ? (
+          file.type === "image/jpg" ||
+          file.type === "image/png" ? (
             <img src={img} className="file__preview" alt={file.name} />
           ) : (
             <div>
               <InsertDriveFileIcon
                 sx={{
-                  color: "#BF4444",
+                  color: "#534ED9",
                   width: "30px",
                   height: "30px",
                   verticalAlign: "middle",
@@ -95,51 +95,61 @@ const UserPosts: FC = () => {
     };
   }, []);
 
+  const avatarStyle = {
+    width: "45px",
+    height: "45px",
+    margin: "0 1rem .5rem 0",
+    backgroundColor: "#BF3030",
+  };
+
   return (
     <div className="profile__posts">
       <form className="posts__create" encType="miltipart/form-data">
-        <Input
-          name="files"
-          type="file"
-          sx={{
-            margin: "0 0 1rem 0",
-            width: "fit-content",
-            ":after": { borderBottom: "2px solid #bf4444" },
-          }}
-          onChange={(e) => {
-            fileChange(e);
-          }}
-        />
-        {filePreview}
-        <Input
-          onChange={(e) => {
-            setPostText(e.target.value);
-          }}
-          type="text"
-          placeholder="Tell us something"
-          multiline={true}
-          sx={{
-            margin: "0 0 1rem 0",
-            ":after": { borderBottom: "2px solid #bf4444" },
-          }}
-        />
-        <Button
-          onClick={async (e) => {
-            e.preventDefault();
-            await fileUpload(e);
-            getUserPosts();
-          }}
-          variant="contained"
-          sx={{
-            margin: "2rem 2rem 1rem 2rem",
-            backgroundColor: "#bf4444",
-            ":hover": {
-              backgroundColor: "#bc6464",
-            },
-          }}
-        >
-          Create Post
-        </Button>
+        <div className="posts__create__inputs">
+          <Input
+            name="files"
+            type="file"
+            sx={{
+              margin: "0 0 1rem 0",
+              width: "fit-content",
+              ":after": { borderBottom: "2px solid #534ED9" },
+            }}
+            onChange={(e) => {
+              fileChange(e);
+            }}
+          />
+          {filePreview}
+          <Input
+            onChange={(e) => {
+              setPostText(e.target.value);
+            }}
+            type="text"
+            placeholder="Tell us something"
+            multiline={true}
+            sx={{
+              margin: "0 0 1rem 0",
+              ":after": { borderBottom: "2px solid #534ED9" },
+            }}
+          />
+        </div>
+        <div className="posts__create__btn">
+          <Button
+            onClick={async (e) => {
+              e.preventDefault();
+              await fileUpload(e);
+              getUserPosts();
+            }}
+            variant="contained"
+            sx={{
+              backgroundColor: "#534ED9",
+              ":hover": {
+                backgroundColor: "#7673D9",
+              },
+            }}
+          >
+            Create Post
+          </Button>
+        </div>
       </form>
       <div className="userPosts__container">
         {posts.map((post, position) => {
@@ -167,7 +177,7 @@ const UserPosts: FC = () => {
                   <a href={post.file} download target="__blank">
                     <InsertDriveFileIcon
                       sx={{
-                        color: "#BF4444",
+                        color: "#534ED9",
                         width: "30px",
                         height: "30px",
                         verticalAlign: "middle",
@@ -183,14 +193,11 @@ const UserPosts: FC = () => {
                 <div className="post__likes">
                   <FavoriteIcon
                     onClick={async () => {
-                      await PostService.like(
-                        posts[position]._id,
-                        currentId
-                      );
+                      await PostService.like(posts[position]._id, currentId);
                       await getUserPosts();
                     }}
                     sx={{
-                      color: "#bf4444",
+                      color: "#BF3030",
                       verticalAlign: "middle",
                       margin: "0 .2rem 0 0",
                       transition: "all ease .2s",
@@ -203,7 +210,7 @@ const UserPosts: FC = () => {
                       return isOpen !== position ? setIsOpen(position) : -1;
                     }}
                     sx={{
-                      color: "#bf4444",
+                      color: "#BF3030",
                       verticalAlign: "middle",
                       margin: "0 .2rem 0 0",
                       transition: "all ease .2s",
@@ -221,9 +228,9 @@ const UserPosts: FC = () => {
                     sx={{
                       margin: "0 0 0 1rem",
                       fontSize: ".7rem",
-                      backgroundColor: "#bf4444",
+                      backgroundColor: "#534ED9",
                       ":hover": {
-                        backgroundColor: "#bc6464",
+                        backgroundColor: "#7673D9",
                       },
                     }}
                   >
@@ -239,9 +246,9 @@ const UserPosts: FC = () => {
                     sx={{
                       margin: "0 0 0 1rem",
                       fontSize: ".7rem",
-                      backgroundColor: "#bf4444",
+                      backgroundColor: "#534ED9",
                       ":hover": {
-                        backgroundColor: "#bc6464",
+                        backgroundColor: "#7673D9",
                       },
                     }}
                   >
@@ -261,7 +268,7 @@ const UserPosts: FC = () => {
                   sx={{
                     margin: "0 0 1rem 0",
                     width: "100%",
-                    ":after": { borderBottom: "2px solid #bf4444" },
+                    ":after": { borderBottom: "2px solid #534ED9" },
                   }}
                 />
                 <Button
@@ -275,9 +282,9 @@ const UserPosts: FC = () => {
                   sx={{
                     margin: "0 1rem 0 1rem",
                     fontSize: ".7rem",
-                    backgroundColor: "#bf4444",
+                    backgroundColor: "#534ED9",
                     ":hover": {
-                      backgroundColor: "#bc6464",
+                      backgroundColor: "#7673D9",
                     },
                   }}
                 >
@@ -304,9 +311,9 @@ const UserPosts: FC = () => {
                       sx={{
                         margin: "0 1rem 0 0",
                         fontSize: ".7rem",
-                        backgroundColor: "#bf4444",
+                        backgroundColor: "#534ED9",
                         ":hover": {
-                          backgroundColor: "#bc6464",
+                          backgroundColor: "#7673D9",
                         },
                       }}
                     >
@@ -320,7 +327,7 @@ const UserPosts: FC = () => {
                       sx={{
                         margin: "0 0 1rem 0",
                         width: "80%",
-                        ":after": { borderBottom: "2px solid #bf4444" },
+                        ":after": { borderBottom: "2px solid #534ED9" },
                       }}
                     />
                   </form>
@@ -330,6 +337,11 @@ const UserPosts: FC = () => {
                           <div key={comment._id} className="post__comment">
                             <div className="comment__info">
                               <h5 className="comment__author">
+                                <Avatar
+                                  variant="square"
+                                  src={`${URL}/${comment.avatar}`}
+                                  sx={avatarStyle}
+                                ></Avatar>
                                 {comment.author}
                               </h5>
                               <p className="comment__time">

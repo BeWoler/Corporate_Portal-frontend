@@ -19,3 +19,7 @@
   color: #534ED9;
   background-color: #edeef0;
 }
+
+.nav__li:last-child {
+  margin: 0;
+}

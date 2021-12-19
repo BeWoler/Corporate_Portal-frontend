@@ -1,13 +1,17 @@
-import { FC, useState, useEffect } from "react";
+import { FC, useState, useEffect, useContext } from "react";
 import { Post } from "../../models/post";
 import { Input, Button } from "@mui/material";
+import { Context } from "../../index";
+import api, { URL } from "../../http/axios";
 import "./otherUserPosts.css";
 import PostService from "../../services/PostService";
 import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AddCommentIcon from "@mui/icons-material/AddComment";
+import { Avatar } from "@mui/material";
 
 const OtherUserPosts: FC = () => {
+  const { store } = useContext(Context);
   const [posts, setPosts] = useState<Post[]>([]);
   const [comment, setComment] = useState<string>();
   const [isOpen, setIsOpen] = useState<number>();
@@ -25,6 +29,13 @@ const OtherUserPosts: FC = () => {
       setPosts([]);
     };
   }, []);
+
+  const avatarStyle = {
+    width: "45px",
+    height: "45px",
+    margin: "0 1rem .5rem 0",
+    backgroundColor: "#BF3030",
+  };
 
   return (
     <div className="profile__posts">
@@ -54,7 +65,7 @@ const OtherUserPosts: FC = () => {
                   <a href={post.file} download target="__blank">
                     <InsertDriveFileIcon
                       sx={{
-                        color: "#BF4444",
+                        color: "#534ED9",
                         width: "30px",
                         height: "30px",
                         verticalAlign: "middle",
@@ -74,7 +85,7 @@ const OtherUserPosts: FC = () => {
                       getUserPosts();
                     }}
                     sx={{
-                      color: "#bf4444",
+                      color: "#BF3030",
                       verticalAlign: "middle",
                       margin: "0 .2rem 0 0",
                       transition: "all ease .2s",
@@ -87,7 +98,7 @@ const OtherUserPosts: FC = () => {
                       return isOpen !== position ? setIsOpen(position) : -1;
                     }}
                     sx={{
-                      color: "#bf4444",
+                      color: "#BF3030",
                       verticalAlign: "middle",
                       margin: "0 .2rem 0 0",
                       transition: "all ease .2s",
@@ -118,9 +129,9 @@ const OtherUserPosts: FC = () => {
                       sx={{
                         margin: "0 1rem 0 0",
                         fontSize: ".7rem",
-                        backgroundColor: "#bf4444",
+                        backgroundColor: "#534ED9",
                         ":hover": {
-                          backgroundColor: "#bc6464",
+                          backgroundColor: "#7673D9",
                         },
                       }}
                     >
@@ -134,7 +145,7 @@ const OtherUserPosts: FC = () => {
                       sx={{
                         margin: "0 0 1rem 0",
                         width: "80%",
-                        ":after": { borderBottom: "2px solid #bf4444" },
+                        ":after": { borderBottom: "2px solid #534ED9" },
                       }}
                     />
                   </form>
@@ -144,6 +155,11 @@ const OtherUserPosts: FC = () => {
                           <div key={comment._id} className="post__comment">
                             <div className="comment__info">
                               <h5 className="comment__author">
+                              <Avatar
+                                  variant="square"
+                                  src={`${URL}/${comment.avatar}`}
+                                  sx={avatarStyle}
+                                ></Avatar>
                                 {comment.author}
                               </h5>
                               <p className="comment__time">

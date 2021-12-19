@@ -16,6 +16,7 @@ export interface Post {
     {
       post: string;
       author: string;
+      avatar: string;
       text: string;
       time: {
         year: number;
