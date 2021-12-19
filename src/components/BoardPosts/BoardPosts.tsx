@@ -2,11 +2,13 @@ import { FC, useEffect, useState, useContext } from "react";
 import { Post } from "../../models/post";
 import { Context } from "../../index";
 import PostService from "../../services/PostService";
+import { URL } from "../../http/axios";
 import { Button, Input } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
 import AddCommentIcon from "@mui/icons-material/AddComment";
 import "./board.css";
+import { Avatar } from "@mui/material";
 
 const BoardPosts: FC = () => {
   const { store } = useContext(Context);
@@ -24,6 +26,13 @@ const BoardPosts: FC = () => {
       setPosts([]);
     };
   }, []);
+
+  const avatarStyle = {
+    width: "45px",
+    height: "45px",
+    margin: "0 1rem .5rem 0",
+    backgroundColor: "#BF3030",
+  };
 
   return (
     <>
@@ -47,7 +56,7 @@ const BoardPosts: FC = () => {
               <a href={post.file} download target="__blank">
                 <InsertDriveFileIcon
                   sx={{
-                    color: "#BF4444",
+                    color: "#534ED9",
                     width: "30px",
                     height: "30px",
                     verticalAlign: "middle",
@@ -65,7 +74,7 @@ const BoardPosts: FC = () => {
                   setTimeout(() => getAllPosts(), 100);
                 }}
                 sx={{
-                  color: "#bf4444",
+                  color: "#BF3030",
                   verticalAlign: "middle",
                   margin: "0 .2rem 0 0",
                   transition: "all ease .2s",
@@ -78,7 +87,7 @@ const BoardPosts: FC = () => {
                   return isOpen !== position ? setIsOpen(position) : -1;
                 }}
                 sx={{
-                  color: "#bf4444",
+                  color: "#BF3030",
                   verticalAlign: "middle",
                   margin: "0 .2rem 0 0",
                   transition: "all ease .2s",
@@ -107,9 +116,9 @@ const BoardPosts: FC = () => {
                     sx={{
                       margin: "0 1rem 1rem 0",
                       fontSize: ".7rem",
-                      backgroundColor: "#bf4444",
+                      backgroundColor: "#534ED9",
                       ":hover": {
-                        backgroundColor: "#bc6464",
+                        backgroundColor: "#7673D9",
                       },
                     }}
                   >
@@ -123,7 +132,7 @@ const BoardPosts: FC = () => {
                     sx={{
                       margin: "0 0 1rem 0",
                       width: "80%",
-                      ":after": { borderBottom: "2px solid #bf4444" },
+                      ":after": { borderBottom: "2px solid #534ED9" },
                     }}
                   />
                 </form>
@@ -133,6 +142,11 @@ const BoardPosts: FC = () => {
                         <div key={comment._id} className="post__comment">
                           <div className="comment__info">
                             <h5 className="comment__author">
+                              <Avatar
+                                variant="square"
+                                src={`${URL}/${comment.avatar}`}
+                                sx={avatarStyle}
+                              ></Avatar>
                               {comment.author}
                             </h5>
                             <p className="comment__time">

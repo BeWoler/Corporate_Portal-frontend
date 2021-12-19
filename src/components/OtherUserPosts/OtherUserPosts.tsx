@@ -1,8 +1,7 @@
-import { FC, useState, useEffect, useContext } from "react";
+import { FC, useState, useEffect } from "react";
 import { Post } from "../../models/post";
 import { Input, Button } from "@mui/material";
-import { Context } from "../../index";
-import api, { URL } from "../../http/axios";
+import { URL } from "../../http/axios";
 import "./otherUserPosts.css";
 import PostService from "../../services/PostService";
 import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
@@ -11,7 +10,6 @@ import AddCommentIcon from "@mui/icons-material/AddComment";
 import { Avatar } from "@mui/material";
 
 const OtherUserPosts: FC = () => {
-  const { store } = useContext(Context);
   const [posts, setPosts] = useState<Post[]>([]);
   const [comment, setComment] = useState<string>();
   const [isOpen, setIsOpen] = useState<number>();
@@ -155,7 +153,7 @@ const OtherUserPosts: FC = () => {
                           <div key={comment._id} className="post__comment">
                             <div className="comment__info">
                               <h5 className="comment__author">
-                              <Avatar
+                                <Avatar
                                   variant="square"
                                   src={`${URL}/${comment.avatar}`}
                                   sx={avatarStyle}
