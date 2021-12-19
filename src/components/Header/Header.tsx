@@ -9,7 +9,7 @@ import UserBar from "../UserBar/UserBar";
 const Header: FC = () => {
   const { store } = useContext(Context);
   const apiIconStyles = {
-    color: "#bf4444",
+    color: "#534ED9",
     verticalAlign: "bottom",
     marginRight: ".4rem",
     width: "1.8rem",
