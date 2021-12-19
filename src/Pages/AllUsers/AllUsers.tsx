@@ -1,10 +1,10 @@
 import { FC, useState, useEffect } from "react";
-import { User } from "../models/user";
+import { User } from "../../models/user";
 import { Avatar } from "@mui/material";
-import { URL } from "../http/axios";
-import UserService from "../services/UserService";
+import { URL } from "../../http/axios";
+import UserService from "../../services/UserService";
 import { Link } from "react-router-dom";
-import "../styles/allUsers.css";
+import "./allUsers.css";
 
 const AllUsers: FC = () => {
   const [users, setUsers] = useState<User[]>([]);

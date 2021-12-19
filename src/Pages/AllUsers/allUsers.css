@@ -11,8 +11,8 @@
 
 .users__li {
   padding: 1rem;
-  margin: 0 1rem 0 0;
   width: fit-content;
+  word-break: break-all;
   border-radius: 0.5rem;
   display: inline-block;
 }

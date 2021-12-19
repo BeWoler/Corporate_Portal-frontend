@@ -1,7 +1,7 @@
 import { FC, useContext, useState } from "react";
-import "../styles/userSettings.css";
+import "./userSettings.css";
 import { Button, Input } from "@mui/material";
-import { Context } from "../index";
+import { Context } from "../../index";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 

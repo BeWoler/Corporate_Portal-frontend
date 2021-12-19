@@ -8,6 +8,7 @@ import OtherUserPosts from "../OtherUserPosts/OtherUserPosts";
 
 const UserProfilePage: FC = () => {
   const { store } = useContext(Context);
+  const avatarSrc = `${URL}/${store.otherUser.avatar}`
   const avatarStyles = {
     width: "200px",
     height: "200px",
@@ -19,7 +20,7 @@ const UserProfilePage: FC = () => {
   return (
     <div className="profile__container">
       <div className="profile__first__column">
-        <Avatar src={`${URL}/${store.otherUser.avatar}`} sx={avatarStyles}>
+        <Avatar src={avatarSrc} sx={avatarStyles}>
           {store.otherUser.firstName}
         </Avatar>
         <ul className="profile__info">

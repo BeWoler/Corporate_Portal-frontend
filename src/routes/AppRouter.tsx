@@ -1,15 +1,15 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Layout from "../components/Layout/Layout";
-import MainPage from "../Pages/MainPage";
-import LoginPage from "../Pages/LoginPage";
-import RegistrationPage from "../Pages/RegistrationPage";
-import AllUsers from "../Pages/AllUsers";
-import UserSettingsPage from "../Pages/UserSettingsPage";
-import ChangePasswordPage from "../Pages/ChangePasswordPage";
-import UserProfilePage from "../Pages/UserProfilePage";
-import Board from "../Pages/Board";
+import MainPage from "../Pages/Main/MainPage";
+import LoginPage from "../Pages/Login/LoginPage";
+import RegistrationPage from "../Pages/Registration/RegistrationPage";
+import AllUsers from "../Pages/AllUsers/AllUsers";
+import UserSettingsPage from "../Pages/Settings/UserSettingsPage";
+import ChangePasswordPage from "../Pages/ChangePassword/ChangePasswordPage";
+import UserProfilePage from "../Pages/Profile/UserProfilePage";
+import Board from "../Pages/Board/Board";
 import Messenger from "../Pages/Messenger/Messenger";
-import ChangeAvatar from "../Pages/ChangeAvatar";
+import ChangeAvatar from "../Pages/ChangeAvatar/ChangeAvatar";
 
 const AppRouter = () => {
   const RequireAuth = ({ children }: { children: JSX.Element }) => {

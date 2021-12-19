@@ -1,8 +1,8 @@
 import { FC, useState, useContext } from "react";
 import { Avatar, Button, Input } from "@mui/material";
-import { Context } from "../index";
-import "../styles/changeAvatar.css";
-import api from "../http/axios";
+import { Context } from "../../index";
+import "./changeAvatar.css";
+import api from "../../http/axios";
 
 const ChangeAvatar: FC = () => {
   const { store } = useContext(Context);

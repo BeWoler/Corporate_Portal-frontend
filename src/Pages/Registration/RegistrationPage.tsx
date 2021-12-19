@@ -1,11 +1,12 @@
 import { FC, useState, useContext } from "react";
-import { Context } from "../index";
-import "../styles/loginForm.css";
+import { Context } from "../../index";
+import "./registrationForm.css";
 import { Button, Input } from "@mui/material";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 
-const LoginPage: FC = () => {
+const RegistrationPage: FC = () => {
+  const [email, setEmail] = useState<string>("");
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const { store } = useContext(Context);
@@ -21,9 +22,17 @@ const LoginPage: FC = () => {
   };
 
   return (
-    <form className="login__form">
-      <h2 className="form__h2">Login</h2>
+    <form className="registr__form">
+      <h2 className="form__h2">Join Us</h2>
       <p className="error">{store.error}</p>
+      <Input
+        placeholder="Email"
+        type="text"
+        sx={inputStyles}
+        onChange={(e) => {
+          setEmail(e.target.value);
+        }}
+      />
       <Input
         placeholder="Username"
         type="text"
@@ -44,17 +53,18 @@ const LoginPage: FC = () => {
         variant="contained"
         sx={btnStyles}
         onClick={async () => {
-          await store.login(username, password);
+          await store.registration(email, username, password);
           store.checkAuth();
         }}
       >
-        Sign In
+        Sign Up
       </Button>
       <div className="form__linkBox">
-        <Link to="/registration">Sign Up</Link>
+        <span>Have an account?</span>
+        <Link to="/login">Sign In</Link>
       </div>
     </form>
   );
 };
 
-export default observer(LoginPage);
+export default observer(RegistrationPage);

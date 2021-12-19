@@ -1,6 +1,6 @@
 import { FC, useContext } from "react";
-import { Context } from "../index";
-import "../styles/mainPage.css"
+import { Context } from "../../index";
+import "./mainPage.css"
 
 const MainPage: FC = () => {
   const { store } = useContext(Context);
