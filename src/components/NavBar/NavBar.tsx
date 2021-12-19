@@ -13,7 +13,7 @@ import ImportContactsIcon from "@mui/icons-material/ImportContacts";
 const NavBar: FC = () => {
   const { store } = useContext(Context);
   const linkStyle = {
-    color: "#bf4444",
+    color: "#534ED9",
     verticalAlign: "bottom",
     marginRight: ".4rem",
   };
@@ -24,7 +24,11 @@ const NavBar: FC = () => {
   return (
     <nav>
       <ul className="nav__ul">
-        <Link to={`profile/${store.user.id}`} className="nav__li" onClick={() => store.checkAuth()}>
+        <Link
+          to={`profile/${store.user.id}`}
+          className="nav__li"
+          onClick={() => store.checkAuth()}
+        >
           <PersonIcon sx={linkStyle} />
           My Profile
         </Link>

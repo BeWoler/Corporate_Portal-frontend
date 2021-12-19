@@ -15,10 +15,6 @@ const Header: FC = () => {
     width: "1.8rem",
     height: "1.8rem",
   };
-  const inputStyles = {
-    marginLeft: "4rem",
-    ":after": { borderBottom: "2px solid #bf4444" },
-  };
 
   if (store.isAuth) {
     return (
@@ -27,9 +23,8 @@ const Header: FC = () => {
           <div className="header__logo">
             <ApiIcon sx={apiIconStyles} />
             <p className="header__title">
-              <Link to="/">Corporate Portal</Link>
+              <Link to="/board">Corporate Portal</Link>
             </p>
-            <Input placeholder="Search" sx={inputStyles} />
           </div>
           <UserBar />
         </div>

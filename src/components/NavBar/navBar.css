@@ -2,16 +2,21 @@
   list-style: none;
   display: flex;
   width: 164px;
+  background-color: #fff;
+  border-radius: .3rem;
   flex-direction: column;
+  margin: 0 2rem 0 0;
 }
 
 .nav__li {
-  margin: 0 0 1rem 0;
+  margin: 0 0 .5rem 0;
+  padding: .5rem;
   transition: all ease 0.2s;
-  width: fit-content;
+  font-weight: 500;
+  /* width: fit-content; */
 }
 
 .nav__li:hover {
-  color: #bf4444;
-  text-decoration: underline;
+  color: #534ED9;
+  background-color: #edeef0;
 }
