@@ -8,19 +8,21 @@ import UserPosts from "../UserPosts/UserPosts";
 
 const UserProfilePage: FC = () => {
   const { store } = useContext(Context);
-  const avatarSrc = `${URL}/${store.user.avatar}`
+  const avatarSrc = `${URL}/${store.user.avatar}`;
   const avatarStyles = {
-    width: "200px",
-    height: "200px",
-    margin: "0 0 1.5rem 0",
-    backgroundColor: "#bf4444",
+    width: "235px",
+    height: "235px",
+    borderRadius: ".2rem",
+    margin: "0 auto 1.5rem auto",
+    backgroundColor: "#534ED9",
+    boxShadow: "0px 1px 10px #3d3d3d",
     fontSize: "50px",
   };
 
   return (
     <div className="profile__container">
       <div className="profile__first__column">
-        <Avatar src={avatarSrc} sx={avatarStyles}>
+        <Avatar variant="square" src={avatarSrc} sx={avatarStyles}>
           {store.user.firstName}
         </Avatar>
         <ul className="profile__info">

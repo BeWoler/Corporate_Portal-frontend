@@ -29,11 +29,22 @@
   border-radius: 0.3rem;
   list-style: none;
   background-color: #fff;
+  word-break: break-word;
 }
 
 .profile__info__list {
   padding: .5rem;
   font-weight: 500;
+  transition: all ease .2s;
+  cursor: default;
+  border-bottom: 2px solid #edeef0;
+}
+
+.profile__info__list:hover {
+  padding: .5rem;
+  font-weight: 500;
+  color: #534ED9;
+  background-color: #edeef0;
 }
 
 .profile__name {
