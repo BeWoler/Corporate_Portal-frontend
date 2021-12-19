@@ -1,17 +1,29 @@
 .registr__form {
   display: flex;
+  flex-direction: row;
+}
+
+.title__box {
+  display: flex;
+  flex-direction: row;
+  max-width: 400px;
+  margin: 0 1rem 0 0;
+}
+
+.form__box {
+  display: flex;
   position: relative;
   flex-direction: column;
   margin: 5rem auto;
   padding: 20px;
   width: 400px;
-  border-radius: 20px;
+  border-radius: .8rem;
   background-color: #fff;
-  box-shadow: 0px 1px 8px #3d3d3d;
+  box-shadow: 0px 1px 6px #3d3d3d;
 }
 
 .registr__form a {
-  color: #bf4444;
+  color: #534ED9;
   font-weight: 500;
   transition: all ease 0.1s;
 }
