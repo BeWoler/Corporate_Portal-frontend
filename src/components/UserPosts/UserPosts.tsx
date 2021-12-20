@@ -89,11 +89,13 @@ const UserPosts: FC = () => {
   };
 
   useEffect(() => {
-    getUserPosts();
+    PostService.getUserPostByUserId(currentId).then((res) =>
+      setPosts(res.data.reverse())
+    );
     return () => {
       setPosts([]);
     };
-  }, []);
+  }, [currentId]);
 
   const avatarStyle = {
     width: "45px",
