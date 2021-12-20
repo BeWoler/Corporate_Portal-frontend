@@ -10,21 +10,23 @@ const ChangePasswordPage: FC = () => {
   const [newPassword, setNewPassword] = useState<string>();
 
   const inputStyles = {
-    margin: "1rem 1.3rem 0.8rem 1.3rem",
-    ":after": { borderBottom: "2px solid #bf4444" },
+    margin: "1rem 1.3rem 2rem 1.3rem",
+    width: "400px",
+    ":after": { borderBottom: "2px solid #534ED9" },
   };
   const btnStyles = {
-    margin: "0rem 2rem 0rem 2rem",
-    backgroundColor: "#bf4444",
-    ":hover": { backgroundColor: "#bc6464" },
+    margin: "0 auto",
+    width: "fit-content",
+    backgroundColor: "#534ED9",
+    ":hover": { backgroundColor: "#7673D9" },
   };
 
   return (
     <div className="change__container">
       <h2 className="change__title">Change Password</h2>
       <form className="change__form">
-        <div>
           <h3 className="error">{store.error}</h3>
+          <h4>Enter your old password</h4>
           <Input
             placeholder="Old Password"
             required
@@ -32,6 +34,7 @@ const ChangePasswordPage: FC = () => {
             sx={inputStyles}
             onChange={(e) => setOldPassword(e.target.value)}
           />
+          <h4>Enter your new password</h4>
           <Input
             placeholder="New Password"
             required
@@ -53,7 +56,6 @@ const ChangePasswordPage: FC = () => {
           >
             Change Password
           </Button>
-        </div>
       </form>
     </div>
   );
