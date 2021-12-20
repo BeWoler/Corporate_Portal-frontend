@@ -103,6 +103,14 @@ const AppRouter = () => {
             </RequireAuth>
           }
         />
+        <Route
+          path="/"
+          element={
+            <RequireAuth>
+              <Board />
+            </RequireAuth>
+          }
+        />
       </Route>
     </Routes>
   );

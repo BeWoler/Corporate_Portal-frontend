@@ -13,32 +13,6 @@
   align-items: center;
 }
 
-.settings__text {
-  text-align: center;
-  margin: 1rem;
-  padding: 1rem;
-  box-shadow: 0px 1px 4px #3d3d3d;
-  border-radius: 0.3rem;
-}
-
-.settings__form {
-  display: flex;
-  flex-direction: column;
-  font-weight: 500;
-  font-size: 18px;
-  width: 40rem;
-  height: 100%;
-  border-radius: 0.2rem;
-  background-color: #fff;
-  margin: 0 1.5rem 0 0;
-  padding: 1rem;
-}
-
-.settings__form:last-child {
-  display: flex;
-  flex-direction: row;
-}
-
 .settings__box {
   display: flex;
   flex-direction: row;
@@ -47,25 +21,4 @@
 
 .settings__paragraph {
   text-align: center;
-}
-
-.settings__btn {
-  text-transform: uppercase;
-  padding: 0.5rem;
-  border-radius: 0.3rem;
-  color: #fff;
-  margin: 1rem auto 1rem auto;
-  background-color: #bf4444;
-  font-size: 14px;
-  font-weight: 400;
-  transition: all ease .2s;
-}
-
-.settings__btn:hover {
-  background-color: #bc6464;
-}
-
-.settings__notification {
-  text-align: center;
-  color: #228B22;
 }
