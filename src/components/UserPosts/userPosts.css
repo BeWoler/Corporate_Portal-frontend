@@ -61,6 +61,7 @@
 
 .posts__create__btn {
   display: flex;
+  margin: 0 1rem;
   flex-direction: column;
 }
 .file__preview {
