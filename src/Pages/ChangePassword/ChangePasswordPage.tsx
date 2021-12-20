@@ -25,37 +25,37 @@ const ChangePasswordPage: FC = () => {
     <div className="change__container">
       <h2 className="change__title">Change Password</h2>
       <form className="change__form">
-          <h3 className="error">{store.error}</h3>
-          <h4>Enter your old password</h4>
-          <Input
-            placeholder="Old Password"
-            required
-            type="password"
-            sx={inputStyles}
-            onChange={(e) => setOldPassword(e.target.value)}
-          />
-          <h4>Enter your new password</h4>
-          <Input
-            placeholder="New Password"
-            required
-            type="password"
-            sx={inputStyles}
-            onChange={(e) => setNewPassword(e.target.value)}
-          />
-          <Button
-            variant="contained"
-            sx={btnStyles}
-            onClick={async () => {
-              await store.changePass(
-                store.user.username,
-                newPassword,
-                oldPassword
-              );
-              if (!store.error) store.logout();
-            }}
-          >
-            Change Password
-          </Button>
+        <h3 className="error">{store.error}</h3>
+        <h4>Enter your old password</h4>
+        <Input
+          placeholder="Old Password"
+          required
+          type="password"
+          sx={inputStyles}
+          onChange={(e) => setOldPassword(e.target.value)}
+        />
+        <h4>Enter your new password</h4>
+        <Input
+          placeholder="New Password"
+          required
+          type="password"
+          sx={inputStyles}
+          onChange={(e) => setNewPassword(e.target.value)}
+        />
+        <Button
+          variant="contained"
+          sx={btnStyles}
+          onClick={async () => {
+            await store.changePass(
+              store.user.username,
+              newPassword,
+              oldPassword
+            );
+            if (!store.error) store.logout();
+          }}
+        >
+          Change Password
+        </Button>
       </form>
     </div>
   );
