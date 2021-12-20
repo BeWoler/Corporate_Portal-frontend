@@ -50,12 +50,12 @@ export default class Store {
   async getOtherUser(userId: string) {
     try {
       await UserService.getUserInfo(userId)
-      .then(response => {
-        this.setOtherUser(response.data.user);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+        .then((response) => {
+          this.setOtherUser(response.data.user);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } catch (e) {
       console.log(e);
     }
@@ -114,9 +114,21 @@ export default class Store {
     }
   }
 
-  async registration(email: string, username: string, password: string) {
+  async registration(
+    email: string,
+    username: string,
+    password: string,
+    firstName: string,
+    lastName: string
+  ) {
     try {
-      await RegistrationService.registration(email, username, password)
+      await RegistrationService.registration(
+        email,
+        username,
+        password,
+        firstName,
+        lastName
+      )
         .then((response) => {
           localStorage.setItem("token", response.data.accessToken);
           this.setAuth(true);

@@ -10,6 +10,8 @@ const RegistrationPage: FC = () => {
   const [email, setEmail] = useState<string>("");
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [firstName, setFirstName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
   const { store } = useContext(Context);
 
   const inputStyles = {
@@ -47,6 +49,22 @@ const RegistrationPage: FC = () => {
           }}
         />
         <Input
+          placeholder="First Name"
+          type="text"
+          sx={inputStyles}
+          onChange={(e) => {
+            setFirstName(e.target.value);
+          }}
+        />
+        <Input
+          placeholder="Last Name"
+          type="text"
+          sx={inputStyles}
+          onChange={(e) => {
+            setLastName(e.target.value);
+          }}
+        />
+        <Input
           placeholder="Password"
           type="password"
           sx={inputStyles}
@@ -58,7 +76,13 @@ const RegistrationPage: FC = () => {
           variant="contained"
           sx={btnStyles}
           onClick={async () => {
-            await store.registration(email, username, password);
+            await store.registration(
+              email,
+              username,
+              password,
+              firstName,
+              lastName
+            );
             store.checkAuth();
           }}
         >

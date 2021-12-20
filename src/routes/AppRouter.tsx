@@ -1,6 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Layout from "../components/Layout/Layout";
-import MainPage from "../Pages/Main/MainPage";
 import LoginPage from "../Pages/Login/LoginPage";
 import RegistrationPage from "../Pages/Registration/RegistrationPage";
 import AllUsers from "../Pages/AllUsers/AllUsers";
@@ -104,8 +103,6 @@ const AppRouter = () => {
             </RequireAuth>
           }
         />
-        <Route index element={<MainPage />} />
-        <Route path="*" element={<MainPage />} />
       </Route>
     </Routes>
   );

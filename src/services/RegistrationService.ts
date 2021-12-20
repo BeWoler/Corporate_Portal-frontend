@@ -6,12 +6,16 @@ export default class RegistrationService {
   static async registration(
     email: string,
     username: string,
-    password: string
+    password: string,
+    firstName: string,
+    lastName: string
   ): Promise<AxiosResponse<AuthResponse>> {
     return api.post<AuthResponse>("/registration", {
       email,
       username,
       password,
+      firstName,
+      lastName,
     });
   }
 }
