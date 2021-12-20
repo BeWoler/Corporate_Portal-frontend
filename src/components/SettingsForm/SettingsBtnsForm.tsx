@@ -7,7 +7,7 @@ import { observer } from "mobx-react-lite";
 const SettingsBtnsForm: FC = () => {
   const { store } = useContext(Context);
   return (
-    <form className="settings__form">
+    <form className="settings__btnForm">
       <Link className="settings__btn" to="password">
         Change Password
       </Link>

@@ -9,8 +9,9 @@ const UserSettingsPage: FC = () => {
     <div className="settings__container">
       <h2 className="settings__title">Editing Profile</h2>
       <div className="settings__box">
-        <SettingsForm />
         <SettingsBtnsForm />
+        <hr />
+        <SettingsForm />
       </div>
     </div>
   );
