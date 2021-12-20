@@ -3,9 +3,10 @@
 }
 
 .users__ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   list-style: none;
-  background-color: #fff;
-  border-radius: .3rem;
   width: fit-content;
 }
 
@@ -15,4 +16,8 @@
   word-break: break-all;
   border-radius: 0.5rem;
   display: inline-block;
+  transition: all ease .2s;
+  margin: 0 0 1rem 0;
+  background-color: #fff;
+  border-radius: .3rem;
 }

@@ -12,7 +12,7 @@ const AllUsers: FC = () => {
     width: "100px",
     height: "100px",
     margin: "0 auto 1rem auto",
-    backgroundColor: "#bf4444",
+    backgroundColor: "#534ED9",
     fontSize: "50px",
   };
 
