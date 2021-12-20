@@ -50,7 +50,7 @@ const ChangeAvatar: FC = () => {
       <form className="upload__form">
         <Input
           sx={{
-            ":after": { borderBottom: "2px solid #bf4444" },
+            ":after": { borderBottom: "2px solid #534ED9" },
           }}
           type="file"
           onChange={(e) => {
@@ -60,9 +60,9 @@ const ChangeAvatar: FC = () => {
         <Button
           variant="contained"
           sx={{
-            backgroundColor: "#bf4444",
+            backgroundColor: "#534ED9",
             ":hover": {
-              backgroundColor: "#bc6464",
+              backgroundColor: "#7673D9",
             },
           }}
           onClick={(e) => imageUpload(e)}
@@ -78,7 +78,7 @@ const ChangeAvatar: FC = () => {
             borderRadius: "0",
             height: "200px",
             margin: "0 1rem 0 0",
-            backgroundColor: "#bf4444",
+            backgroundColor: "#534ED9",
             fontSize: "50px",
           }}
         />
@@ -88,7 +88,7 @@ const ChangeAvatar: FC = () => {
             width: "200px",
             height: "200px",
             margin: "0 1rem 0 0",
-            backgroundColor: "#bf4444",
+            backgroundColor: "#534ED9",
             fontSize: "50px",
           }}
         />
@@ -98,7 +98,7 @@ const ChangeAvatar: FC = () => {
             width: "100px",
             height: "100px",
             margin: "0 1rem 0 0",
-            backgroundColor: "#bf4444",
+            backgroundColor: "#534ED9",
             fontSize: "50px",
           }}
         />
@@ -108,7 +108,7 @@ const ChangeAvatar: FC = () => {
             width: "50px",
             height: "50px",
             margin: "0 1rem 0 0",
-            backgroundColor: "#bf4444",
+            backgroundColor: "#534ED9",
             fontSize: "50px",
           }}
         />
@@ -118,7 +118,7 @@ const ChangeAvatar: FC = () => {
             width: "30px",
             height: "30px",
             margin: "0 1rem 0 0",
-            backgroundColor: "#bf4444",
+            backgroundColor: "#534ED9",
             fontSize: "50px",
           }}
         />
