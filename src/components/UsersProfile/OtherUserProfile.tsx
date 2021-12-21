@@ -5,6 +5,8 @@ import { observer } from "mobx-react-lite";
 import { URL } from "../../http/axios";
 import "./userProfile.css";
 import OtherUserPosts from "../OtherUserPosts/OtherUserPosts";
+import SendMessage from "./SendMessage";
+import AddFriend from "./AddFriend";
 
 const UserProfilePage: FC = () => {
   const { store } = useContext(Context);
@@ -25,6 +27,8 @@ const UserProfilePage: FC = () => {
         <Avatar variant="square" src={avatarSrc} sx={avatarStyles}>
           {store.otherUser.firstName}
         </Avatar>
+        <AddFriend />
+        <SendMessage />
         <ul className="profile__info">
           {store.otherUser.birthday ? (
             <li className="profile__info__list">

@@ -22,7 +22,7 @@ const AllUsers: FC = () => {
     margin: "0 0 2rem 0",
     backgroundColor: "#fff",
     padding: ".5rem",
-    borderRadius: ".3rem",
+    borderRadius: ".3rem .3rem 0 0",
     ":after": { borderBottom: "2px solid #534ED9" },
   };
 
