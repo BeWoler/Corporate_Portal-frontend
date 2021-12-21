@@ -14,6 +14,7 @@ import UserService from "../services/UserService";
 export default class Store {
   user = {} as User;
   otherUser = {} as User;
+  allUsers = {} as User[];
   isAuth = false;
   isLoading = false;
   error: string;
@@ -33,6 +34,10 @@ export default class Store {
 
   setOtherUser(user: User) {
     this.otherUser = user;
+  }
+  
+  setAllUsers(users: User[]) {
+    this.allUsers = users;
   }
 
   setLoading(bool: boolean) {
@@ -167,6 +172,15 @@ export default class Store {
       console.log(e);
     } finally {
       this.setLoading(false);
+    }
+  }
+
+  async getAllUsers() {
+    try {
+      const response = await UserService.fetchUsers();
+      this.setAllUsers(response.data);
+    } catch(e) {
+      console.log(e);
     }
   }
 }

@@ -6,6 +6,7 @@ import "./userProfile.css";
 const SendMessage: FC = () => {
   const btnStyles = {
     width: "100%",
+    margin: "0 0 1.5rem 0",
     backgroundColor: "#534ED9",
     ":hover": { backgroundColor: "#7673D9" },
   };

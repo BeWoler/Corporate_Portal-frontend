@@ -12,7 +12,7 @@ const UserBar: FC = () => {
     width: "30px",
     height: "30px",
     marginLeft: "0.5rem",
-    bgcolor: "#bf4444",
+    bgcolor: "#534ED9",
   };
 
   return (

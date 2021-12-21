@@ -1,0 +1,7 @@
+.filter__form {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: .3rem;
+  padding: 1rem;
+}

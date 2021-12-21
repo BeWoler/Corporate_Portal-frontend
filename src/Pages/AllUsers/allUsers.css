@@ -4,18 +4,25 @@
 
 .users__ul {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  width: 100%;
   justify-content: flex-start;
   list-style: none;
-  width: fit-content;
+  max-height: 1200px;
+  overflow: auto;
+}
+
+.users__box {
+  display: flex;
+  flex-direction: row;
 }
 
 .users__li {
   padding: 1rem;
-  width: fit-content;
   word-break: break-all;
   border-radius: 0.5rem;
-  display: inline-block;
+  display: flex;
+  align-items: center;
   transition: all ease 0.2s;
   margin: 0 1rem 1rem 0;
   background-color: #fff;
