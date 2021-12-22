@@ -4,6 +4,7 @@ export interface User {
   avatar: string;
   firstName: string;
   lastName: string;
+  city: string;
   birthday: string;
   stack: string;
   position: string;

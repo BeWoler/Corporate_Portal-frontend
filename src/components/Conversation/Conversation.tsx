@@ -15,7 +15,7 @@ const Conversation: FC = () => {
   };
 
   useEffect(() => {
-    UserService.fetchUsers().then((res) => setUsers(res.data));
+    UserService.fetchUsers("").then((res) => setUsers(res.data));
     return () => setUsers([]);
   }, []);
 

@@ -4,8 +4,8 @@ import { User } from "../models/user";
 import { AuthResponse } from "../models/response/authResponse";
 
 export default class UserService {
-  static fetchUsers = (): Promise<AxiosResponse<User[]>> => {
-    return api.get<User[]>("/users");
+  static fetchUsers = (args: any): Promise<AxiosResponse<User[]>> => {
+    return api.get<User[]>("/users", {params: {...args}});
   };
 
   static getUserInfo = (userId: string): Promise<AxiosResponse<AuthResponse>> => {

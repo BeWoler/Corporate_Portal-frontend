@@ -29,14 +29,22 @@ const AllUsers: FC = () => {
     ":after": { borderBottom: "2px solid #534ED9" },
   };
 
-  useEffect(() => {
-    const get = async () => {
-      await store.getAllUsers();
-      setUsers(store.allUsers);
-    };
-    get();
+  const getUsersWithQuery = async (params: any) => {
+    await store.getAllUsers(params);
+    setUsers(store.allUsers);
     return () => setUsers(null);
-  }, [store]);
+  };
+
+  const getUsersWithoutQuery = async () => {
+    await store.getAllUsers("");
+    setUsers(store.allUsers);
+    return () => setUsers(null);
+  };
+
+  useEffect(() => {
+    getUsersWithoutQuery()
+    return () => setUsers(null);
+  }, [store])
 
   const filteredUsers = users.filter((user) => {
     return (
@@ -89,7 +97,11 @@ const AllUsers: FC = () => {
             : null}
         </ul>
         <div className="users__filter">
-          <UserFilter users={users} />
+          <UserFilter
+            users={users}
+            getUsersWithQuery={getUsersWithQuery}
+            getUsersWithoutQuery={getUsersWithoutQuery}
+          />
         </div>
       </div>
     </div>

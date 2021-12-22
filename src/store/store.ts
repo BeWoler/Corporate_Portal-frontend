@@ -175,9 +175,9 @@ export default class Store {
     }
   }
 
-  async getAllUsers() {
+  async getAllUsers(args?: any) {
     try {
-      const response = await UserService.fetchUsers();
+      const response = await UserService.fetchUsers(args);
       this.setAllUsers(response.data);
     } catch(e) {
       console.log(e);

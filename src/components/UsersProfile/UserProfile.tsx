@@ -26,30 +26,35 @@ const UserProfilePage: FC = () => {
           {store.user.firstName}
         </Avatar>
         <ul className="profile__info">
+        {store.user.city !== "" ? (
+            <li className="profile__info__list">
+              City: {store.user.city}
+            </li>
+          ) : null}
           {store.user.birthday ? (
             <li className="profile__info__list">
               My Birthday: {store.user.birthday.split("-").reverse().join(".")}
             </li>
           ) : null}
-          {store.user.stack ? (
+          {store.user.stack !== ""? (
             <li className="profile__info__list">Stack: {store.user.stack}</li>
           ) : null}
-          {store.user.position ? (
+          {store.user.position !== "" ? (
             <li className="profile__info__list">
               Position: {store.user.position}
             </li>
           ) : null}
-          {store.user.department ? (
+          {store.user.department !== "" ? (
             <li className="profile__info__list">
               Department: {store.user.department}
             </li>
           ) : null}
-          {store.user.education ? (
+          {store.user.education !== "" ? (
             <li className="profile__info__list">
               Education: {store.user.education}
             </li>
           ) : null}
-          {store.user.skype ? (
+          {store.user.skype !== "" ? (
             <li className="profile__info__list">Skype: {store.user.skype}</li>
           ) : null}
           {store.user.phone ? (
@@ -64,7 +69,7 @@ const UserProfilePage: FC = () => {
             : "I don't have a name"}
         </p>
         <p className="profile__about">
-          {store.user.description
+          {store.user.description !== ""
             ? `About me: ${store.user.description}`
             : "Nothing at now..."}
         </p>

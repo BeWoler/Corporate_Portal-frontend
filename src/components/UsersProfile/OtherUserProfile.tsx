@@ -36,27 +36,27 @@ const UserProfilePage: FC = () => {
               {store.otherUser.birthday.split("-").reverse().join(".")}
             </li>
           ) : null}
-          {store.otherUser.stack ? (
+          {store.otherUser.stack !== "" ? (
             <li className="profile__info__list">
               Stack: {store.otherUser.stack}
             </li>
           ) : null}
-          {store.otherUser.position ? (
+          {store.otherUser.position !== "" ? (
             <li className="profile__info__list">
               Position: {store.otherUser.position}
             </li>
           ) : null}
-          {store.otherUser.department ? (
+          {store.otherUser.department !== "" ? (
             <li className="profile__info__list">
               Department: {store.otherUser.department}
             </li>
           ) : null}
-          {store.otherUser.education ? (
+          {store.otherUser.education !== "" ? (
             <li className="profile__info__list">
               Education: {store.otherUser.education}
             </li>
           ) : null}
-          {store.otherUser.skype ? (
+          {store.otherUser.skype !== "" ? (
             <li className="profile__info__list">
               Skype: {store.otherUser.skype}
             </li>

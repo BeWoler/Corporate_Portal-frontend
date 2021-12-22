@@ -9,6 +9,7 @@ const SettingsForm: FC = () => {
   const [firstName, setFirstName] = useState<string>();
   const [lastName, setLastName] = useState<string>();
   const [birthday, setBirthday] = useState<string>();
+  const [city, setCity] = useState<string>();
   const [stack, setStack] = useState<string>();
   const [position, setPosition] = useState<string>();
   const [department, setDepartment] = useState<string>();
@@ -43,6 +44,12 @@ const SettingsForm: FC = () => {
           <Input
             onChange={(e) => setLastName(e.target.value)}
             placeholder="Last Name"
+            type="text"
+            sx={inputStyles}
+          />
+          <Input
+            onChange={(e) => setCity(e.target.value)}
+            placeholder="City"
             type="text"
             sx={inputStyles}
           />
@@ -107,6 +114,7 @@ const SettingsForm: FC = () => {
           await store.editProfile(store.user.username, {
             firstName,
             lastName,
+            city,
             birthday,
             stack,
             position,
