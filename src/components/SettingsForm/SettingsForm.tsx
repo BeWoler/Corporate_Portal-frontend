@@ -1,6 +1,6 @@
 import { FC, useContext, useState } from "react";
 import "./settingsForm.css";
-import { Button, Input } from "@mui/material";
+import { Button, Input, Switch } from "@mui/material";
 import { Context } from "../../index";
 import { observer } from "mobx-react-lite";
 
@@ -16,6 +16,7 @@ const SettingsForm: FC = () => {
   const [education, setEducation] = useState<string>();
   const [skype, setSkype] = useState<string>();
   const [phone, setPhone] = useState<number>();
+  const [privatePage, setPrivatePage] = useState<boolean>(store.user.privatePage);
   const [description, setDescription] = useState<string>();
 
   const inputStyles = {
@@ -25,7 +26,7 @@ const SettingsForm: FC = () => {
   const btnStyles = {
     margin: "2rem auto 2rem auto",
     width: "fit-content",
-    backgroundColor: "#534ED9",
+    backgroundColor: "#534ED9", 
     ":hover": { backgroundColor: "#7673D9" },
   };
 
@@ -65,6 +66,10 @@ const SettingsForm: FC = () => {
             type="number"
             sx={inputStyles}
           />
+          <div>
+            <Switch checked={privatePage} inputProps={{ 'aria-label': 'controlled' }} onChange={e => setPrivatePage(e.target.checked)}/>
+            Private Profile
+          </div>
         </div>
         <div className="settings__otherData">
           <h4 className="settings__title">Edit other info</h4>
@@ -122,6 +127,7 @@ const SettingsForm: FC = () => {
             education,
             skype,
             phone,
+            privatePage,
             description,
           });
           store.checkAuth();

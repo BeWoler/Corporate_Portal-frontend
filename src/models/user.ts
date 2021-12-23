@@ -13,6 +13,7 @@ export interface User {
   skype: string;
   phone: number;
   description: string;
+  privatePage: boolean
   _id: string;
   id: string;
 }
