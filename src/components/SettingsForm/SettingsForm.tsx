@@ -16,7 +16,9 @@ const SettingsForm: FC = () => {
   const [education, setEducation] = useState<string>();
   const [skype, setSkype] = useState<string>();
   const [phone, setPhone] = useState<number>();
-  const [privatePage, setPrivatePage] = useState<boolean>(store.user.privatePage);
+  const [privatePage, setPrivatePage] = useState<boolean>(
+    store.user.privatePage
+  );
   const [description, setDescription] = useState<string>();
 
   const inputStyles = {
@@ -26,7 +28,7 @@ const SettingsForm: FC = () => {
   const btnStyles = {
     margin: "2rem auto 2rem auto",
     width: "fit-content",
-    backgroundColor: "#534ED9", 
+    backgroundColor: "#534ED9",
     ":hover": { backgroundColor: "#7673D9" },
   };
 
@@ -67,7 +69,11 @@ const SettingsForm: FC = () => {
             sx={inputStyles}
           />
           <div>
-            <Switch checked={privatePage} inputProps={{ 'aria-label': 'controlled' }} onChange={e => setPrivatePage(e.target.checked)}/>
+            <Switch
+              checked={privatePage}
+              inputProps={{ "aria-label": "controlled" }}
+              onChange={(e) => setPrivatePage(e.target.checked)}
+            />
             Private Profile
           </div>
         </div>
