@@ -40,7 +40,7 @@ const AllUsers: FC = () => {
     setUsers(store.allUsers);
     return () => setUsers(null);
   };
-
+  
   useEffect(() => {
     getUsersWithoutQuery()
     return () => setUsers(null);
@@ -82,6 +82,9 @@ const AllUsers: FC = () => {
                     </li>
                     <li className="users__data__li">
                       {user.email ? `Email: ${user.email}` : null}
+                    </li>
+                    <li className="users__data__li">
+                      {user.city ? `City: ${user.city}` : null}
                     </li>
                     <li className="users__data__li">
                       {user.birthday

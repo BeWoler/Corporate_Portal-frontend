@@ -16,7 +16,8 @@ const UserFilter = ({
 }: UsersProps) => {
   const [email, setEmail] = useState<string>();
   const [username, setUsername] = useState<string>();
-  const [city, setCity] = useState<string>();
+  const [city, setCity] = useState<string>("Minsk");
+  const [oldCity, setOldCity] = useState<string>("Minsk");
   const [department, setDepartment] = useState<string>();
   const [position, setPosition] = useState<string>();
   const [stack, setStack] = useState<string>();
@@ -43,46 +44,27 @@ const UserFilter = ({
 
   return (
     <form className="filter__form">
-      <Autocomplete
-        disablePortal
-        id="combo-box-demo"
-        options={users.map((user) => user.email)}
+      <TextField
+        label="Email"
         sx={autocompleteStyles}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            label="Email"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        )}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <TextField
+        label="Username"
+        sx={autocompleteStyles}
+        onChange={(e) => setUsername(e.target.value)}
       />
       <Autocomplete
-        disablePortal
+        value={oldCity}
+        inputValue={oldCity}
+        onInputChange={(event, newInputValue) => {
+          setOldCity(newInputValue);
+          setCity(newInputValue);
+        }}
         id="controllable-states-demo"
-        options={users.map((user) => user.username)}
-        sx={autocompleteStyles}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            value={username}
-            label="Username"
-            onChange={(e) => setUsername(e.target.value)}
-            onClick={(e) => console.log(username)}
-          />
-        )}
-      />
-      <Autocomplete
-        disablePortal
-        id="combo-box-demo"
         options={["Minsk", "Gomel", "Grodno", "Mogilev"]}
         sx={autocompleteStyles}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            label="City"
-            onChange={(e) => setCity(e.target.value)}
-          />
-        )}
+        renderInput={(params) => <TextField {...params} label="City" />}
       />
       <TextField
         label="Department"
@@ -99,7 +81,19 @@ const UserFilter = ({
         sx={autocompleteStyles}
         onChange={(e) => setStack(e.target.value)}
       />
-      <Button variant="contained" sx={btnStyles} onClick={getUsersWithoutQuery}>
+      <Button
+        variant="contained"
+        sx={btnStyles}
+        onClick={() => {
+          setEmail(null);
+          setUsername(null);
+          setCity(undefined);
+          setDepartment(null);
+          setPosition(null);
+          setStack(null);
+          getUsersWithoutQuery();
+        }}
+      >
         Clear
       </Button>
       <Button
