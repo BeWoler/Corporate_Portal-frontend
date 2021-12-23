@@ -24,14 +24,18 @@ const UserPosts: FC = () => {
   const fileUpload = async (e: any) => {
     try {
       e.preventDefault();
-      const formData = new FormData();
-      formData.append("files", file);
-      const res = await api.post("/post/upload", formData, {
-        headers: {
-          "content-type": "multipart/form-data",
-        },
-      });
-      await PostService.createPost(postText, res.data.path);
+      if (file) {
+        const formData = new FormData();
+        formData.append("files", file);
+        const res = await api.post("/post/upload", formData, {
+          headers: {
+            "content-type": "multipart/form-data",
+          },
+        });
+        await PostService.createPost(postText, res.data.path);
+      } else {
+        await PostService.createPost(postText, null);
+      }
     } catch (e) {
       await PostService.createPost(postText, null);
     }
