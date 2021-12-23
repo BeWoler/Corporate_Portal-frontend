@@ -7,8 +7,9 @@ import "./userProfile.css";
 import OtherUserPosts from "../OtherUserPosts/OtherUserPosts";
 import SendMessage from "./SendMessage";
 import AddFriend from "./AddFriend";
+import PrivateProfile from "./PrivateProfile";
 
-const UserProfilePage: FC = () => {
+const OtherUserProfilePage: FC = () => {
   const { store } = useContext(Context);
   const avatarSrc = `${URL}/${store.otherUser.avatar}`;
   const avatarStyles = {
@@ -20,6 +21,10 @@ const UserProfilePage: FC = () => {
     boxShadow: "0px 1px 10px #3d3d3d",
     fontSize: "50px",
   };
+
+  if (store.otherUser.privatePage) {
+    return <PrivateProfile />;
+  }
 
   return (
     <div className="profile__container">
@@ -85,4 +90,4 @@ const UserProfilePage: FC = () => {
   );
 };
 
-export default observer(UserProfilePage);
+export default observer(OtherUserProfilePage);

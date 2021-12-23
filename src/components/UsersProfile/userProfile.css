@@ -72,6 +72,15 @@
   align-items: center;
 } 
 
+.profile__private {
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: .3rem;
+  text-align: center;
+  font-weight: 500;
+  font-size: 22px;
+}
+
 .profile__about {
   padding: 1rem;
   width: fit-content;
