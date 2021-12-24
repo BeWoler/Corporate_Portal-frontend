@@ -7,6 +7,7 @@ import { Button, Input } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
 import AddCommentIcon from "@mui/icons-material/AddComment";
+import { Link } from "react-router-dom";
 import "./board.css";
 import { Avatar } from "@mui/material";
 
@@ -142,11 +143,12 @@ const BoardPosts: FC = () => {
                         <div key={comment._id} className="post__comment">
                           <div className="comment__info">
                             <h5 className="comment__author">
-                              <Avatar
-                                variant="square"
-                                src={`${URL}/${comment.avatar}`}
-                                sx={avatarStyle}
-                              ></Avatar>
+                              <Link to={`/profile/${comment.user}`}>
+                                <Avatar
+                                  src={`${URL}/${comment.avatar}`}
+                                  sx={avatarStyle}
+                                ></Avatar>
+                              </Link>
                               {comment.author}
                             </h5>
                             <p className="comment__time">

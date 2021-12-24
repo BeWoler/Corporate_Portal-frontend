@@ -2,6 +2,7 @@ import { FC, useState, useEffect } from "react";
 import { Post } from "../../models/post";
 import { Input, Button } from "@mui/material";
 import api, { URL } from "../../http/axios";
+import { Link } from "react-router-dom";
 import "./userPosts.css";
 import PostService from "../../services/PostService";
 import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
@@ -343,11 +344,12 @@ const UserPosts: FC = () => {
                           <div key={comment._id} className="post__comment">
                             <div className="comment__info">
                               <h5 className="comment__author">
-                                <Avatar
-                                  variant="square"
-                                  src={`${URL}/${comment.avatar}`}
-                                  sx={avatarStyle}
-                                ></Avatar>
+                                <Link to={`/profile/${comment.user}`}>
+                                  <Avatar
+                                    src={`${URL}/${comment.avatar}`}
+                                    sx={avatarStyle}
+                                  ></Avatar>
+                                </Link>
                                 {comment.author}
                               </h5>
                               <p className="comment__time">
