@@ -9,6 +9,7 @@ import UserProfilePage from "../Pages/Profile/UserProfilePage";
 import Board from "../Pages/Board/Board";
 import Messenger from "../Pages/Messenger/Messenger";
 import ChangeAvatar from "../Pages/ChangeAvatar/ChangeAvatar";
+import Friends from "../Pages/Friends/Friends";
 
 const AppRouter = () => {
   const RequireAuth = ({ children }: { children: JSX.Element }) => {
@@ -36,6 +37,14 @@ const AppRouter = () => {
           element={
             <RequireAuth>
               <AllUsers />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="friends"
+          element={
+            <RequireAuth>
+              <Friends />
             </RequireAuth>
           }
         />
