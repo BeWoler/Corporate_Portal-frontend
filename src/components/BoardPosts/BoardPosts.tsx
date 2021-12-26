@@ -2,7 +2,6 @@ import { FC, useEffect, useState, useContext } from "react";
 import { Post } from "../../models/post";
 import { Context } from "../../index";
 import PostService from "../../services/PostService";
-import { URL } from "../../http/axios";
 import { Button, Input } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
@@ -145,7 +144,7 @@ const BoardPosts: FC = () => {
                             <h5 className="comment__author">
                               <Link to={`/profile/${comment.user}`}>
                                 <Avatar
-                                  src={`${URL}/${comment.avatar}`}
+                                  src={comment.avatar}
                                   sx={avatarStyle}
                                 ></Avatar>
                               </Link>

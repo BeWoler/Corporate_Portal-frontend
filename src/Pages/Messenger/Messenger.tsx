@@ -1,6 +1,6 @@
 import { FC } from "react";
 import "./messenger.css";
-import { socketConnection } from "../../socket/socket";
+// import { socketConnection } from "../../socket/socket";
 import { Input, Button } from "@mui/material";
 import Conversation from "../../components/Conversation/Conversation";
 import Message from "../../components/Message/Message";

@@ -3,7 +3,6 @@ import { Context } from "../../index";
 import { observer } from "mobx-react-lite";
 import { User } from "../../models/user";
 import { Avatar, Input } from "@mui/material";
-import { URL } from "../../http/axios";
 import { Link } from "react-router-dom";
 import "./allUsers.css";
 import UserFilter from "../../components/UserFilter/UserFilter";
@@ -70,7 +69,7 @@ const AllUsers: FC = () => {
                 <li className="users__li" key={user._id}>
                   <Link to={`/profile/${user._id}`}>
                     <Avatar
-                      src={`${URL}/${user.avatar}`}
+                      src={user.avatar}
                       sx={avatarStyles}
                     ></Avatar>
                   </Link>

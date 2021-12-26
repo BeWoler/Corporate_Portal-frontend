@@ -1,7 +1,7 @@
 import { FC, useState, useEffect } from "react";
 import { Post } from "../../models/post";
 import { Input, Button } from "@mui/material";
-import api, { URL } from "../../http/axios";
+import api from "../../http/axios";
 import { Link } from "react-router-dom";
 import "./userPosts.css";
 import PostService from "../../services/PostService";
@@ -346,7 +346,7 @@ const UserPosts: FC = () => {
                               <h5 className="comment__author">
                                 <Link to={`/profile/${comment.user}`}>
                                   <Avatar
-                                    src={`${URL}/${comment.avatar}`}
+                                    src={comment.avatar}
                                     sx={avatarStyle}
                                   ></Avatar>
                                 </Link>

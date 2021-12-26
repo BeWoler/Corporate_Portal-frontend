@@ -3,7 +3,6 @@ import { FC, useState, useEffect } from "react";
 import UserService from "../../services/UserService";
 import { User } from "../../models/user";
 import { Avatar } from "@mui/material";
-import { URL } from "../../http/axios";
 
 const Conversation: FC = () => {
   const [users, setUsers] = useState<User[]>([]);
@@ -24,7 +23,7 @@ const Conversation: FC = () => {
       <ul className="conversation__users__column">
         {users.map((user) => (
           <li className="chat__users__li" key={user.email}>
-            <Avatar src={`${URL}/${user.avatar}`} sx={avatarStyles}></Avatar>
+            <Avatar src={user.avatar} sx={avatarStyles}></Avatar>
             {user.email}
           </li>
         ))}

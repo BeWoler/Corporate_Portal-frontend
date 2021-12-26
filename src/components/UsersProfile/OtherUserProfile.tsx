@@ -2,16 +2,14 @@ import { FC, useContext } from "react";
 import { Context } from "../../index";
 import { Avatar } from "@mui/material";
 import { observer } from "mobx-react-lite";
-import { URL } from "../../http/axios";
 import "./userProfile.css";
 import OtherUserPosts from "../OtherUserPosts/OtherUserPosts";
-import SendMessage from "./SendMessage";
 import AddFriend from "./AddFriend";
 import PrivateProfile from "./PrivateProfile";
 
 const OtherUserProfilePage: FC = () => {
   const { store } = useContext(Context);
-  const avatarSrc = `${URL}/${store.otherUser.avatar}`;
+  const avatarSrc = store.otherUser.avatar;
   const avatarStyles = {
     width: "235px",
     height: "235px",
@@ -33,7 +31,6 @@ const OtherUserProfilePage: FC = () => {
           {store.otherUser.firstName}
         </Avatar>
         <AddFriend />
-        <SendMessage />
         <ul className="profile__info">
           {store.otherUser.birthday ? (
             <li className="profile__info__list">

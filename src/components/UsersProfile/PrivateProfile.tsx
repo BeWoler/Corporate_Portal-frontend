@@ -4,7 +4,6 @@ import { Avatar } from "@mui/material";
 import { observer } from "mobx-react-lite";
 import { URL } from "../../http/axios";
 import "./userProfile.css";
-import SendMessage from "./SendMessage";
 import AddFriend from "./AddFriend";
 
 const PrivateProfile: FC = () => {
@@ -27,7 +26,6 @@ const PrivateProfile: FC = () => {
           {store.otherUser.firstName}
         </Avatar>
         <AddFriend />
-        <SendMessage />
       </div>
       <div className="profile__second__column">
         <p className="profile__name">

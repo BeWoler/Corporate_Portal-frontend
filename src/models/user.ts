@@ -12,6 +12,7 @@ export interface User {
   education: string;
   skype: string;
   phone: number;
+  friends: any;
   description: string;
   privatePage: boolean;
   _id: string;

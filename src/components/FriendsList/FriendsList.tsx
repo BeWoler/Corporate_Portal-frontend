@@ -2,7 +2,6 @@ import { FC, useEffect, useState } from "react";
 import { User } from "../../models/user";
 import { Link } from "react-router-dom";
 import { Avatar } from "@mui/material";
-import { URL } from "../../http/axios";
 import FriendsService from "../../services/FriendsService";
 import "./friendsList.css";
 
@@ -35,7 +34,7 @@ const FriendsList: FC = () => {
           <li className="users__li" key={friend._id}>
             <Link to={`/profile/${friend._id}`}>
               <Avatar
-                src={`${URL}/${friend.avatar}`}
+                src={friend.avatar}
                 sx={avatarStyles}
               ></Avatar>
             </Link>
