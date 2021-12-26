@@ -21,7 +21,11 @@ export default class FriendsService {
     return api.post("/friend/decline", { requestId });
   }
 
-  static async getRequests(receiverId: string) {
+  static async getRequests(receiverId: string): Promise<AxiosResponse> {
     return api.get(`/friend/requests/${receiverId}`);
+  }
+
+  static async getUserFriends(receiverId: string): Promise<AxiosResponse> {
+    return api.get(`/friends/${receiverId}`);
   }
 }

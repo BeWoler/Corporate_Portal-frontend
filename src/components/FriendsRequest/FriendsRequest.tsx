@@ -36,7 +36,9 @@ const FriendsRequest: FC = () => {
   }, []);
 
   const btnStyles = {
-    margin: "1rem 1rem 0 0",
+    margin: "1rem .5rem 0 .5rem",
+    width: "fit-content",
+    height: "fir-content",
     backgroundColor: "#534ED9",
     ":hover": { backgroundColor: "#7673D9" },
   };
