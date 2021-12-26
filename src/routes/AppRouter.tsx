@@ -41,7 +41,7 @@ const AppRouter = () => {
           }
         />
         <Route
-          path="friends"
+          path="friends/:userId"
           element={
             <RequireAuth>
               <Friends />

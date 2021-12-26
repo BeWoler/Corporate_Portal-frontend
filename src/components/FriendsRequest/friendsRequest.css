@@ -1,0 +1,9 @@
+.requests {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: .3rem;
+  margin: 0 0 1rem 0;
+}

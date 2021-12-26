@@ -2,7 +2,7 @@
   margin: 0 0 1.5rem 0;
 }
 
-.firends__ul {
+.firends__list {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -12,7 +12,7 @@
   overflow: auto;
 }
 
-.friends__li {
+.friends__items {
   padding: 1rem;
   word-break: break-all;
   border-radius: 0.5rem;

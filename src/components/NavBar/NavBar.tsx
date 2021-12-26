@@ -32,7 +32,7 @@ const NavBar: FC = () => {
           <PersonIcon sx={linkStyle} />
           My Profile
         </Link>
-        <Link to="friends" className="nav__li">
+        <Link to={`friends/${store.user.id}`} className="nav__li">
           <ImportContactsIcon sx={linkStyle} />
           Friends
         </Link>
