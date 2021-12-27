@@ -60,6 +60,9 @@ const UserProfilePage: FC = () => {
             <li className="profile__info__list">Phone: {store.user.phone}</li>
           ) : null}
         </ul>
+        <div>{store.user.friends ? store.user.friends.map((friend: any) => {
+          return <li>{friend.email}</li>
+        }): null}</div>
       </div>
       <div className="profile__second__column">
         <p className="profile__name">

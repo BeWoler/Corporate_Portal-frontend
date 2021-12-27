@@ -1,16 +1,20 @@
-import { FC, useContext } from 'react';
+import { FC, useContext } from "react";
 import { Context } from "../../index";
 import { Link } from "react-router-dom";
-import FriendsService from '../../services/FriendsService';
+import FriendsService from "../../services/FriendsService";
 import { Button } from "@mui/material";
 import "./userProfile.css";
 
-const AddFriend: FC = () => {
+interface BtnProps {
+  disabled?: boolean;
+}
+
+const AddFriend = ({ disabled }: BtnProps) => {
   const { store } = useContext(Context);
 
-  const addFriend = async() => {
+  const addFriend = async () => {
     await FriendsService.request(store.otherUser.id, store.user.id);
-  }
+  };
 
   const btnStyles = {
     margin: "0 0 1.5rem 0",
@@ -20,10 +24,17 @@ const AddFriend: FC = () => {
   };
 
   return (
-    <Link to="/chat" className="linkBtn">
-      <Button variant="contained" sx={btnStyles} onClick={addFriend}>Add Friend</Button>
+    <Link to={`/friends/${store.user.id}`}>
+      <Button
+        disabled={disabled}
+        variant="contained"
+        sx={btnStyles}
+        onClick={addFriend}
+      >
+        Add Friend
+      </Button>
     </Link>
-  )
-}
+  );
+};
 
 export default AddFriend;

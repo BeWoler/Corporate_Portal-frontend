@@ -6,7 +6,7 @@ import OtherUserProfile from "../../components/UsersProfile/OtherUserProfile";
 
 const UserProfilePage: FC = () => {
   const { store } = useContext(Context);
-  let currentId = window.location.href.split("/").reverse()[0];
+  const currentId = window.location.href.split("/").reverse()[0];
   const userId = store.user.id;
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-import { FC, useContext } from "react";
+import { FC, useContext, useState, useEffect } from "react";
 import { Context } from "../../index";
 import { Avatar } from "@mui/material";
 import { observer } from "mobx-react-lite";
@@ -9,7 +9,9 @@ import PrivateProfile from "./PrivateProfile";
 
 const OtherUserProfilePage: FC = () => {
   const { store } = useContext(Context);
+  const [active, setActive] = useState<boolean>(false);
   const avatarSrc = store.otherUser.avatar;
+  const currentId = window.location.href.split("/").reverse()[0];
   const avatarStyles = {
     width: "235px",
     height: "235px",
@@ -19,6 +21,16 @@ const OtherUserProfilePage: FC = () => {
     boxShadow: "0px 1px 10px #3d3d3d",
     fontSize: "50px",
   };
+
+  useEffect(() => {
+    if(store.user.friends) {
+      store.user.friends.forEach((friendId: any) => {
+        if(friendId._id === currentId) {
+          setActive(true);  
+        }
+      })
+    }
+  }, [currentId, store.user.friends])
 
   if (store.otherUser.privatePage) {
     return <PrivateProfile />;
@@ -30,7 +42,7 @@ const OtherUserProfilePage: FC = () => {
         <Avatar variant="square" src={avatarSrc} sx={avatarStyles}>
           {store.otherUser.firstName}
         </Avatar>
-        <AddFriend />
+        {active ? <AddFriend disabled={true} /> : <AddFriend disabled={false}/>}
         <ul className="profile__info">
           {store.otherUser.birthday ? (
             <li className="profile__info__list">
@@ -69,6 +81,9 @@ const OtherUserProfilePage: FC = () => {
             </li>
           ) : null}
         </ul>
+        <div>{store.otherUser.friends ? store.otherUser.friends.map((friend: any) => {
+          return <li>{friend.email}</li>
+        }): null}</div>
       </div>
       <div className="profile__second__column">
         <p className="profile__name">
