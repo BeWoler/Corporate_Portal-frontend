@@ -3,6 +3,7 @@ import "./app.css";
 import { observer } from "mobx-react-lite";
 import { Context } from "../../index";
 import AppRouter from "../../routes/AppRouter";
+import Header from "../Header/Header";
 
 const App = () => {
   const { store } = useContext(Context);
@@ -14,7 +15,11 @@ const App = () => {
   }, [store]);
 
   if (store.isLoading) {
-    return <></>;
+    return (
+      <div className="main__box">
+      <Header />
+    </div>
+    );
   }
 
   const checkAuth = () => {

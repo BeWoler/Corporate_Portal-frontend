@@ -1,7 +1,7 @@
 .friends__list {
   display: flex;
   flex-direction: column;
-  width: 80%;
+  width: 50%;
   justify-content: flex-start;
   list-style: none;
   max-height: 1200px;
@@ -25,4 +25,11 @@
   flex-direction: row;
   align-items: center;
   font-weight: 500;
+}
+
+.empty__page {
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: .3rem;
+  width: fit-content;
 }
