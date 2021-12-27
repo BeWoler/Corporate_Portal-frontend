@@ -31,9 +31,9 @@ const FriendsRequest: FC = () => {
   };
 
   useEffect(() => {
-    getRequests();
+    FriendsService.getRequests(receiverId).then(res => setRequests(res.data));
     return () => setRequests(null);
-  }, []);
+  }, [receiverId]);
 
   const btnStyles = {
     margin: "1rem .5rem 0 .5rem",

@@ -15,7 +15,7 @@ const UserProfilePage: FC = () => {
       return () => null;
     }
     return () => null;
-  }, [currentId, store]);
+  }, [currentId, store, userId]);
 
   if (userId === currentId) {
     return (

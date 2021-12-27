@@ -41,7 +41,7 @@ const AllUsers: FC = () => {
   };
   
   useEffect(() => {
-    getUsersWithoutQuery()
+    store.getAllUsers("").then(() => setUsers(store.allUsers));
     return () => setUsers(null);
   }, [store])
 
