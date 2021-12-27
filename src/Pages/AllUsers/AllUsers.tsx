@@ -39,11 +39,11 @@ const AllUsers: FC = () => {
     setUsers(store.allUsers);
     return () => setUsers(null);
   };
-  
+
   useEffect(() => {
     store.getAllUsers("").then(() => setUsers(store.allUsers));
     return () => setUsers(null);
-  }, [store])
+  }, [store]);
 
   const filteredUsers = users.filter((user) => {
     return (
@@ -68,10 +68,7 @@ const AllUsers: FC = () => {
             ? filteredUsers.map((user) => (
                 <li className="users__li" key={user._id}>
                   <Link to={`/profile/${user._id}`}>
-                    <Avatar
-                      src={user.avatar}
-                      sx={avatarStyles}
-                    ></Avatar>
+                    <Avatar src={user.avatar} sx={avatarStyles}></Avatar>
                   </Link>
                   <ul className="users__data__ul">
                     <li className="users__data__li">

@@ -35,7 +35,7 @@ export default class Store {
   setOtherUser(user: User) {
     this.otherUser = user;
   }
-  
+
   setAllUsers(users: User[]) {
     this.allUsers = users;
   }
@@ -179,7 +179,7 @@ export default class Store {
     try {
       const response = await UserService.fetchUsers(args);
       this.setAllUsers(response.data);
-    } catch(e) {
+    } catch (e) {
       console.log(e);
     }
   }
