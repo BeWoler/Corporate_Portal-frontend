@@ -6,6 +6,7 @@ import "./userProfile.css";
 import OtherUserPosts from "../OtherUserPosts/OtherUserPosts";
 import AddFriend from "./AddFriend";
 import PrivateProfile from "./PrivateProfile";
+import UserFriends from "../UserFriends/UserFriends";
 
 const OtherUserProfilePage: FC = () => {
   const { store } = useContext(Context);
@@ -23,14 +24,14 @@ const OtherUserProfilePage: FC = () => {
   };
 
   useEffect(() => {
-    if(store.user.friends) {
+    if (store.user.friends) {
       store.user.friends.forEach((friendId: any) => {
-        if(friendId._id === currentId) {
-          setActive(true);  
+        if (friendId._id === currentId) {
+          setActive(true);
         }
-      })
+      });
     }
-  }, [currentId, store.user.friends])
+  }, [currentId, store.user.friends]);
 
   if (store.otherUser.privatePage) {
     return <PrivateProfile />;
@@ -42,7 +43,11 @@ const OtherUserProfilePage: FC = () => {
         <Avatar variant="square" src={avatarSrc} sx={avatarStyles}>
           {store.otherUser.firstName}
         </Avatar>
-        {active ? <AddFriend disabled={true} /> : <AddFriend disabled={false}/>}
+        {active ? (
+          <AddFriend disabled={true} />
+        ) : (
+          <AddFriend disabled={false} />
+        )}
         <ul className="profile__info">
           {store.otherUser.birthday ? (
             <li className="profile__info__list">
@@ -81,9 +86,7 @@ const OtherUserProfilePage: FC = () => {
             </li>
           ) : null}
         </ul>
-        <div>{store.otherUser.friends ? store.otherUser.friends.map((friend: any) => {
-          return <li>{friend.email}</li>
-        }): null}</div>
+        {store.otherUser.friends ? <UserFriends friends={store.otherUser.friends} /> : null }
       </div>
       <div className="profile__second__column">
         <p className="profile__name">

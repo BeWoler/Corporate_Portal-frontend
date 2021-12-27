@@ -1,4 +1,4 @@
-import { FC, useContext } from "react";
+import { useContext } from "react";
 import { Context } from "../../index";
 import { Link } from "react-router-dom";
 import FriendsService from "../../services/FriendsService";

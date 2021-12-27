@@ -41,3 +41,22 @@ a {
   color: #FD0006;
   margin: 0.2rem 0;
 }
+
+::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 2rem;
+}
+
+::-webkit-scrollbar-track {
+  background: #fff;
+  border-radius: 2rem;
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: #9b9b9b; 
+  border-radius: 2rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9b9b9b; 
+}

@@ -4,6 +4,7 @@ import { Avatar } from "@mui/material";
 import { observer } from "mobx-react-lite";
 import "./userProfile.css";
 import UserPosts from "../UserPosts/UserPosts";
+import UserFriends from "../UserFriends/UserFriends";
 
 const UserProfilePage: FC = () => {
   const { store } = useContext(Context);
@@ -25,17 +26,15 @@ const UserProfilePage: FC = () => {
           {store.user.firstName}
         </Avatar>
         <ul className="profile__info">
-        {store.user.city !== "" ? (
-            <li className="profile__info__list">
-              City: {store.user.city}
-            </li>
+          {store.user.city !== "" ? (
+            <li className="profile__info__list">City: {store.user.city}</li>
           ) : null}
           {store.user.birthday ? (
             <li className="profile__info__list">
               My Birthday: {store.user.birthday.split("-").reverse().join(".")}
             </li>
           ) : null}
-          {store.user.stack !== ""? (
+          {store.user.stack !== "" ? (
             <li className="profile__info__list">Stack: {store.user.stack}</li>
           ) : null}
           {store.user.position !== "" ? (
@@ -60,9 +59,7 @@ const UserProfilePage: FC = () => {
             <li className="profile__info__list">Phone: {store.user.phone}</li>
           ) : null}
         </ul>
-        <div>{store.user.friends ? store.user.friends.map((friend: any) => {
-          return <li>{friend.email}</li>
-        }): null}</div>
+        <UserFriends friends={store.user.friends} />
       </div>
       <div className="profile__second__column">
         <p className="profile__name">

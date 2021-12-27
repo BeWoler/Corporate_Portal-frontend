@@ -28,6 +28,7 @@
 .profile__info {
   border-radius: 0.3rem;
   list-style: none;
+  margin: 0 0 1rem 0;
   background-color: #fff;
   word-break: break-word;
 }
