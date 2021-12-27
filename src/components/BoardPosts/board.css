@@ -47,3 +47,9 @@
   font-size: 16px;
   font-weight: 500;
 }
+
+.no__posts {
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: .3rem;
+}

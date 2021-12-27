@@ -36,7 +36,7 @@ const BoardPosts: FC = () => {
 
   return (
     <>
-      {posts.map((post, position) => {
+      {posts.length > 0 ? posts.map((post, position) => {
         return (
           <div key={post._id} className="board__post">
             <div className="board__info">
@@ -165,7 +165,7 @@ const BoardPosts: FC = () => {
             </div>
           </div>
         );
-      })}
+      }): <h3 className="no__posts">There are no post yet</h3>}
     </>
   );
 };

@@ -56,7 +56,7 @@ const FriendsList: FC = () => {
           );
         })
       ) : (
-        <h3 className="empty__page">Empty</h3>
+        <h3 className="empty__page">No friends yet</h3>
       )}
     </ul>
   );
