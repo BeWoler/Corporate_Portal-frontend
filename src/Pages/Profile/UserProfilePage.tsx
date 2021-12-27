@@ -10,7 +10,10 @@ const UserProfilePage: FC = () => {
   const userId = store.user.id;
 
   useEffect(() => {
-    store.getOtherUser(currentId);
+    if (userId !== currentId) {
+      store.getOtherUser(currentId);
+      return () => null;
+    }
     return () => null;
   }, [currentId, store]);
 
