@@ -1,5 +1,6 @@
 import { Avatar } from "@mui/material";
 import { User } from "../../models/user";
+import { Link } from "react-router-dom";
 import "./message.css";
 
 interface MessageProps {
@@ -17,13 +18,10 @@ const Message = ({ text, own, sender }: MessageProps) => {
   };
   return (
     <div className={own ? "message__content own" : "message__content"}>
-      <Avatar src={sender.avatar} sx={avatarStyles}></Avatar>
+      <Link to={`/profile/${sender._id}`}><Avatar src={sender.avatar} sx={avatarStyles}></Avatar></Link>
       <p className="message__text">
         {sender.firstName}
         <span>{text}</span>
-        {/* <span className="message__time">
-          {new Date().getHours()}:{new Date().getMinutes()}
-        </span> */}
       </p>
     </div>
   );

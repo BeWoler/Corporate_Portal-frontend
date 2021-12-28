@@ -1,7 +1,6 @@
 import { FC, useState, useEffect, useContext, useRef } from "react";
 import { Context } from "../../index";
 import "./messenger.css";
-import { socketConnection } from "../../socket/socket";
 import { Input, Button } from "@mui/material";
 import ConversationService from "../../services/ConverstionService";
 import MessagesService from "../../services/MessageService";
@@ -15,6 +14,7 @@ const Messenger: FC = () => {
   const [currentChat, setCurrentChat] = useState<string>("");
   const [messages, setMessages] = useState([]);
   const scrollRef = useRef<any>();
+
   const inputStyles = {
     margin: "1rem 1rem",
     width: "80%",
@@ -39,7 +39,6 @@ const Messenger: FC = () => {
   };
 
   useEffect(() => {
-    socketConnection();
     ConversationService.getConversation(store.user.id).then((res) =>
       setConversations(res.data)
     );
