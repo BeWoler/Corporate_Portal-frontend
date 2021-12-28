@@ -7,6 +7,7 @@ import OtherUserPosts from "../OtherUserPosts/OtherUserPosts";
 import AddFriend from "./AddFriend";
 import PrivateProfile from "./PrivateProfile";
 import UserFriends from "../UserFriends/UserFriends";
+import SendMessage from "./SendMessage";
 
 const OtherUserProfilePage: FC = () => {
   const { store } = useContext(Context);
@@ -48,6 +49,7 @@ const OtherUserProfilePage: FC = () => {
         ) : (
           <AddFriend disabled={false} />
         )}
+        <SendMessage />
         <ul className="profile__info">
           {store.otherUser.birthday ? (
             <li className="profile__info__list">
@@ -86,7 +88,9 @@ const OtherUserProfilePage: FC = () => {
             </li>
           ) : null}
         </ul>
-        {store.otherUser.friends ? <UserFriends friends={store.otherUser.friends} /> : null }
+        {store.otherUser.friends ? (
+          <UserFriends friends={store.otherUser.friends} />
+        ) : null}
       </div>
       <div className="profile__second__column">
         <p className="profile__name">

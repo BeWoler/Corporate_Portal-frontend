@@ -12,6 +12,13 @@
   flex-direction: row;
 }
 
+.messenger__conversations {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: .3rem;
+}
+
 .messenger__chat__column {
   background-color: #fff;
   border-radius: .3rem;

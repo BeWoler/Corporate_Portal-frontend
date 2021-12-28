@@ -1,22 +1,31 @@
 import { Avatar } from "@mui/material";
+import { User } from "../../models/user";
 import "./message.css";
-import { FC } from "react";
 
-const Message: FC = ({ children }) => {
+interface MessageProps {
+  text: string;
+  own?: boolean;
+  sender: User;
+}
+
+const Message = ({ text, own, sender }: MessageProps) => {
   const avatarStyles = {
     width: "40px",
     height: "40px",
     margin: "0 .5rem 0 0",
-    backgroundColor: "#bf4444",
+    backgroundColor: "#534ED9",
   };
   return (
-      <div className={children ? "message__content own" : "message__content"}>
-        <Avatar sx={avatarStyles}>GG</Avatar>
-        <p className="message__text">
-          gddddddddddddddddddddddddddddddddddddd
-          <span className="message__time">12:58</span>
-        </p>
-      </div>
+    <div className={own ? "message__content own" : "message__content"}>
+      <Avatar src={sender.avatar} sx={avatarStyles}></Avatar>
+      <p className="message__text">
+        {sender.firstName}
+        <span>{text}</span>
+        {/* <span className="message__time">
+          {new Date().getHours()}:{new Date().getMinutes()}
+        </span> */}
+      </p>
+    </div>
   );
 };
 

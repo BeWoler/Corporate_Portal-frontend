@@ -1,33 +1,38 @@
+import { useContext } from "react";
+import { Context } from "../../index";
 import "./conversation.css";
-import { FC, useState, useEffect } from "react";
-import UserService from "../../services/UserService";
 import { User } from "../../models/user";
 import { Avatar } from "@mui/material";
 
-const Conversation: FC = () => {
-  const [users, setUsers] = useState<User[]>([]);
+interface ConversationProps {
+  conversation?: User[];
+}
+
+const Conversation = ({ conversation }: ConversationProps) => {
+  const { store } = useContext(Context);
   const avatarStyles = {
     width: "40px",
     height: "40px",
     margin: "0 .5rem 0 0",
-    backgroundColor: "#bf4444",
+    backgroundColor: "#534ED9",
   };
 
-  useEffect(() => {
-    UserService.fetchUsers("").then((res) => setUsers(res.data));
-    return () => setUsers([]);
-  }, []);
-
+  if (conversation[1]._id !== store.user.id) {
+    return (
+      <div className="conversation">
+        <div className="conversation__users" key={conversation[1].email}>
+          <Avatar src={conversation[1].avatar} sx={avatarStyles}></Avatar>
+          {conversation[1].firstName} {conversation[1].lastName}
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="conversation">
-      <ul className="conversation__users__column">
-        {users.map((user) => (
-          <li className="chat__users__li" key={user.email}>
-            <Avatar src={user.avatar} sx={avatarStyles}></Avatar>
-            {user.email}
-          </li>
-        ))}
-      </ul>
+      <div className="conversation__users" key={conversation[0].email}>
+        <Avatar src={conversation[0].avatar} sx={avatarStyles}></Avatar>
+        {conversation[0].firstName} {conversation[0].lastName}
+      </div>
     </div>
   );
 };
