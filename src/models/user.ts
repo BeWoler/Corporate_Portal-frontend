@@ -14,6 +14,7 @@ export interface User {
   phone: number;
   friends: any;
   description: string;
+  messagesFromFriend: boolean;
   privatePage: boolean;
   _id: string;
   id: string;

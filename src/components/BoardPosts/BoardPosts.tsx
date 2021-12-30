@@ -138,7 +138,7 @@ const BoardPosts: FC = () => {
                   />
                 </form>
                 {post.comments.length > 0
-                  ? post.comments.reverse().map((comment) => {
+                  ? post.comments.map((comment) => {
                       return (
                         <div key={comment._id} className="post__comment">
                           <div className="comment__info">

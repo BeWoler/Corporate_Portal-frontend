@@ -18,7 +18,6 @@ const UserPosts: FC = () => {
   const [comment, setComment] = useState<string>();
   const [isOpen, setIsOpen] = useState<number>();
   const [edit, setEdit] = useState<number>();
-
   const [img, setImg] = useState<any>();
   const [file, setFile] = useState<any>();
 
@@ -163,7 +162,7 @@ const UserPosts: FC = () => {
       <div className="userPosts__container">
         {posts.map((post, position) => {
           return (
-            <div key={post._id} className="userPosts__post">  
+            <div key={post._id} className="userPosts__post">
               <div className="post__info">
                 <h4 className="post__author">{post.user.username}</h4>
                 <p className="post__time">
@@ -342,7 +341,7 @@ const UserPosts: FC = () => {
                     />
                   </form>
                   {post.comments.length > 0
-                    ? post.comments.reverse().map((comment) => {
+                    ? post.comments.map((comment) => {
                         return (
                           <div key={comment._id} className="post__comment">
                             <div className="comment__info">

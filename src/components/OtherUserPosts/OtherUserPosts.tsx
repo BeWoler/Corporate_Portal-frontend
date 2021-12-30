@@ -2,7 +2,6 @@ import { FC, useState, useEffect, useContext } from "react";
 import { Context } from "../../index";
 import { Post } from "../../models/post";
 import { Input, Button } from "@mui/material";
-import { URL } from "../../http/axios";
 import "./otherUserPosts.css";
 import PostService from "../../services/PostService";
 import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
@@ -153,14 +152,13 @@ const OtherUserPosts: FC = () => {
                     />
                   </form>
                   {post.comments.length > 0
-                    ? post.comments.reverse().map((comment) => {
+                    ? post.comments.map((comment) => {
                         return (
                           <div key={comment._id} className="post__comment">
                             <div className="comment__info">
                               <h5 className="comment__author">
                                 <Avatar
-                                  variant="square"
-                                  src={`${URL}/${comment.user.avatar}`}
+                                  src={comment.user.avatar}
                                   sx={avatarStyle}
                                 ></Avatar>
                                 {comment.user.username}

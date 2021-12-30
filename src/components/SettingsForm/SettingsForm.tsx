@@ -16,6 +16,9 @@ const SettingsForm: FC = () => {
   const [education, setEducation] = useState<string>();
   const [skype, setSkype] = useState<string>();
   const [phone, setPhone] = useState<number>();
+  const [messagesFromFriend, setMessagesFromFriend] = useState<boolean>(
+    store.user.messagesFromFriend
+  );
   const [privatePage, setPrivatePage] = useState<boolean>(
     store.user.privatePage
   );
@@ -39,35 +42,30 @@ const SettingsForm: FC = () => {
         <div className="settings__mainData">
           <h4 className="settings__title">Edit personal info</h4>
           <Input
-            value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             placeholder="First Name"
             type="text"
             sx={inputStyles}
           />
           <Input
-            value={lastName}
             onChange={(e) => setLastName(e.target.value)}
             placeholder="Last Name"
             type="text"
             sx={inputStyles}
           />
           <Input
-            value={city}
             onChange={(e) => setCity(e.target.value)}
             placeholder="City"
             type="text"
             sx={inputStyles}
           />
           <Input
-            value={birthday}
             onChange={(e) => setBirthday(e.target.value)}
             placeholder="Age"
             type="date"
             sx={inputStyles}
           />
           <Input
-            value={phone}
             onChange={(e) => setPhone(+e.target.value)}
             placeholder="Phone"
             type="number"
@@ -81,11 +79,18 @@ const SettingsForm: FC = () => {
             />
             Private Profile
           </div>
+          <div>
+            <Switch
+              checked={messagesFromFriend}
+              inputProps={{ "aria-label": "controlled" }}
+              onChange={(e) => setMessagesFromFriend(e.target.checked)}
+            />
+            Messages Only From Friends
+          </div>
         </div>
         <div className="settings__otherData">
           <h4 className="settings__title">Edit other info</h4>
           <Input
-            value={stack}
             onChange={(e) => setStack(e.target.value)}
             multiline={true}
             placeholder="Stack"
@@ -93,21 +98,18 @@ const SettingsForm: FC = () => {
             sx={inputStyles}
           />
           <Input
-            value={position}
             onChange={(e) => setPosition(e.target.value)}
             placeholder="Position"
             type="text"
             sx={inputStyles}
           />
           <Input
-            value={department}
             onChange={(e) => setDepartment(e.target.value)}
             placeholder="Department"
             type="text"
             sx={inputStyles}
           />
           <Input
-            value={education}
             onChange={(e) => setEducation(e.target.value)}
             multiline={true}
             placeholder="Education"
@@ -121,7 +123,6 @@ const SettingsForm: FC = () => {
             sx={inputStyles}
           />
           <Input
-            value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Description"
             type="text"
@@ -143,20 +144,10 @@ const SettingsForm: FC = () => {
             education,
             skype,
             phone,
+            messagesFromFriend,
             privatePage,
             description,
           });
-          setFirstName("");
-          setLastName("");
-          setCity("");
-          setBirthday("");
-          setPhone(+"");
-          setStack("");
-          setPosition("");
-          setDepartment("");
-          setEducation("");
-          setSkype("");
-          setDescription("");
         }}
         variant="contained"
         sx={btnStyles}

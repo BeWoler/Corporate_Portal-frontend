@@ -14,13 +14,17 @@ const SendMessage: FC = () => {
     ":hover": { backgroundColor: "#7673D9" },
   };
 
-  const createConversation = async() => {
+  const createConversation = async () => {
     await ConversationService.conversation(store.user.id, store.otherUser.id);
-  }
+  };
 
   return (
     <Link to="/chat" className="linkBtn">
-      <Button variant="contained" sx={btnStyles} onClick={createConversation}>
+      <Button
+        variant="contained"
+        sx={btnStyles}
+        onClick={createConversation}
+      >
         Send Message
       </Button>
     </Link>
