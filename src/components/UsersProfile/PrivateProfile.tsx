@@ -2,13 +2,10 @@ import { FC, useContext } from "react";
 import { Context } from "../../index";
 import { Avatar } from "@mui/material";
 import { observer } from "mobx-react-lite";
-import { URL } from "../../http/axios";
 import "./userProfile.css";
-import AddFriend from "./AddFriend";
 
 const PrivateProfile: FC = () => {
   const { store } = useContext(Context);
-  const avatarSrc = `${URL}/${store.otherUser.avatar}`;
   const avatarStyles = {
     width: "235px",
     height: "235px",
@@ -22,10 +19,9 @@ const PrivateProfile: FC = () => {
   return (
     <div className="profile__container">
       <div className="profile__first__column">
-        <Avatar variant="square" src={avatarSrc} sx={avatarStyles}>
+        <Avatar variant="square" src={store.otherUser.avatar} sx={avatarStyles}>
           {store.otherUser.firstName}
         </Avatar>
-        <AddFriend />
       </div>
       <div className="profile__second__column">
         <p className="profile__name">

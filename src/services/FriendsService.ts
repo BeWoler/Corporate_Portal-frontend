@@ -21,6 +21,10 @@ export default class FriendsService {
     return api.post("/friend/decline", { requestId });
   }
 
+  static async delete(userId: string, friendId: string): Promise<AxiosResponse> {
+    return api.post("/friend/delete", { userId, friendId });
+  }
+
   static async getRequests(receiverId: string): Promise<AxiosResponse> {
     return api.get(`/friend/requests/${receiverId}`);
   }

@@ -1,4 +1,5 @@
-import { FC, useState, useEffect } from "react";
+import { FC, useState, useEffect, useContext } from "react";
+import { Context } from "../../index";
 import { Post } from "../../models/post";
 import { Input, Button } from "@mui/material";
 import api from "../../http/axios";
@@ -11,6 +12,7 @@ import AddCommentIcon from "@mui/icons-material/AddComment";
 import { Avatar } from "@mui/material";
 
 const UserPosts: FC = () => {
+  const { store } = useContext(Context);
   const [postText, setPostText] = useState<string>();
   const [posts, setPosts] = useState<Post[]>([]);
   const [comment, setComment] = useState<string>();
@@ -33,12 +35,12 @@ const UserPosts: FC = () => {
             "content-type": "multipart/form-data",
           },
         });
-        await PostService.createPost(postText, res.data.path);
+        await PostService.createPost(store.user.id, postText, res.data.path);
       } else {
-        await PostService.createPost(postText, null);
+        await PostService.createPost(store.user.id, postText, null);
       }
     } catch (e) {
-      await PostService.createPost(postText, null);
+      await PostService.createPost(store.user.id, postText, null);
     }
   };
 
@@ -161,9 +163,9 @@ const UserPosts: FC = () => {
       <div className="userPosts__container">
         {posts.map((post, position) => {
           return (
-            <div key={post._id} className="userPosts__post">
+            <div key={post._id} className="userPosts__post">  
               <div className="post__info">
-                <h4 className="post__author">{post.author}</h4>
+                <h4 className="post__author">{post.user.username}</h4>
                 <p className="post__time">
                   {post.time.day}.{post.time.month}.{post.time.year}. At{" "}
                   {post.time.hours}:{post.time.minutes}
@@ -200,7 +202,7 @@ const UserPosts: FC = () => {
                 <div className="post__likes">
                   <FavoriteIcon
                     onClick={async () => {
-                      await PostService.like(posts[position]._id, currentId);
+                      await PostService.like(post._id, store.user.id);
                       await getUserPosts();
                     }}
                     sx={{
@@ -309,8 +311,9 @@ const UserPosts: FC = () => {
                       onClick={async (e) => {
                         e.preventDefault();
                         await PostService.createComment(
-                          posts[position]._id,
-                          comment
+                          post._id,
+                          comment,
+                          store.user.id
                         );
                         getUserPosts();
                       }}
@@ -339,18 +342,18 @@ const UserPosts: FC = () => {
                     />
                   </form>
                   {post.comments.length > 0
-                    ? post.comments.map((comment) => {
+                    ? post.comments.reverse().map((comment) => {
                         return (
                           <div key={comment._id} className="post__comment">
                             <div className="comment__info">
                               <h5 className="comment__author">
-                                <Link to={`/profile/${comment.user}`}>
+                                <Link to={`/profile/${comment.user._id}`}>
                                   <Avatar
-                                    src={comment.avatar}
+                                    src={comment.user.avatar}
                                     sx={avatarStyle}
                                   ></Avatar>
                                 </Link>
-                                {comment.author}
+                                {comment.user.username}
                               </h5>
                               <p className="comment__time">
                                 {comment.time.day}.{comment.time.month}.

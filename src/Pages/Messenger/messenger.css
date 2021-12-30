@@ -36,6 +36,10 @@
   width: 580px;
 }
 
+.messenger__chat__empty {
+  text-align: center;
+}
+
 hr {
   background-color: none;
   border: 1px solid #edeef0;

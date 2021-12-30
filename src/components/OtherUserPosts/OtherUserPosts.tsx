@@ -1,4 +1,5 @@
-import { FC, useState, useEffect } from "react";
+import { FC, useState, useEffect, useContext } from "react";
+import { Context } from "../../index";
 import { Post } from "../../models/post";
 import { Input, Button } from "@mui/material";
 import { URL } from "../../http/axios";
@@ -10,6 +11,7 @@ import AddCommentIcon from "@mui/icons-material/AddComment";
 import { Avatar } from "@mui/material";
 
 const OtherUserPosts: FC = () => {
+  const { store } = useContext(Context);
   const [posts, setPosts] = useState<Post[]>([]);
   const [comment, setComment] = useState<string>();
   const [isOpen, setIsOpen] = useState<number>();
@@ -44,7 +46,7 @@ const OtherUserPosts: FC = () => {
           return (
             <div key={post._id} className="userPosts__post">
               <div className="post__info">
-                <h4 className="post__author">{post.author}</h4>
+                <h4 className="post__author">{post.user.username}</h4>
                 <p className="post__time">
                   {post.time.day}.{post.time.month}.{post.time.year}. At{" "}
                   {post.time.hours}:{post.time.minutes}
@@ -120,8 +122,9 @@ const OtherUserPosts: FC = () => {
                       onClick={async (e) => {
                         e.preventDefault();
                         await PostService.createComment(
-                          posts[position]._id,
-                          comment
+                          post._id,
+                          comment,
+                          store.user.id
                         );
                         getUserPosts();
                       }}
@@ -150,17 +153,17 @@ const OtherUserPosts: FC = () => {
                     />
                   </form>
                   {post.comments.length > 0
-                    ? post.comments.map((comment) => {
+                    ? post.comments.reverse().map((comment) => {
                         return (
                           <div key={comment._id} className="post__comment">
                             <div className="comment__info">
                               <h5 className="comment__author">
                                 <Avatar
                                   variant="square"
-                                  src={`${URL}/${comment.avatar}`}
+                                  src={`${URL}/${comment.user.avatar}`}
                                   sx={avatarStyle}
                                 ></Avatar>
-                                {comment.author}
+                                {comment.user.username}
                               </h5>
                               <p className="comment__time">
                                 {comment.time.day}.{comment.time.month}.

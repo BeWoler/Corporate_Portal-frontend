@@ -1,7 +1,6 @@
 .friends__list {
   display: flex;
   flex-direction: column;
-  width: 50%;
   justify-content: flex-start;
   list-style: none;
   max-height: 1200px;

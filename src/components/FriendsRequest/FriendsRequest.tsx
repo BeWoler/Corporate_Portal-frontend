@@ -1,9 +1,11 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState, useContext } from "react";
+import { Context } from "../../index";
 import { Button } from "@mui/material";
 import FriendsService from "../../services/FriendsService";
 import "./friendsRequest.css";
 
 const FriendsRequest: FC = () => {
+  const { store } = useContext(Context);
   const [requests, setRequests] = useState<any>([]);
   const receiverId = window.location.href.split("/").reverse()[0];
 
@@ -22,6 +24,7 @@ const FriendsRequest: FC = () => {
       senderId,
       requestId
     );
+    store.checkAuth();
     return response;
   };
 
@@ -31,7 +34,7 @@ const FriendsRequest: FC = () => {
   };
 
   useEffect(() => {
-    FriendsService.getRequests(receiverId).then(res => setRequests(res.data));
+    FriendsService.getRequests(receiverId).then((res) => setRequests(res.data));
     return () => setRequests(null);
   }, [receiverId]);
 

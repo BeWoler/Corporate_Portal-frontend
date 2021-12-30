@@ -3,6 +3,7 @@ import { Context } from "../../index";
 import { User } from "../../models/user";
 import { Link } from "react-router-dom";
 import { Avatar } from "@mui/material";
+import DeleteFriendBtn from "../UserFriends/DeleteFriendBtn";
 import "./friendsList.css";
 
 const FriendsList: FC = () => {
@@ -52,6 +53,7 @@ const FriendsList: FC = () => {
                     : null}
                 </li>
               </ul>
+              <DeleteFriendBtn friendId={friend._id} />
             </li>
           );
         })

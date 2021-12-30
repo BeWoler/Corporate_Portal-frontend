@@ -1,7 +1,8 @@
+import { User } from "./user";
+
 export interface Post {
   _id: string;
-  author: string;
-  user: string;
+  user: User;
   text: string;
   likes: string[];
   file: string;
@@ -15,9 +16,7 @@ export interface Post {
   comments: [
     {
       post: string;
-      author: string;
-      user: string;
-      avatar: string;
+      user: User;
       text: string;
       time: {
         year: number;

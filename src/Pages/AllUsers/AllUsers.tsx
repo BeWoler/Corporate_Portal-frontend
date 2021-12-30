@@ -22,6 +22,7 @@ const AllUsers: FC = () => {
 
   const inputStyles = {
     margin: "0 0 2rem 0",
+    width: "330px",
     backgroundColor: "#fff",
     padding: ".5rem",
     borderRadius: ".3rem .3rem 0 0",
@@ -47,8 +48,9 @@ const AllUsers: FC = () => {
 
   const filteredUsers = users.filter((user) => {
     return (
-      user.firstName.toLowerCase().includes(search.toLowerCase()) ||
-      user.lastName.toLowerCase().includes(search.toLowerCase()) ||
+      (user.firstName + " " + user.lastName)
+        .toLowerCase()
+        .includes(search.toLowerCase()) ||
       user.email.toLowerCase().includes(search.toLowerCase())
     );
   });
@@ -57,7 +59,7 @@ const AllUsers: FC = () => {
     <div className="users__container">
       <h2 className="users__title">All Users</h2>
       <Input
-        placeholder="Search"
+        placeholder="Search by first name, last name, or email"
         type="search"
         sx={inputStyles}
         onChange={(e) => setSearch(e.target.value)}
@@ -97,7 +99,6 @@ const AllUsers: FC = () => {
         </ul>
         <div className="users__filter">
           <UserFilter
-            users={users}
             getUsersWithQuery={getUsersWithQuery}
             getUsersWithoutQuery={getUsersWithoutQuery}
           />

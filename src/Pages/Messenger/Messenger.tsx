@@ -72,19 +72,24 @@ const Messenger: FC = () => {
         </div>
         <div className="messenger__chat__column">
           <div className="messenger__chat">
-            {messages
-              ? messages.map((message) => {
-                  return (
-                    <div key={message._id} ref={scrollRef}>
-                      <Message
-                        text={message.text}
-                        own={message.sender._id === store.user.id}
-                        sender={message.sender}
-                      />
-                    </div>
-                  );
-                })
-              : null}
+            {messages.length > 0 ? (
+              messages.map((message) => {
+                return (
+                  <div key={message._id} ref={scrollRef}>
+                    <Message
+                      text={message.text}
+                      own={message.sender._id === store.user.id}
+                      sender={message.sender}
+                    />
+                  </div>
+                );
+              })
+            ) : (
+              <h3 className="messenger__chat__empty">
+                No messages yet
+                <hr />
+              </h3>
+            )}
           </div>
           <hr />
           <form className="messenger__form">

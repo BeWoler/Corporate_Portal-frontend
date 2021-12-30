@@ -18,7 +18,9 @@ const Message = ({ text, own, sender }: MessageProps) => {
   };
   return (
     <div className={own ? "message__content own" : "message__content"}>
-      <Link to={`/profile/${sender._id}`}><Avatar src={sender.avatar} sx={avatarStyles}></Avatar></Link>
+      <Link to={`/profile/${sender._id}`}>
+        <Avatar src={sender.avatar} sx={avatarStyles}></Avatar>
+      </Link>
       <p className="message__text">
         {sender.firstName}
         <span>{text}</span>

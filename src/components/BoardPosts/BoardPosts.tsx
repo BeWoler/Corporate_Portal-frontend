@@ -40,7 +40,7 @@ const BoardPosts: FC = () => {
         return (
           <div key={post._id} className="board__post">
             <div className="board__info">
-              <h4 className="board__author">{post.author}</h4>
+              <h4 className="board__author">{post.user.username}</h4>
               <p className="board__time">
                 {post.time.day}.{post.time.month}.{post.time.year}. At{" "}
                 {post.time.hours}:{post.time.minutes}
@@ -70,7 +70,7 @@ const BoardPosts: FC = () => {
             <div className="board__likes">
               <FavoriteIcon
                 onClick={async () => {
-                  await PostService.like(posts[position]._id, store.user.id);
+                  await PostService.like(post._id, store.user.id);
                   setTimeout(() => getAllPosts(), 100);
                 }}
                 sx={{
@@ -107,8 +107,9 @@ const BoardPosts: FC = () => {
                     onClick={async (e) => {
                       e.preventDefault();
                       await PostService.createComment(
-                        posts[position]._id,
-                        comment
+                        post._id,
+                        comment,
+                        store.user.id
                       );
                       setTimeout(() => getAllPosts(), 100);
                     }}
@@ -137,18 +138,18 @@ const BoardPosts: FC = () => {
                   />
                 </form>
                 {post.comments.length > 0
-                  ? post.comments.map((comment) => {
+                  ? post.comments.reverse().map((comment) => {
                       return (
                         <div key={comment._id} className="post__comment">
                           <div className="comment__info">
                             <h5 className="comment__author">
-                              <Link to={`/profile/${comment.user}`}>
+                              <Link to={`/profile/${comment.user._id}`}>
                                 <Avatar
-                                  src={comment.avatar}
+                                  src={comment.user.avatar}
                                   sx={avatarStyle}
                                 ></Avatar>
                               </Link>
-                              {comment.author}
+                              {comment.user.username}
                             </h5>
                             <p className="comment__time">
                               {comment.time.day}.{comment.time.month}.

@@ -1,27 +1,22 @@
 import { useState } from "react";
-import { User } from "../../models/user";
 import { Autocomplete, TextField, Button } from "@mui/material";
 import "./userFilter.css";
 
 interface UsersProps {
-  users?: User[];
   getUsersWithQuery?: any;
   getUsersWithoutQuery?: any;
 }
 
 const UserFilter = ({
-  users,
   getUsersWithQuery,
   getUsersWithoutQuery,
 }: UsersProps) => {
-  const [email, setEmail] = useState<string>();
-  const [username, setUsername] = useState<string>();
   const [city, setCity] = useState<string>("Minsk");
   const [oldCity, setOldCity] = useState<string>("Minsk");
   const [department, setDepartment] = useState<string>();
   const [position, setPosition] = useState<string>();
   const [stack, setStack] = useState<string>();
-  const params = { email, username, city, department, position, stack };
+  const params = { city, department, position, stack };
   const autocompleteStyles = {
     margin: "0 0 1rem 0",
     width: "200px",
@@ -44,16 +39,6 @@ const UserFilter = ({
 
   return (
     <form className="filter__form">
-      <TextField
-        label="Email"
-        sx={autocompleteStyles}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <TextField
-        label="Username"
-        sx={autocompleteStyles}
-        onChange={(e) => setUsername(e.target.value)}
-      />
       <Autocomplete
         value={oldCity}
         inputValue={oldCity}
@@ -85,8 +70,6 @@ const UserFilter = ({
         variant="contained"
         sx={btnStyles}
         onClick={() => {
-          setEmail(null);
-          setUsername(null);
           setCity(undefined);
           setDepartment(null);
           setPosition(null);
