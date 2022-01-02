@@ -12,7 +12,7 @@ import { Avatar } from "@mui/material";
 const OtherUserPosts: FC = () => {
   const { store } = useContext(Context);
   const [posts, setPosts] = useState<Post[]>([]);
-  const [comment, setComment] = useState<string>();
+  const [comment, setComment] = useState<string>('');
   const [isOpen, setIsOpen] = useState<number>();
 
   const currentId = window.location.href.split("/").reverse()[0];
@@ -21,6 +21,21 @@ const OtherUserPosts: FC = () => {
     const response = await PostService.getUserPostByUserId(currentId);
     setPosts(response.data.reverse());
   };
+
+  const like = async (postId: string) => {
+    await PostService.like(postId, store.user.id);
+    getUserPosts();
+  };
+
+  const commenting = async (postId: string) => {
+    await PostService.createComment(
+      postId,
+      comment,
+      store.user.id
+    );
+    getUserPosts();
+    setComment("");
+  }
 
   useEffect(() => {
     PostService.getUserPostByUserId(currentId).then((res) =>
@@ -81,10 +96,7 @@ const OtherUserPosts: FC = () => {
               <div className="post__functions">
                 <div className="post__likes">
                   <FavoriteIcon
-                    onClick={async () => {
-                      await PostService.like(posts[position]._id, currentId);
-                      getUserPosts();
-                    }}
+                    onClick={() => like(post._id)}
                     sx={{
                       color: "#BF3030",
                       verticalAlign: "middle",
@@ -118,15 +130,8 @@ const OtherUserPosts: FC = () => {
                 <div className="post__comment__create">
                   <form className="comment__create__form">
                     <Button
-                      onClick={async (e) => {
-                        e.preventDefault();
-                        await PostService.createComment(
-                          post._id,
-                          comment,
-                          store.user.id
-                        );
-                        getUserPosts();
-                      }}
+                      disabled={comment === ""}
+                      onClick={() => commenting(post._id)}
                       variant="contained"
                       sx={{
                         margin: "0 1rem 0 0",
@@ -140,6 +145,7 @@ const OtherUserPosts: FC = () => {
                       Add
                     </Button>
                     <Input
+                      value={comment}
                       onChange={(e) => setComment(e.target.value)}
                       type="text"
                       placeholder="Comment"
