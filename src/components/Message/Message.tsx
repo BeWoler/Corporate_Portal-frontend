@@ -20,17 +20,15 @@ const Message = ({ message, own }: MessageProps) => {
       <Link to={`/profile/${message.sender._id}`}>
         <Avatar src={message.sender.avatar} sx={avatarStyles}></Avatar>
       </Link>
-      <p className="message__text">
+      <span className="message__text">
         <div className="message__text__info">
-          <p>{message.sender.firstName}</p>
-          <span>
-            <Moment className="time" format="HH:mm">
-              {message.time}
-            </Moment>
-          </span>
+          <span>{message.sender.firstName}</span>
+          <Moment className="time" format="HH:mm">
+            {message.date}
+          </Moment>
         </div>
         <span>{message.text}</span>
-      </p>
+      </span>
     </div>
   );
 };

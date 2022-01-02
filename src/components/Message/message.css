@@ -18,14 +18,7 @@
 .message__text__info {
   display: flex;
   align-items: center;
-}
-
-.message__text__info p {
-  margin: 0 .5rem 0 0;
-}
-.message__text__info span {
-  font-size: 15px;
-  margin: 0;
+  justify-content: space-between;
 }
 
 .message__content.own {
