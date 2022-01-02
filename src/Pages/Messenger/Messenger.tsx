@@ -132,64 +132,69 @@ const Messenger: FC = () => {
         </div>
         <div className="messenger__chat__column">
           {currentChat ? (
-            <div className="messenger__chat">
-              {messages.length > 0 ? (
-                messages.map((message) => {
-                  return (
-                    <div key={message._id} ref={scrollRef}>
-                      <Message
-                        message={message}
-                        own={message.sender._id === store.user.id}
-                      />
-                    </div>
-                  );
-                })
-              ) : (
-                <h3 className="messenger__chat__empty">
-                  No messages yet
-                  <hr />
-                </h3>
-              )}
-            </div>
-          ) : (
-            <div className="messenger__chat">
-              <h3 className="messenger__chat__empty">
-                Choose Dialog
-                <hr />
+            <>
+              <h3 className="messenger__chat__user">
+                {currentUser.firstName} {currentUser.lastName}
               </h3>
-            </div>
-          )}
-          <hr />
-          <form className="messenger__form">
-            {fromFriend ? (
-              <Input
-                value={newMessage}
-                type="text"
-                placeholder="Message"
-                multiline={true}
-                sx={inputStyles}
-                onChange={(e) => setNewMessage(e.target.value)}
-              />
-            ) : (
-              <div className="messenger__private">
-                Only friends can send messages to this user
+              <hr />
+              <div className="messenger__chat">
+                {messages.length > 0 ? (
+                  messages.map((message) => {
+                    return (
+                      <div key={message._id} ref={scrollRef}>
+                        <Message
+                          message={message}
+                          own={message.sender._id === store.user.id}
+                        />
+                      </div>
+                    );
+                  })
+                ) : (
+                  <h3 className="messenger__chat__empty">
+                    No messages yet
+                    <hr />
+                  </h3>
+                )}
               </div>
-            )}
-            {newMessage !== "" ? (
-              <Button variant="contained" sx={btnStyles} onClick={sendMessage}>
-                Send
-              </Button>
-            ) : (
-              <Button
-                disabled
-                variant="contained"
-                sx={btnStyles}
-                onClick={sendMessage}
-              >
-                Send
-              </Button>
-            )}
-          </form>
+              <hr />
+              <form className="messenger__form">
+                {fromFriend ? (
+                  <Input
+                    value={newMessage}
+                    type="text"
+                    placeholder="Message"
+                    multiline={true}
+                    sx={inputStyles}
+                    onChange={(e) => setNewMessage(e.target.value)}
+                  />
+                ) : (
+                  <div className="messenger__private">
+                    Only friends can send messages to this user
+                  </div>
+                )}
+                {newMessage !== "" ? (
+                  <Button
+                    variant="contained"
+                    sx={btnStyles}
+                    onClick={sendMessage}
+                  >
+                    Send
+                  </Button>
+                ) : (
+                  <Button
+                    disabled
+                    variant="contained"
+                    sx={btnStyles}
+                    onClick={sendMessage}
+                  >
+                    Send
+                  </Button>
+                )}
+              </form>
+            </>
+          ) : (
+            <div className="messenger__choose__chat">Choose Dialog</div>
+          )}
         </div>
       </div>
     </div>

@@ -40,10 +40,28 @@
   text-align: center;
 }
 
+.messenger__choose__chat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-weight: 500;
+  font-size: 40px;
+  color: #edeef0;
+  padding: 1rem;
+  height: 660px;
+  width: 580px;
+}
+
 .messenger__private {
   font-size: 18px;
   font-weight: 500;
   padding: 1rem;
+}
+
+.messenger__chat__user {
+  text-align: center;
+  margin: .5rem 0;
 }
 
 .messenger__form {

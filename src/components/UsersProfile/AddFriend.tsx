@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { Context } from "../../index";
-import { Link } from "react-router-dom";
 import FriendsService from "../../services/FriendsService";
 import { Button } from "@mui/material";
 import "./userProfile.css";
@@ -14,6 +13,7 @@ const AddFriend = ({ disabled }: BtnProps) => {
 
   const addFriend = async () => {
     await FriendsService.request(store.otherUser.id, store.user.id);
+    alert("You requested to be added as a friend");
   };
 
   const btnStyles = {
@@ -24,16 +24,14 @@ const AddFriend = ({ disabled }: BtnProps) => {
   };
 
   return (
-    <Link to={`/friends/${store.user.id}`}>
-      <Button
-        disabled={disabled}
-        variant="contained"
-        sx={btnStyles}
-        onClick={addFriend}
-      >
-        Add Friend
-      </Button>
-    </Link>
+    <Button
+      disabled={disabled}
+      variant="contained"
+      sx={btnStyles}
+      onClick={addFriend}
+    >
+      Add Friend
+    </Button>
   );
 };
 
