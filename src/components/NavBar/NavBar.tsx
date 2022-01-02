@@ -52,9 +52,13 @@ const NavBar: FC = () => {
           <SettingsIcon sx={linkStyle} />
           Settings
         </Link>
-        <Link to="/login" className="nav__li" onClick={() => {
-          store.logout()
-          }}>
+        <Link
+          to="/login"
+          className="nav__li"
+          onClick={() => {
+            store.logout();
+          }}
+        >
           <LogoutIcon sx={linkStyle} />
           Logout
         </Link>

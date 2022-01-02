@@ -1,11 +1,12 @@
 import { FC, useContext } from "react";
 import { Context } from "../../index";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import ConversationService from "../../services/ConverstionService";
 import "./userProfile.css";
 
 const SendMessage: FC = () => {
+  const navigate = useNavigate();
   const { store } = useContext(Context);
   const btnStyles = {
     width: "100%",
@@ -19,15 +20,16 @@ const SendMessage: FC = () => {
   };
 
   return (
-    <Link to="/chat" className="linkBtn">
-      <Button
-        variant="contained"
-        sx={btnStyles}
-        onClick={createConversation}
-      >
-        Send Message
-      </Button>
-    </Link>
+    <Button
+      variant="contained"
+      sx={btnStyles}
+      onClick={async () => {
+        await createConversation();
+        navigate("/chat");
+      }}
+    >
+      Send Message
+    </Button>
   );
 };
 
