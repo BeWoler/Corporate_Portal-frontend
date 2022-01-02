@@ -6,25 +6,13 @@ export interface Post {
   text: string;
   likes: string[];
   file: string;
-  time: {
-    year: number;
-    month: number;
-    day: number;
-    hours: number;
-    minutes: number;
-  };
+  time: string;
   comments: [
     {
       post: string;
       user: User;
       text: string;
-      time: {
-        year: number;
-        month: number;
-        day: number;
-        hours: number;
-        minutes: number;
-      };
+      time: string;
       _id: string;
     }
   ];

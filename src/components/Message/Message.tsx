@@ -1,5 +1,6 @@
 import { Avatar } from "@mui/material";
 import { Link } from "react-router-dom";
+import Moment from "react-moment";
 import "./message.css";
 
 interface MessageProps {
@@ -23,7 +24,9 @@ const Message = ({ message, own }: MessageProps) => {
         <div className="message__text__info">
           <p>{message.sender.firstName}</p>
           <span>
-            {new Date().getHours()}:{new Date().getMinutes()}
+            <Moment className="time" format="HH:mm">
+              {message.time}
+            </Moment>
           </span>
         </div>
         <span>{message.text}</span>

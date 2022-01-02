@@ -9,6 +9,7 @@ import AddCommentIcon from "@mui/icons-material/AddComment";
 import { Link } from "react-router-dom";
 import "./board.css";
 import { Avatar } from "@mui/material";
+import Moment from "react-moment";
 
 const BoardPosts: FC = () => {
   const { store } = useContext(Context);
@@ -54,8 +55,8 @@ const BoardPosts: FC = () => {
               <div className="board__info">
                 <h4 className="board__author">{post.user.username}</h4>
                 <p className="board__time">
-                  {post.time.day}.{post.time.month}.{post.time.year}. At{" "}
-                  {post.time.hours}:{post.time.minutes}
+                  <Moment className="time" format="DD.MM.YYYY">{post.time}</Moment>
+                  <Moment className="time" format="HH.mm">{post.time}</Moment>
                 </p>
               </div>
               {post.file.split(".").reverse()[0] === "jpg" ||
@@ -159,9 +160,10 @@ const BoardPosts: FC = () => {
                                 {comment.user.username}
                               </h5>
                               <p className="comment__time">
-                                {comment.time.day}.{comment.time.month}.
-                                {comment.time.year}. At {comment.time.hours}.
-                                {comment.time.minutes}
+                                <Moment className="time" format="DD.MM.YYYY">
+                                  {comment.time}
+                                </Moment>
+                                <Moment className="time" format="HH.mm">{comment.time}</Moment>
                               </p>
                             </div>
                             <p className="comment__text">{comment.text}</p>
