@@ -99,6 +99,7 @@ const AllUsers: FC = () => {
         </ul>
         <div className="users__filter">
           <UserFilter
+            users={users}
             getUsersWithQuery={getUsersWithQuery}
             getUsersWithoutQuery={getUsersWithoutQuery}
           />

@@ -1,18 +1,21 @@
 import { useState } from "react";
+import { User } from "../../models/user";
 import { Autocomplete, TextField, Button } from "@mui/material";
 import "./userFilter.css";
 
 interface UsersProps {
+  users?: User[];
   getUsersWithQuery?: any;
   getUsersWithoutQuery?: any;
 }
 
 const UserFilter = ({
+  users,
   getUsersWithQuery,
   getUsersWithoutQuery,
 }: UsersProps) => {
-  const [city, setCity] = useState<string>("Minsk");
-  const [oldCity, setOldCity] = useState<string>("Minsk");
+  const [city, setCity] = useState<string>("");
+  const [oldCity, setOldCity] = useState<string>("");
   const [department, setDepartment] = useState<string>();
   const [position, setPosition] = useState<string>();
   const [stack, setStack] = useState<string>();
@@ -37,17 +40,23 @@ const UserFilter = ({
     ":hover": { backgroundColor: "#7673D9" },
   };
 
+  let citys: string[] = [];
+  users?.map((user) => citys.push(user.city));
+  const usersCities = Array.from(new Set(citys));
+
   return (
     <form className="filter__form">
       <Autocomplete
         value={oldCity}
-        inputValue={oldCity}
+        inputValue={city}
         onInputChange={(event, newInputValue) => {
-          setOldCity(newInputValue);
           setCity(newInputValue);
         }}
+        onChange={(event, newCity) => {
+          setOldCity(newCity);
+        }}
         id="controllable-states-demo"
-        options={["Minsk", "Gomel", "Grodno", "Mogilev"]}
+        options={usersCities.map((city) => city)}
         sx={autocompleteStyles}
         renderInput={(params) => <TextField {...params} label="City" />}
       />
@@ -70,7 +79,8 @@ const UserFilter = ({
         variant="contained"
         sx={btnStyles}
         onClick={() => {
-          setCity(undefined);
+          setCity("");
+          setOldCity("");
           setDepartment(null);
           setPosition(null);
           setStack(null);
