@@ -19,7 +19,10 @@ const UserFilter = ({
   const [department, setDepartment] = useState<string>();
   const [position, setPosition] = useState<string>();
   const [stack, setStack] = useState<string>();
-  const params = { city, department, position, stack };
+  let params = { city, department, position, stack };
+  if (params.city === "") {
+    params = { city: null, department, position, stack };
+  }
   const autocompleteStyles = {
     margin: "0 0 1rem 0",
     width: "200px",
@@ -40,9 +43,9 @@ const UserFilter = ({
     ":hover": { backgroundColor: "#7673D9" },
   };
 
-  let citys: string[] = [];
-  users?.map((user) => citys.push(user.city));
-  const usersCities = Array.from(new Set(citys));
+  let cities: string[] = [];
+  users?.map((user) => cities.push(user.city));
+  const usersCities = Array.from(new Set(cities));
 
   return (
     <form className="filter__form">
