@@ -93,6 +93,14 @@ const Messenger: FC = () => {
     setNewMessage("");
   };
 
+  const deleteConversation = async () => {
+    await ConversationService.delete(currentChat._id);
+    await ConversationService.getConversation(store.user.id).then((res) =>
+      setConversations(res.data)
+    );
+    setCurrentChat(null);
+  };
+
   const inputStyles = {
     margin: "1rem 1rem",
     width: "80%",
@@ -133,28 +141,32 @@ const Messenger: FC = () => {
         <div className="messenger__chat__column">
           {currentChat ? (
             <>
-              <h3 className="messenger__chat__user">
-                {currentUser.firstName} {currentUser.lastName}
-              </h3>
+              <div className="messenger__chat__user">
+                <h3>
+                  {currentUser.firstName} {currentUser.lastName}
+                </h3>
+                <Button
+                  sx={btnStyles}
+                  variant="contained"
+                  onClick={deleteConversation}
+                >
+                  Delete Dialog
+                </Button>
+              </div>
               <hr />
               <div className="messenger__chat">
-                {messages.length > 0 ? (
-                  messages.map((message) => {
-                    return (
-                      <div key={message._id} ref={scrollRef}>
-                        <Message
-                          message={message}
-                          own={message.sender._id === store.user.id}
-                        />
-                      </div>
-                    );
-                  })
-                ) : (
-                  <h3 className="messenger__chat__empty">
-                    No messages yet
-                    <hr />
-                  </h3>
-                )}
+                {messages
+                  ? messages.map((message) => {
+                      return (
+                        <div key={message._id} ref={scrollRef}>
+                          <Message
+                            message={message}
+                            own={message.sender._id === store.user.id}
+                          />
+                        </div>
+                      );
+                    })
+                  : null}
               </div>
               <hr />
               <form className="messenger__form">
