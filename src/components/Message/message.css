@@ -11,8 +11,21 @@
   border-radius: 1rem;
   word-break: break-all;
   color: #fff;
-  padding: .5rem;
+  padding: .5rem 1rem;
   background-color: #534ED9;
+}
+
+.message__text__info {
+  display: flex;
+  align-items: center;
+}
+
+.message__text__info p {
+  margin: 0 .5rem 0 0;
+}
+.message__text__info span {
+  font-size: 15px;
+  margin: 0;
 }
 
 .message__content.own {
@@ -20,5 +33,5 @@
 }
 
 .message__content.own .message__text {
-  background-color: #3d3d3d;
+  background-color: #a6a7a8;
 }

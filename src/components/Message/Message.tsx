@@ -20,7 +20,12 @@ const Message = ({ message, own }: MessageProps) => {
         <Avatar src={message.sender.avatar} sx={avatarStyles}></Avatar>
       </Link>
       <p className="message__text">
-        {message.sender.firstName}
+        <div className="message__text__info">
+          <p>{message.sender.firstName}</p>
+          <span>
+            {new Date().getHours()}:{new Date().getMinutes()}
+          </span>
+        </div>
         <span>{message.text}</span>
       </p>
     </div>
