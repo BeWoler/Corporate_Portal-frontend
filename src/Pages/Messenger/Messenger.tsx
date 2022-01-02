@@ -118,25 +118,27 @@ const Messenger: FC = () => {
       <h2 className="messenger__title">Messages</h2>
       <div className="messenger__box">
         <div className="messenger__conversations">
-          {conversations
-            ? conversations.map((conversation) => {
-                return (
-                  <div
-                    key={conversation._id}
-                    onClick={() => {
-                      setCurrentChat(conversation);
-                      setCurrentUser(
-                        conversation.members.find(
-                          (member: any) => member._id !== store.user.id
-                        )
-                      );
-                    }}
-                  >
-                    <Conversation conversation={conversation.members} />
-                  </div>
-                );
-              })
-            : null}
+          {conversations ? (
+            conversations.map((conversation) => {
+              return (
+                <div
+                  key={conversation._id}
+                  onClick={() => {
+                    setCurrentChat(conversation);
+                    setCurrentUser(
+                      conversation.members.find(
+                        (member: any) => member._id !== store.user.id
+                      )
+                    );
+                  }}
+                >
+                  <Conversation conversation={conversation.members} />
+                </div>
+              );
+            })
+          ) : (
+            <div className="messenger__conversations"></div>
+          )}
         </div>
         <div className="messenger__chat__column">
           {currentChat ? (

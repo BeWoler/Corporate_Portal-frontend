@@ -17,6 +17,7 @@
   flex-direction: column;
   background-color: #fff;
   border-radius: .3rem;
+  min-width: 160px;
 }
 
 .messenger__chat__column {
