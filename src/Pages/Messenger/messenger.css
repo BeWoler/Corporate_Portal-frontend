@@ -40,6 +40,17 @@
   text-align: center;
 }
 
+.messenger__private {
+  font-size: 18px;
+  font-weight: 500;
+  padding: 1rem;
+}
+
+.messenger__form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 hr {
   background-color: none;
   border: 1px solid #edeef0;

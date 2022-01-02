@@ -22,15 +22,8 @@ const App = () => {
     );
   }
 
-  const checkAuth = () => {
-    if (store.isAuth) {
-      return console.log();
-    }
-  };
-
   return (
     <div className="main__box">
-      {checkAuth()}
       <AppRouter />
     </div>
   );

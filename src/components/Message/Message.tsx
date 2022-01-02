@@ -1,15 +1,13 @@
 import { Avatar } from "@mui/material";
-import { User } from "../../models/user";
 import { Link } from "react-router-dom";
 import "./message.css";
 
 interface MessageProps {
-  text: string;
+  message: any;
   own?: boolean;
-  sender: User;
 }
 
-const Message = ({ text, own, sender }: MessageProps) => {
+const Message = ({ message, own }: MessageProps) => {
   const avatarStyles = {
     width: "40px",
     height: "40px",
@@ -18,12 +16,12 @@ const Message = ({ text, own, sender }: MessageProps) => {
   };
   return (
     <div className={own ? "message__content own" : "message__content"}>
-      <Link to={`/profile/${sender._id}`}>
-        <Avatar src={sender.avatar} sx={avatarStyles}></Avatar>
+      <Link to={`/profile/${message.sender._id}`}>
+        <Avatar src={message.sender.avatar} sx={avatarStyles}></Avatar>
       </Link>
       <p className="message__text">
-        {sender.firstName}
-        <span>{text}</span>
+        {message.sender.firstName}
+        <span>{message.text}</span>
       </p>
     </div>
   );

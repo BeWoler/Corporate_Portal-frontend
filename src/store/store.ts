@@ -153,9 +153,12 @@ export default class Store {
       await LogoutService.logout();
       localStorage.removeItem("token");
       this.setAuth(false);
+      this.setLoading(true);
       this.setUser({} as User);
     } catch (e) {
       console.log(e);
+    } finally {
+      this.setLoading(false);
     }
   }
 

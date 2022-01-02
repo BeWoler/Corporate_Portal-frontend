@@ -1,19 +1,97 @@
 import { FC, useState, useEffect, useContext, useRef } from "react";
 import { Context } from "../../index";
-import "./messenger.css";
 import { Input, Button } from "@mui/material";
 import ConversationService from "../../services/ConverstionService";
 import MessagesService from "../../services/MessageService";
 import Conversation from "../../components/Conversation/Conversation";
 import Message from "../../components/Message/Message";
+import { io } from "socket.io-client";
+import "./messenger.css";
 
 const Messenger: FC = () => {
   const { store } = useContext(Context);
+  const [fromFriend, setFromFriend] = useState<boolean>(false);
   const [conversations, setConversations] = useState([]);
-  const [message, setMessage] = useState<string>("");
-  const [currentChat, setCurrentChat] = useState<string>("");
+  const [newMessage, setNewMessage] = useState<string>("");
+  const [currentUser, setCurrentUser] = useState(store.user);
+  const [currentChat, setCurrentChat] = useState(null);
+  const [arrivalMessage, setArrivalMessage] = useState(null);
   const [messages, setMessages] = useState([]);
   const scrollRef = useRef<any>();
+  const socket = useRef(null);
+
+  useEffect(() => {
+    socket.current = io("ws://localhost:3010");
+    socket.current.on("getMessage", (data: any) => {
+      setArrivalMessage({
+        sender: data.sender,
+        text: data.text,
+      });
+    });
+  }, []);
+
+  useEffect(() => {
+    arrivalMessage &&
+      currentChat?.members.includes(arrivalMessage.sender) &&
+      setMessages((prev) => [...prev, arrivalMessage]);
+  }, [arrivalMessage, currentChat]);
+
+  useEffect(() => {
+    socket.current.emit("addUser", store.user.id);
+  }, [store.user.id]);
+
+  useEffect(() => {
+    ConversationService.getConversation(store.user.id).then((res) =>
+      setConversations(res.data)
+    );
+    return () => setConversations(null);
+  }, [store.user.id]);
+
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages, arrivalMessage, newMessage]);
+
+  useEffect(() => {
+    const getMessages = async () => {
+      if (currentChat) {
+        await MessagesService.getMessages(currentChat._id).then((res) => {
+          setMessages(res.data);
+        });
+      }
+      return;
+    };
+    getMessages();
+    if (currentUser.messagesFromFriend) {
+      let privateMessage = currentUser.friends.find(
+        (friend: any) => friend === store.user.id
+      );
+      setFromFriend(privateMessage === store.user.id);
+    }
+    if (!currentUser.messagesFromFriend) {
+      setFromFriend(true);
+    }
+  }, [
+    currentChat,
+    currentUser.friends,
+    store.user.id,
+    currentUser.messagesFromFriend,
+    arrivalMessage,
+  ]);
+
+  const sendMessage = async () => {
+    const res = await MessagesService.message(
+      currentChat._id,
+      store.user.id,
+      newMessage
+    );
+    await socket.current.emit("sendMessage", {
+      sender: store.user,
+      receiverId: currentUser._id,
+      text: newMessage,
+    });
+    setMessages([...messages, res.data]);
+    setNewMessage("");
+  };
 
   const inputStyles = {
     margin: "1rem 1rem",
@@ -27,28 +105,6 @@ const Messenger: FC = () => {
     ":hover": { backgroundColor: "#7673D9" },
   };
 
-  const getMessages = async (currentChat: string) => {
-    await MessagesService.getMessages(currentChat).then((res) => {
-      setMessages(res.data);
-    });
-  };
-
-  const sendMessage = async () => {
-    await MessagesService.message(currentChat, store.user.id, message);
-    setMessage("");
-  };
-
-  useEffect(() => {
-    ConversationService.getConversation(store.user.id).then((res) =>
-      setConversations(res.data)
-    );
-    return () => setConversations(null);
-  }, [store.user.id]);
-
-  useEffect(() => {
-    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
-
   return (
     <div className="messenger__container">
       <h2 className="messenger__title">Messages</h2>
@@ -60,8 +116,12 @@ const Messenger: FC = () => {
                   <div
                     key={conversation._id}
                     onClick={() => {
-                      setCurrentChat(conversation._id);
-                      getMessages(conversation._id);
+                      setCurrentChat(conversation);
+                      setCurrentUser(
+                        conversation.members.find(
+                          (member: any) => member._id !== store.user.id
+                        )
+                      );
                     }}
                   >
                     <Conversation conversation={conversation.members} />
@@ -71,37 +131,51 @@ const Messenger: FC = () => {
             : null}
         </div>
         <div className="messenger__chat__column">
-          <div className="messenger__chat">
-            {messages.length > 0 ? (
-              messages.map((message) => {
-                return (
-                  <div key={message._id} ref={scrollRef}>
-                    <Message
-                      text={message.text}
-                      own={message.sender._id === store.user.id}
-                      sender={message.sender}
-                    />
-                  </div>
-                );
-              })
-            ) : (
+          {currentChat ? (
+            <div className="messenger__chat">
+              {messages.length > 0 ? (
+                messages.map((message) => {
+                  return (
+                    <div key={message._id} ref={scrollRef}>
+                      <Message
+                        message={message}
+                        own={message.sender._id === store.user.id}
+                      />
+                    </div>
+                  );
+                })
+              ) : (
+                <h3 className="messenger__chat__empty">
+                  No messages yet
+                  <hr />
+                </h3>
+              )}
+            </div>
+          ) : (
+            <div className="messenger__chat">
               <h3 className="messenger__chat__empty">
-                No messages yet
+                Choose Dialog
                 <hr />
               </h3>
-            )}
-          </div>
+            </div>
+          )}
           <hr />
           <form className="messenger__form">
-            <Input
-              value={message}
-              type="text"
-              placeholder="Message"
-              multiline={true}
-              sx={inputStyles}
-              onChange={(e) => setMessage(e.target.value)}
-            />
-            {message !== "" ? (
+            {fromFriend ? (
+              <Input
+                value={newMessage}
+                type="text"
+                placeholder="Message"
+                multiline={true}
+                sx={inputStyles}
+                onChange={(e) => setNewMessage(e.target.value)}
+              />
+            ) : (
+              <div className="messenger__private">
+                Only friends can send messages to this user
+              </div>
+            )}
+            {newMessage !== "" ? (
               <Button variant="contained" sx={btnStyles} onClick={sendMessage}>
                 Send
               </Button>

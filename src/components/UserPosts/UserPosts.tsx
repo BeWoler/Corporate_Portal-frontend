@@ -314,7 +314,7 @@ const UserPosts: FC = () => {
                           comment,
                           store.user.id
                         );
-                        getUserPosts();
+                        await getUserPosts();
                       }}
                       variant="contained"
                       sx={{
