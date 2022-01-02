@@ -26,6 +26,29 @@
   font-weight: 500;
 }
 
+.users__friends {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  word-break: break-all;
+  display: flex;
+  align-items: center;
+  transition: all ease 0.2s;
+  margin: 0 1rem 1rem 0;
+  background-color: #fff;
+  border-radius: 0.3rem;
+}
+
+.users__data {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.friend__data__li {
+  max-width: 15rem;
+}
+
 .empty__page {
   padding: 1rem;
   background-color: #fff;

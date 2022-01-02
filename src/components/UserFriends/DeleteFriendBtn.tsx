@@ -11,7 +11,7 @@ const DeleteFriendBtn = ({ friendId }: BtnProps) => {
   const { store } = useContext(Context);
 
   const btnStyles = {
-    margin: "0 0 0 1rem",
+    margin: "0 0 0 2rem",
     width: "fit-content",
     backgroundColor: "#534ED9",
     ":hover": { backgroundColor: "#7673D9" },

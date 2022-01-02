@@ -47,7 +47,8 @@ const FriendsRequest: FC = () => {
   };
   return (
     <div className="friends__requests">
-      {requests.length > 0
+      {requests?.length > 0 ? <hr /> : null}
+      {requests?.length > 0
         ? requests.map((request: any) => {
             return (
               <div key={request._id} className="requests">

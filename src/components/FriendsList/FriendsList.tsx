@@ -28,31 +28,33 @@ const FriendsList: FC = () => {
       {friends.length > 0 ? (
         friends.map((friend: any) => {
           return (
-            <li className="users__li" key={friend._id}>
-              <Link to={`/profile/${friend._id}`}>
-                <Avatar src={friend.avatar} sx={avatarStyles}></Avatar>
-              </Link>
-              <ul className="users__data__ul">
-                <li className="users__data__li">
-                  {friend.firstName && friend.lastName
-                    ? `${friend.firstName} ${friend.lastName}`
-                    : null}
-                </li>
-                <li className="users__data__li">
-                  {friend.email ? `Email: ${friend.email}` : null}
-                </li>
-                <li className="users__data__li">
-                  {friend.city ? `City: ${friend.city}` : null}
-                </li>
-                <li className="users__data__li">
-                  {friend.birthday
-                    ? `Birthday: ${friend.birthday
-                        .split("-")
-                        .reverse()
-                        .join(".")}`
-                    : null}
-                </li>
-              </ul>
+            <li className="users__friends" key={friend._id}>
+              <div className="users__data">
+                <Link to={`/profile/${friend._id}`}>
+                  <Avatar src={friend.avatar} sx={avatarStyles}></Avatar>
+                </Link>
+                <ul className="users__data__ul">
+                  <li className="users__data__li">
+                    {friend.firstName && friend.lastName
+                      ? `${friend.firstName} ${friend.lastName}`
+                      : null}
+                  </li>
+                  <li className="friend__data__li">
+                    {friend.email ? `Email: ${friend.email}` : null}
+                  </li>
+                  <li className="friend__data__li">
+                    {friend.city ? `City: ${friend.city}` : null}
+                  </li>
+                  <li className="friend__data__li">
+                    {friend.birthday
+                      ? `Birthday: ${friend.birthday
+                          .split("-")
+                          .reverse()
+                          .join(".")}`
+                      : null}
+                  </li>
+                </ul>
+              </div>
               <DeleteFriendBtn friendId={friend._id} />
             </li>
           );
