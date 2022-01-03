@@ -57,7 +57,9 @@ const OtherUserPosts: FC = () => {
           return (
             <div key={post._id} className="userPosts__post">
               <div className="post__info">
-                <h4 className="post__author">{post.user.username}</h4>
+                <h4 className="post__author">
+                  {post.user.firstName} {post.user.lastName}
+                </h4>
                 <p className="post__time">
                   <Moment className="time" format="DD.MM.YYYY">
                     {post.time}
@@ -172,7 +174,7 @@ const OtherUserPosts: FC = () => {
                                   src={comment.user.avatar}
                                   sx={avatarStyle}
                                 ></Avatar>
-                                {comment.user.username}
+                                {comment.user.firstName} {comment.user.lastName}
                               </h5>
                               <p className="comment__time">
                                 <Moment className="time" format="DD.MM.YYYY">

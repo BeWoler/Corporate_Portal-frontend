@@ -36,11 +36,15 @@ const UserPosts: FC = () => {
           },
         });
         await PostService.createPost(store.user.id, postText, res.data.path);
+        setPostText("");
+        setFile("");
       } else {
         await PostService.createPost(store.user.id, postText, null);
+        setPostText("");
       }
     } catch (e) {
       await PostService.createPost(store.user.id, postText, null);
+      setPostText("");
     }
   };
 
@@ -65,9 +69,9 @@ const UserPosts: FC = () => {
     filePreview = (
       <div>
         <a href={img} download>
-          {file.type === "image/jpeg" ||
-          file.type === "image/jpg" ||
-          file.type === "image/png" ? (
+          {file?.type === "image/jpeg" ||
+          file?.type === "image/jpg" ||
+          file?.type === "image/png" ? (
             <img src={img} className="file__preview" alt={file.name} />
           ) : (
             <div>
@@ -140,6 +144,7 @@ const UserPosts: FC = () => {
           />
           {filePreview}
           <Input
+            value={postText}
             onChange={(e) => {
               setPostText(e.target.value);
             }}
@@ -176,7 +181,9 @@ const UserPosts: FC = () => {
           return (
             <div key={post._id} className="userPosts__post">
               <div className="post__info">
-                <h4 className="post__author">{post.user.username}</h4>
+                <h4 className="post__author">
+                  {post.user.firstName} {post.user.lastName}
+                </h4>
                 <p className="post__time">
                   <Moment className="time" format="DD.MM.YYYY">
                     {post.time}
@@ -363,7 +370,7 @@ const UserPosts: FC = () => {
                                     sx={avatarStyle}
                                   ></Avatar>
                                 </Link>
-                                {comment.user.username}
+                                {comment.user.firstName} {comment.user.lastName}
                               </h5>
                               <p className="comment__time">
                                 <Moment className="time" format="DD.MM.YYYY">

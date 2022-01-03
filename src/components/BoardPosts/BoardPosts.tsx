@@ -53,7 +53,9 @@ const BoardPosts: FC = () => {
             return (
               <div key={post._id} className="board__post">
                 <div className="board__info">
-                  <h4 className="board__author">{post.user.username}</h4>
+                  <h4 className="board__author">
+                    {post.user.firstName} {post.user.lastName}
+                  </h4>
                   <p className="board__time">
                     <Moment className="time" format="DD.MM.YYYY">
                       {post.time}
@@ -165,7 +167,8 @@ const BoardPosts: FC = () => {
                                       sx={avatarStyle}
                                     ></Avatar>
                                   </Link>
-                                  {comment.user.username}
+                                  {comment.user.firstName}{" "}
+                                  {comment.user.lastName}
                                 </h5>
                                 <p className="comment__time">
                                   <Moment className="time" format="DD.MM.YYYY">
