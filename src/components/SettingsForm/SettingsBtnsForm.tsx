@@ -14,7 +14,14 @@ const SettingsBtnsForm: FC = () => {
       <Link className="settings__btn" to="avatar">
         Change Avatar
       </Link>
-      <Link className="settings__btn" to="#" onClick={() => store.delete()}>
+      <Link
+        className="settings__btn"
+        to="/login"
+        onClick={async () => {
+          await store.delete();
+          await store.checkAuth();
+        }}
+      >
         Delete Profile
       </Link>
     </form>
