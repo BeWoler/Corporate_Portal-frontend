@@ -1,6 +1,6 @@
 import { FC, useContext, useState, useEffect } from "react";
 import { Context } from "../../index";
-import { Avatar } from "@mui/material";
+import { Avatar, Button } from "@mui/material";
 import { observer } from "mobx-react-lite";
 import "./userProfile.css";
 import OtherUserPosts from "../OtherUserPosts/OtherUserPosts";
@@ -8,12 +8,15 @@ import AddFriend from "./AddFriend";
 import PrivateProfile from "./PrivateProfile";
 import UserFriends from "../UserFriends/UserFriends";
 import SendMessage from "./SendMessage";
+import UserService from "../../services/UserService";
 
 const OtherUserProfilePage: FC = () => {
   const { store } = useContext(Context);
   const [active, setActive] = useState<boolean>(false);
+  const [blocked, setBlocked] = useState<boolean>(false);
   const avatarSrc = store.otherUser.avatar;
   const currentId = window.location.href.split("/").reverse()[0];
+  const block: string[] = store.otherUser.blockedUser;
   const avatarStyles = {
     width: "235px",
     height: "235px",
@@ -22,6 +25,14 @@ const OtherUserProfilePage: FC = () => {
     backgroundColor: "#534ED9",
     boxShadow: "0px 1px 10px #3d3d3d",
     fontSize: "50px",
+  };
+
+  const btnStyles = {
+    width: "fit-content",
+    height: "fit-content",
+    margin: "0",
+    backgroundColor: "#534ED9",
+    ":hover": { backgroundColor: "#7673D9" },
   };
 
   useEffect(() => {
@@ -34,7 +45,18 @@ const OtherUserProfilePage: FC = () => {
     }
   }, [currentId, store.user.friends]);
 
+  useEffect(() => {
+    if (store.user.blockedUser?.includes(store.otherUser.id)) {
+      setBlocked(true);
+      return () => setBlocked(false);
+    }
+    return () => setBlocked(false);
+  }, [store.otherUser.id, store.user.blockedUser]);
+
   if (store.otherUser.privatePage) {
+    return <PrivateProfile />;
+  }
+  if (block && block.includes(store.user.id)) {
     return <PrivateProfile />;
   }
 
@@ -94,9 +116,38 @@ const OtherUserProfilePage: FC = () => {
       </div>
       <div className="profile__second__column">
         <p className="profile__name">
-          {store.otherUser.firstName && store.otherUser.lastName
-            ? `${store.otherUser.firstName} ${store.otherUser.lastName}`
-            : "I don't have a name"}
+          <span>
+            {store.otherUser.firstName && store.otherUser.lastName
+              ? `${store.otherUser.firstName} ${store.otherUser.lastName}`
+              : "I don't have a name"}
+          </span>
+          {blocked ? (
+            <Button
+              sx={btnStyles}
+              variant="contained"
+              onClick={async () => {
+                await UserService.unblockUser(
+                  store.user.id,
+                  store.otherUser.id
+                );
+                await store.checkAuth();
+              }}
+            >
+              Unblock User
+            </Button>
+          ) : (
+            <Button
+              sx={btnStyles}
+              variant="contained"
+              onClick={async () => {
+                // console.log(store.user.blockedUsers.includes(store.otherUser.id, 0))
+                await UserService.blockUser(store.user.id, store.otherUser.id);
+                await store.checkAuth();
+              }}
+            >
+              Block User
+            </Button>
+          )}
         </p>
         <p className="profile__about">
           {store.otherUser.description

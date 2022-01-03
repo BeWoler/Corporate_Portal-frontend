@@ -65,6 +65,7 @@ const RegistrationPage: FC = () => {
           }}
         />
         <Input
+          autoComplete="on"
           placeholder="Password"
           type="password"
           sx={inputStyles}

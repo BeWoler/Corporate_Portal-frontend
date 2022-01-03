@@ -49,6 +49,9 @@
 }
 
 .profile__name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   text-align: left;
   font-size: 35px;
   font-weight: 500;

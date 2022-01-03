@@ -86,7 +86,7 @@ export default class Store {
   async delete() {
     try {
       localStorage.removeItem("token");
-      await DeleteService.delete();
+      await DeleteService.delete(this.user.id);
       this.setAuth(false);
       this.setUser({} as User);
     } catch (e) {
