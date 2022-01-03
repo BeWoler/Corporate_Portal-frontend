@@ -25,7 +25,7 @@ const SendMessage: FC = () => {
       sx={btnStyles}
       onClick={async () => {
         await createConversation();
-        navigate("/chat");
+        navigate(`/friends/${store.user.id}`);
       }}
     >
       Send Message

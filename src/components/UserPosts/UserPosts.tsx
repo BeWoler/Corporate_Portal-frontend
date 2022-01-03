@@ -97,7 +97,7 @@ const UserPosts: FC = () => {
 
   const like = async (postId: string) => {
     await PostService.like(postId, store.user.id);
-    getUserPosts();
+    await getUserPosts();
   };
 
   const commenting = async (postId: string) => {
@@ -216,16 +216,20 @@ const UserPosts: FC = () => {
               <div className="post__functions">
                 <div className="post__likes">
                   <FavoriteIcon
-                    onClick={() => like(post._id)}
+                    onClick={async () => await like(post._id)}
+                    color={
+                      post.likes.includes(store.user.id) ? "error" : "action"
+                    }
                     sx={{
-                      color: "#BF3030",
                       verticalAlign: "middle",
                       margin: "0 .2rem 0 0",
                       transition: "all ease .2s",
                       ":hover": { transform: "scale(1.2)" },
                     }}
                   />
-                  <span>{post.likes.length}</span>
+                  <span>
+                    {post.likes.includes(store.user.id) ? "liked" : null}
+                  </span>
                   <AddCommentIcon
                     onClick={() => {
                       return isOpen !== position ? setIsOpen(position) : -1;
