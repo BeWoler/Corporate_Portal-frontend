@@ -1,6 +1,6 @@
 import { FC } from "react";
 import Header from "../Header/Header";
-import "../App/app.css"
+import "../App/app.css";
 import { Outlet } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
 

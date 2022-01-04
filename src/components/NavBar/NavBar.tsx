@@ -24,11 +24,7 @@ const NavBar: FC = () => {
   return (
     <nav>
       <ul className="nav__ul">
-        <Link
-          to={`profile/${store.user.id}`}
-          className="nav__li"
-          onClick={() => store.checkAuth()}
-        >
+        <Link to={`profile/${store.user.id}`} className="nav__li">
           <PersonIcon sx={linkStyle} />
           My Profile
         </Link>

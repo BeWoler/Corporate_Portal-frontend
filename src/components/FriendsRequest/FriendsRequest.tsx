@@ -1,13 +1,15 @@
 import { FC, useEffect, useState, useContext } from "react";
 import { Context } from "../../index";
 import { Button } from "@mui/material";
+import { useLocation } from "react-router-dom";
 import FriendsService from "../../services/FriendsService";
 import "./friendsRequest.css";
 
 const FriendsRequest: FC = () => {
   const { store } = useContext(Context);
+  const location = useLocation();
   const [requests, setRequests] = useState<any>([]);
-  const receiverId = window.location.href.split("/").reverse()[0];
+  const receiverId = location.pathname.split("/").reverse()[0];
 
   const getRequests = async () => {
     const response = await FriendsService.getRequests(receiverId);

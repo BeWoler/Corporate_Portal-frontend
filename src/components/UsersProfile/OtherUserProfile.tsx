@@ -2,6 +2,7 @@ import { FC, useContext, useState, useEffect } from "react";
 import { Context } from "../../index";
 import { Avatar, Button } from "@mui/material";
 import { observer } from "mobx-react-lite";
+import { useLocation } from "react-router-dom";
 import "./userProfile.css";
 import OtherUserPosts from "../OtherUserPosts/OtherUserPosts";
 import AddFriend from "./AddFriend";
@@ -12,10 +13,11 @@ import UserService from "../../services/UserService";
 
 const OtherUserProfilePage: FC = () => {
   const { store } = useContext(Context);
+  const location = useLocation();
   const [active, setActive] = useState<boolean>(false);
   const [blocked, setBlocked] = useState<boolean>(false);
   const avatarSrc = store.otherUser.avatar;
-  const currentId = window.location.href.split("/").reverse()[0];
+  const currentId = location.pathname.split("/").reverse()[0];
   const block: string[] = store.otherUser.blockedUser;
   const avatarStyles = {
     width: "235px",

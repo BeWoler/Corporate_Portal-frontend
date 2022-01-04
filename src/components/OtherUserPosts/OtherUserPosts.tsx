@@ -2,6 +2,7 @@ import { FC, useState, useEffect, useContext } from "react";
 import { Context } from "../../index";
 import { Post } from "../../models/post";
 import { Input, Button } from "@mui/material";
+import { Link, useLocation } from "react-router-dom";
 import "./otherUserPosts.css";
 import PostService from "../../services/PostService";
 import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
@@ -12,11 +13,12 @@ import Moment from "react-moment";
 
 const OtherUserPosts: FC = () => {
   const { store } = useContext(Context);
+  const location = useLocation();
   const [posts, setPosts] = useState<Post[]>([]);
   const [comment, setComment] = useState<string>("");
   const [isOpen, setIsOpen] = useState<number>();
 
-  const currentId = window.location.href.split("/").reverse()[0];
+  const currentId = location.pathname.split("/").reverse()[0];
 
   const getUserPosts = async () => {
     const response = await PostService.getUserPostByUserId(currentId);
@@ -170,10 +172,12 @@ const OtherUserPosts: FC = () => {
                           <div key={comment._id} className="post__comment">
                             <div className="comment__info">
                               <h5 className="comment__author">
-                                <Avatar
-                                  src={comment.user.avatar}
-                                  sx={avatarStyle}
-                                ></Avatar>
+                                <Link to={`/profile/${comment.user._id}`}>
+                                  <Avatar
+                                    src={comment.user.avatar}
+                                    sx={avatarStyle}
+                                  ></Avatar>
+                                </Link>
                                 {comment.user.firstName} {comment.user.lastName}
                               </h5>
                               <p className="comment__time">

@@ -3,7 +3,7 @@ import { Context } from "../../index";
 import { Post } from "../../models/post";
 import { Input, Button } from "@mui/material";
 import api from "../../http/axios";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./userPosts.css";
 import PostService from "../../services/PostService";
 import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
@@ -14,6 +14,7 @@ import Moment from "react-moment";
 
 const UserPosts: FC = () => {
   const { store } = useContext(Context);
+  const location = useLocation();
   const [postText, setPostText] = useState<string>();
   const [posts, setPosts] = useState<Post[]>([]);
   const [comment, setComment] = useState<string>("");
@@ -22,7 +23,7 @@ const UserPosts: FC = () => {
   const [img, setImg] = useState<any>();
   const [file, setFile] = useState<any>();
 
-  const currentId = window.location.href.split("/").reverse()[0];
+  const currentId = location.pathname.split("/").reverse()[0];
 
   const fileUpload = async (e: any) => {
     try {
@@ -144,7 +145,6 @@ const UserPosts: FC = () => {
           />
           {filePreview}
           <Input
-            value={postText}
             onChange={(e) => {
               setPostText(e.target.value);
             }}

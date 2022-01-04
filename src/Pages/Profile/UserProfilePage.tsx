@@ -1,12 +1,14 @@
 import { FC, useContext, useEffect } from "react";
 import { Context } from "../../index";
 import { observer } from "mobx-react-lite";
+import { useLocation } from "react-router-dom";
 import UserProfile from "../../components/UsersProfile/UserProfile";
 import OtherUserProfile from "../../components/UsersProfile/OtherUserProfile";
 
 const UserProfilePage: FC = () => {
   const { store } = useContext(Context);
-  const currentId = window.location.href.split("/").reverse()[0];
+  const location = useLocation();
+  const currentId = location.pathname.split("/").reverse()[0];
   const userId = store.user.id;
 
   useEffect(() => {
