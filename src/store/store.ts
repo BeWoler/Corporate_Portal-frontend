@@ -16,6 +16,7 @@ export default class Store {
   otherUser = {} as User;
   allUsers = {} as User[];
   isAuth = false;
+  isAdmin = false;
   isLoading = false;
   error: string;
   successMessage: string;
@@ -26,6 +27,10 @@ export default class Store {
 
   setAuth(bool: boolean) {
     this.isAuth = bool;
+  }
+
+  setAdmin(bool: boolean) {
+    this.isAdmin = bool;
   }
 
   setUser(user: User) {
@@ -73,6 +78,10 @@ export default class Store {
           localStorage.setItem("token", response.data.accessToken);
           this.setAuth(true);
           this.setUser(response.data.user);
+          if (response.data.user.role === "admin") {
+            localStorage.setItem("role", response.data.user.role);
+            this.setAdmin(true);
+          }
         })
         .catch((err) => {
           this.setError(err.response.data.message);
@@ -86,6 +95,7 @@ export default class Store {
   async delete() {
     try {
       localStorage.removeItem("token");
+      localStorage.removeItem("role");
       await DeleteService.delete(this.user.id);
       this.setAuth(false);
       this.setUser({} as User);
@@ -96,7 +106,7 @@ export default class Store {
 
   async editProfile(userId: string, { ...args }: object) {
     try {
-      await EditProfileService.edit(userId, {userInfo: { ...args }});
+      await EditProfileService.edit(userId, { userInfo: { ...args } });
       this.setSuccessMessage("Successfully changed");
       setTimeout(() => this.setSuccessMessage(null), 3500);
     } catch (e) {
@@ -138,6 +148,10 @@ export default class Store {
           localStorage.setItem("token", response.data.accessToken);
           this.setAuth(true);
           this.setUser(response.data.user);
+          if (response.data.user.role === "admin") {
+            localStorage.setItem("role", response.data.user.role);
+            this.setAdmin(true);
+          }
         })
         .catch((err) => {
           this.setError(err.response.data.message);
@@ -171,7 +185,13 @@ export default class Store {
       localStorage.setItem("token", response.data.accessToken);
       this.setAuth(true);
       this.setUser(response.data.user);
+      if (response.data.user.role === "admin") {
+        localStorage.setItem("role", response.data.user.role);
+        this.setAdmin(true);
+      }
     } catch (e) {
+      window.location.replace("/login");
+      localStorage.clear();
       console.log(e);
     } finally {
       this.setLoading(false);

@@ -46,7 +46,7 @@ const AllUsers: FC = () => {
     return () => setUsers(null);
   }, [store]);
 
-  const filteredUsers = users.filter((user) => {
+  const filteredUsers = users?.filter((user) => {
     return (
       (user.firstName + " " + user.lastName)
         .toLowerCase()

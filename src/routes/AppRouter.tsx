@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Layout from "../components/Layout/Layout";
 import LoginPage from "../Pages/Login/LoginPage";
 import RegistrationPage from "../Pages/Registration/RegistrationPage";
@@ -11,25 +11,11 @@ import Messenger from "../Pages/Messenger/Messenger";
 import ChangeAvatar from "../Pages/ChangeAvatar/ChangeAvatar";
 import Friends from "../Pages/Friends/Friends";
 import Admin from "../Admin/Admin";
+import RequireAuth from "../hoc/RequireAuth";
+import AfterAuth from "../hoc/AfterAuth";
+import RequireAdminAuth from "../hoc/RequireAdminAuth";
 
 const AppRouter = () => {
-  const RequireAuth = ({ children }: { children: JSX.Element }) => {
-    if (
-      !localStorage.getItem("token") ||
-      localStorage.getItem("token").length < 217
-    ) {
-      return <Navigate to="/login" />;
-    }
-    return children;
-  };
-
-  const AfterAuth = ({ children }: { children: JSX.Element }) => {
-    if (localStorage.getItem("token")) {
-      return <Navigate to="/board" />;
-    }
-    return children;
-  };
-
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
@@ -113,7 +99,14 @@ const AppRouter = () => {
             </RequireAuth>
           }
         />
-        <Route path="/admin" element={<Admin />} />
+        <Route
+          path="/admin"
+          element={
+            <RequireAdminAuth>
+              <Admin />
+            </RequireAdminAuth>
+          }
+        />
         <Route
           path="/"
           element={
