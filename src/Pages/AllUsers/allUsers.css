@@ -20,13 +20,12 @@
 .users__li {
   padding: 1rem;
   word-break: break-all;
-  border-radius: 0.5rem;
   display: flex;
   align-items: center;
   transition: all ease 0.2s;
   margin: 0 1rem 1rem 0;
   background-color: #fff;
-  border-radius: 0.3rem;
+  border-radius: .3rem;
 }
 
 .users__data__ul {

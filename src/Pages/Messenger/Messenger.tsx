@@ -38,7 +38,6 @@ const Messenger: FC = () => {
 
   useEffect(() => {
     socket.current.emit("addUser", store.user.id);
-    socket.current.on("getUsers", (users: any) => console.log(users));
   }, [store.user.id, currentChat]);
 
   useEffect(() => {

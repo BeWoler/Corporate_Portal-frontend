@@ -4,12 +4,12 @@ import { AxiosResponse } from "axios";
 
 export default class ChangePasswordService {
   static async change(
-    username: string,
+    userId: string,
     newPassword: string,
     oldPassword: string
   ): Promise<AxiosResponse<AuthResponse>> {
     return api.patch<AuthResponse>("/changePassword", {
-      username,
+      userId,
       newPassword,
       oldPassword,
     });

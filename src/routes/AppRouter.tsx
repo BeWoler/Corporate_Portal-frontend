@@ -10,6 +10,7 @@ import Board from "../Pages/Board/Board";
 import Messenger from "../Pages/Messenger/Messenger";
 import ChangeAvatar from "../Pages/ChangeAvatar/ChangeAvatar";
 import Friends from "../Pages/Friends/Friends";
+import Admin from "../Admin/Admin";
 
 const AppRouter = () => {
   const RequireAuth = ({ children }: { children: JSX.Element }) => {
@@ -112,6 +113,7 @@ const AppRouter = () => {
             </RequireAuth>
           }
         />
+        <Route path="/admin" element={<Admin />} />
         <Route
           path="/"
           element={

@@ -1,10 +1,23 @@
 import { FC } from "react";
 import Header from "../Header/Header";
 import "../App/app.css";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
 
 const Layout: FC = () => {
+  const location = useLocation();
+  if (location.pathname === "/admin") {
+    return (
+      <>
+        <Header />
+        <div className="admin__box__container">
+          <div className="admin__box__outlet">
+            <Outlet />
+          </div>
+        </div>
+      </>
+    );
+  }
   return (
     <>
       <Header />

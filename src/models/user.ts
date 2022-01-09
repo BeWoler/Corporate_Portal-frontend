@@ -17,6 +17,7 @@ export interface User {
   blockedUser: string[];
   messagesFromFriend: boolean;
   privatePage: boolean;
+  role: string;
   _id: string;
   id: string;
 }

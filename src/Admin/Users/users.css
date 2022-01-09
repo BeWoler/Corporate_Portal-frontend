@@ -1,0 +1,186 @@
+.admin__users {
+  margin: 0 2rem 0 0;
+}
+
+.admin__currentUser {
+  margin: 0 0 1rem 0;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.admin__users__ul {
+  list-style: none;
+  background-color: #fff;
+  border-radius: .3rem;
+  max-height: 600px;
+  overflow: auto;
+}
+
+.admin__users__li {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  cursor: pointer;
+  max-width: 330px;
+  transition: all ease 0.2s;
+  word-break: break-all;
+  padding: .5rem;
+}
+
+.admin__users__li:hover {
+  background-color: #edeef0;
+}
+
+.admin__users__data__ul {
+  list-style: none;
+  word-break: break-all;
+  margin: .5rem 0;
+}
+
+.admin__users__data__li {
+  word-break: break-all;
+}
+
+.editUser__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 500;
+  font-size: 18px;
+  width: 100%;
+  border-radius: .3rem;
+  background-color: #fff;
+  padding: 1rem;
+}
+
+.editUser__form__title {
+  margin: 0 0 1.5rem 0;
+}
+
+.editUser__text {
+  text-align: center;
+  margin: 1rem;
+  padding: 1rem;
+  box-shadow: 0px 1px 4px #3d3d3d;
+  border-radius: 0.3rem;
+}
+
+.editUser__data {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.editUser__mainData {
+  display: flex;
+  width: 100%;
+  padding: 1rem 2rem;
+  flex-direction: column;
+}
+
+.editUser__otherData {
+  display: flex;
+  width: 100%;
+  padding: 1rem 2rem;
+  flex-direction: column;
+}
+
+.editUser__notification {
+  text-align: center;
+  color: #228B22;
+}
+
+.editUser__btns {
+  display: flex;
+  flex-direction: row;
+}
+
+.changeUserPassword__form {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  margin: 1rem 0;
+  background-color: #fff;
+  border-radius: .3rem;
+}
+
+.changeUserPassword__container {
+  display: flex;
+  flex-direction: column;
+  border-radius: .3rem;
+}
+
+.changeUserPassword__title {
+  margin: 0 0 1.5rem 0;
+  text-align: center;
+}
+
+.changeUserAvatar__container {
+  display: flex;
+  flex-direction: column;
+  border-radius: .3rem;
+  padding: 1rem;
+  background-color: #fff;
+}
+
+.changeUserAvatar__title {
+  margin: 0 0 1.5rem 0;
+  text-align: center;
+}
+
+.changeUserAvatar__form {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-items: center;
+}
+
+#file-upload-button {
+  background-color: black;
+}
+
+.changeUserAvatar__view {
+ margin: 1rem 0;
+ text-align: center;
+}
+
+.changeUserAvatar__avatar__preview {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #fff;
+  margin: 1.5rem 0;
+  border-radius: 0.3rem;
+}
+
+.currentUser__box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: .5rem;
+  max-width: 330px;
+  background-color: #fff;
+  border-radius: .3rem;
+  margin: 0 0 1rem 0;
+}
+
+.currentUser__title {
+  margin: 0 1rem 0 0;
+}
+
+.currentUser__data__ul {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+}
+
+.currentUser__data__li {
+  word-break: normal;
+  max-width: 150px;
+}
+
+.admin__success {
+  text-align: center;
+  font-size: 20px;
+  color: #228B22;
+}

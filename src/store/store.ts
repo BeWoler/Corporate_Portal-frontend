@@ -94,9 +94,9 @@ export default class Store {
     }
   }
 
-  async editProfile(username: string, { ...args }: object) {
+  async editProfile(userId: string, { ...args }: object) {
     try {
-      await EditProfileService.edit(username, { ...args });
+      await EditProfileService.edit(userId, {userInfo: { ...args }});
       this.setSuccessMessage("Successfully changed");
       setTimeout(() => this.setSuccessMessage(null), 3500);
     } catch (e) {
@@ -104,10 +104,10 @@ export default class Store {
     }
   }
 
-  async changePass(username: string, newPassword: string, oldPassword: string) {
+  async changePass(userId: string, newPassword: string, oldPassword: string) {
     try {
       await ChangePasswordService.change(
-        username,
+        userId,
         newPassword,
         oldPassword
       ).catch((err) => {

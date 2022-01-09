@@ -1,11 +1,17 @@
-import { FC, useContext, useState } from "react";
-import "./settingsForm.css";
-import { Button, Input, Switch } from "@mui/material";
-import { Context } from "../../index";
-import { observer } from "mobx-react-lite";
+import { useState } from "react";
+import { Button, Input } from "@mui/material";
+import DeleteUser from "./DeleteUser";
+import AdminService from "../Services/AdminService";
+import { User } from "../../models/user";
+import "./users.css";
 
-const SettingsForm: FC = () => {
-  const { store } = useContext(Context);
+interface EditUserProps {
+  currentUser: User;
+  getUsers: () => Promise<void>;
+}
+
+const EditUser = ({ currentUser, getUsers }: EditUserProps) => {
+  const [status, setStatus] = useState<string>(null);
   const [firstName, setFirstName] = useState<string>();
   const [lastName, setLastName] = useState<string>();
   const [birthday, setBirthday] = useState<string>();
@@ -16,31 +22,49 @@ const SettingsForm: FC = () => {
   const [education, setEducation] = useState<string>();
   const [skype, setSkype] = useState<string>();
   const [phone, setPhone] = useState<number>();
-  const [messagesFromFriend, setMessagesFromFriend] = useState<boolean>(
-    store.user.messagesFromFriend
-  );
-  const [privatePage, setPrivatePage] = useState<boolean>(
-    store.user.privatePage
-  );
   const [description, setDescription] = useState<string>();
+  const [role, setRole] = useState<string>();
 
   const inputStyles = {
     margin: "0 0 1rem 0",
     ":after": { borderBottom: "2px solid #534ED9" },
   };
   const btnStyles = {
-    margin: "2rem auto 2rem auto",
+    margin: "0rem auto 0rem auto",
     width: "fit-content",
     backgroundColor: "#534ED9",
     ":hover": { backgroundColor: "#7673D9" },
   };
 
+  const editUserData = async () => {
+    const res = await AdminService.edit(currentUser._id, {
+      firstName,
+      lastName,
+      city,
+      birthday,
+      stack,
+      position,
+      department,
+      education,
+      skype,
+      phone,
+      role,
+      description,
+    });
+    if (res.status === 200) {
+      setStatus("Success");
+      setTimeout(() => setStatus(null), 2000);
+    }
+    await getUsers();
+  };
+
   return (
-    <form className="settings__form">
-      <h3 className="settings__notification">{store.successMessage}</h3>
-      <div className="settings__data">
-        <div className="settings__mainData">
-          <h4 className="settings__title">Edit personal info</h4>
+    <form className="editUser__form">
+      <h3 className="editUser__form__title">Edit User Data</h3>
+      <h3 className="admin__success">{status ? status : null}</h3>
+      <div className="editUser__data">
+        <div className="editUser__mainData">
+          <h4 className="editUser__title">Edit personal info</h4>
           <Input
             onChange={(e) => setFirstName(e.target.value)}
             placeholder="First Name"
@@ -71,25 +95,15 @@ const SettingsForm: FC = () => {
             type="number"
             sx={inputStyles}
           />
-          <div>
-            <Switch
-              checked={privatePage}
-              inputProps={{ "aria-label": "controlled" }}
-              onChange={(e) => setPrivatePage(e.target.checked)}
-            />
-            Private Profile
-          </div>
-          <div>
-            <Switch
-              checked={messagesFromFriend}
-              inputProps={{ "aria-label": "controlled" }}
-              onChange={(e) => setMessagesFromFriend(e.target.checked)}
-            />
-            Messages Only From Friends
-          </div>
+          <Input
+            onChange={(e) => setRole(e.target.value)}
+            placeholder="Role"
+            type="text"
+            sx={inputStyles}
+          />
         </div>
-        <div className="settings__otherData">
-          <h4 className="settings__title">Edit other info</h4>
+        <div className="editUser__otherData">
+          <h4 className="editUser__title">Edit other info</h4>
           <Input
             onChange={(e) => setStack(e.target.value)}
             multiline={true}
@@ -131,31 +145,14 @@ const SettingsForm: FC = () => {
           />
         </div>
       </div>
-      <Button
-        onClick={async () => {
-          await store.editProfile(store.user.id, {
-            firstName,
-            lastName,
-            city,
-            birthday,
-            stack,
-            position,
-            department,
-            education,
-            skype,
-            phone,
-            messagesFromFriend,
-            privatePage,
-            description,
-          });
-        }}
-        variant="contained"
-        sx={btnStyles}
-      >
-        Save Changes
-      </Button>
+      <div className="editUser__btns">
+        <Button onClick={editUserData} variant="contained" sx={btnStyles}>
+          Save Changes
+        </Button>
+        <DeleteUser currentUser={currentUser} getUsers={getUsers} />
+      </div>
     </form>
   );
 };
 
-export default observer(SettingsForm);
+export default EditUser;

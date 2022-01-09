@@ -4,9 +4,12 @@ import { AxiosResponse } from "axios";
 
 export default class EditProfileService {
   static async edit(
-    username: string,
-    { ...args }
+    userId: string,
+    { userInfo: { ...args } }
   ): Promise<AxiosResponse<AuthResponse>> {
-    return api.patch<AuthResponse>("/editInfo", { username, ...args });
+    return api.patch<AuthResponse>("/editInfo", {
+      userId: userId,
+      userInfo: { ...args },
+    });
   }
 }

@@ -129,7 +129,7 @@ const UserPosts: FC = () => {
 
   return (
     <div className="profile__posts">
-      <form className="posts__create" encType="miltipart/form-data">
+      <form className="posts__create" encType="multipart/form-data">
         <div className="posts__create__inputs">
           <Input
             name="files"

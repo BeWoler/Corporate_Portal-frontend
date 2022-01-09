@@ -47,7 +47,7 @@ const ChangePasswordPage: FC = () => {
           sx={btnStyles}
           onClick={async () => {
             await store.changePass(
-              store.user.username,
+              store.user.id,
               newPassword,
               oldPassword
             );
