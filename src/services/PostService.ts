@@ -1,14 +1,13 @@
 import api from "../http/axios";
 import { AxiosResponse } from "axios";
-import { PostResponse } from "../models/response/postResponse";
 
 export default class PostService {
   static createPost(
     userId: string,
     text: string,
     fileName: string
-  ): Promise<AxiosResponse<PostResponse>> {
-    return api.post<PostResponse>("/post", { userId, text, fileName });
+  ): Promise<AxiosResponse> {
+    return api.post<AxiosResponse>("/post", { userId, text, fileName });
   }
 
   static delete = (id: string): Promise<AxiosResponse> => {
@@ -23,8 +22,8 @@ export default class PostService {
     id: string,
     text: string,
     userId: string
-  ): Promise<AxiosResponse<PostResponse>> {
-    return api.post<PostResponse>("/post/comment", { id, text, userId });
+  ): Promise<AxiosResponse> {
+    return api.post<AxiosResponse>("/post/comment", { id, text, userId });
   }
 
   static getUserPostByUsername = (username: string): Promise<AxiosResponse> => {

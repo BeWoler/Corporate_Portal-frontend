@@ -3,13 +3,13 @@ import { Context } from "../../index";
 import { Avatar, Button } from "@mui/material";
 import { observer } from "mobx-react-lite";
 import { useLocation } from "react-router-dom";
-import "./userProfile.css";
-import OtherUserPosts from "../OtherUserPosts/OtherUserPosts";
 import AddFriend from "./AddFriend";
 import PrivateProfile from "./PrivateProfile";
 import UserFriends from "../UserFriends/UserFriends";
 import SendMessage from "./SendMessage";
 import UserService from "../../services/UserService";
+import UserPosts from "../UserPosts/UserPosts";
+import "./userProfile.css";
 
 const OtherUserProfilePage: FC = () => {
   const { store } = useContext(Context);
@@ -142,7 +142,6 @@ const OtherUserProfilePage: FC = () => {
               sx={btnStyles}
               variant="contained"
               onClick={async () => {
-                // console.log(store.user.blockedUsers.includes(store.otherUser.id, 0))
                 await UserService.blockUser(store.user.id, store.otherUser.id);
                 await store.checkAuth();
               }}
@@ -156,7 +155,7 @@ const OtherUserProfilePage: FC = () => {
             ? `About me: ${store.otherUser.description}`
             : "Nothing at now..."}
         </p>
-        <OtherUserPosts />
+        <UserPosts />
       </div>
     </div>
   );
