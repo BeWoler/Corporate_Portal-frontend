@@ -4,8 +4,8 @@ import { observer } from "mobx-react-lite";
 import { User } from "../../models/user";
 import { Avatar, Input } from "@mui/material";
 import { Link } from "react-router-dom";
-import "./allUsers.css";
 import UserFilter from "../../components/UserFilter/UserFilter";
+import "./allUsers.css";
 
 const AllUsers: FC = () => {
   const { store } = useContext(Context);
