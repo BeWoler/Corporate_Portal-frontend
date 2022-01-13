@@ -64,6 +64,7 @@
   },
   "devDependencies": {
     "cypress": "^9.2.1",
+    "cypress-file-upload": "^5.0.8",
     "cypress-localstorage-commands": "^1.6.1",
     "start-server-and-test": "^1.14.0"
   }
