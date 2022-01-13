@@ -3,7 +3,7 @@ import "cypress-localstorage-commands";
 
 describe("NavBar test", () => {
   it("Has nav on page", () => {
-    login();
+    login("test", "1234");
 
     cy.get("nav");
   });
@@ -19,7 +19,7 @@ describe("NavBar test", () => {
   });
 
   it("Redirect to the pages", () => {
-    login();
+    login("test", "1234");
 
     cy.get("nav a").eq(0).click();
     cy.url().should("include", "/profile/");

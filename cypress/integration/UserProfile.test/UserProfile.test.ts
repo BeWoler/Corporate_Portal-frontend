@@ -2,7 +2,7 @@ import { login } from "../../loginFunction";
 
 describe("UserProfile test", () => {
   it("Has user profile", () => {
-    login();
+    login("test", "1234");
 
     cy.get("nav");
     cy.get("nav a").eq(0).click();

@@ -2,7 +2,7 @@ import { login } from "../../loginFunction";
 
 describe("Settings test", () => {
   it("Has settings page", () => {
-    login();
+    login("test", "1234");
 
     cy.get("nav");
     cy.get("nav a").eq(5).click();
@@ -88,7 +88,7 @@ describe("Settings test", () => {
   });
 
   it("User can save changes", () => {
-    login();
+    login("test", "1234");
 
     cy.get("nav");
     cy.get("nav a").eq(5).click();

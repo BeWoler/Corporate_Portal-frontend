@@ -1,9 +1,8 @@
 import { login } from "../../loginFunction";
-const pic = "./pic.jpg";
 
 describe("Change Avatar test", () => {
   it("Has settings/avatar page", () => {
-    login();
+    login("test", "1234");
 
     cy.get("nav");
     cy.get("nav a").eq(5).click();
@@ -43,7 +42,7 @@ describe("Change Avatar test", () => {
 
   it("User can change avatar", () => {
     const filePath = "testPic.jpg";
-    login();
+    login("test", "1234");
 
     cy.get("nav");
     cy.get("nav a").eq(5).click();
