@@ -37,7 +37,9 @@ const SettingsForm: FC = () => {
 
   return (
     <form className="settings__form">
-      <h3 className="settings__notification">{store.successMessage}</h3>
+      <h3 className="settings__notification">
+        {store.successMessage ? store.successMessage : null}
+      </h3>
       <div className="settings__data">
         <div className="settings__mainData">
           <h4 className="settings__title">Edit personal info</h4>
@@ -74,6 +76,7 @@ const SettingsForm: FC = () => {
           <div>
             <Switch
               checked={privatePage}
+              name="Private"
               inputProps={{ "aria-label": "controlled" }}
               onChange={(e) => setPrivatePage(e.target.checked)}
             />
@@ -82,6 +85,7 @@ const SettingsForm: FC = () => {
           <div>
             <Switch
               checked={messagesFromFriend}
+              name="PrivateMessage"
               inputProps={{ "aria-label": "controlled" }}
               onChange={(e) => setMessagesFromFriend(e.target.checked)}
             />

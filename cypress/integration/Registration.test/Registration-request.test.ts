@@ -74,23 +74,23 @@ describe("Registration request test", () => {
     });
   });
 
-  it("Request with the right data", () => {
-    cy.request({
-      method: "POST",
-      url: apiUrl + "/registration",
-      body: {
-        email: "cypress@cypress.com",
-        username: "cypress",
-        firstName: "First",
-        lastName: "Last",
-        password: "1234",
-      },
-      failOnStatusCode: true,
-    }).then((res) => {
-      expect(res.status).to.eq(200);
-      cy.getCookie("refreshToken");
-      cy.getCookie("role");
-      cy.getCookie("username");
-    });
-  });
+  // it("Request with the right data", () => {
+  //   cy.request({
+  //     method: "POST",
+  //     url: apiUrl + "/registration",
+  //     body: {
+  //       email: "cypress@cypress.com",
+  //       username: "cypress",
+  //       firstName: "First",
+  //       lastName: "Last",
+  //       password: "1234",
+  //     },
+  //     failOnStatusCode: true,
+  //   }).then((res) => {
+  //     expect(res.status).to.eq(200);
+  //     cy.getCookie("refreshToken");
+  //     cy.getCookie("role");
+  //     cy.getCookie("username");
+  //   });
+  // });
 });
