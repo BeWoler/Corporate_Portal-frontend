@@ -1,15 +1,15 @@
 import { FC, useState, useContext } from "react";
 import { Context } from "../../index";
-import "./loginForm.css";
 import { Button, Input } from "@mui/material";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import Title from "../../components/Title/Title";
+import "./loginForm.css";
 
 const LoginPage: FC = () => {
+  const { store } = useContext(Context);
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const { store } = useContext(Context);
 
   const inputStyles = {
     margin: "1.5rem 1.3rem 0.8rem 1.3rem",
@@ -57,7 +57,9 @@ const LoginPage: FC = () => {
           Sign In
         </Button>
         <div className="form__linkBox">
-          <Link to="/registration">Sign Up</Link>
+          <Link to="/registration" className="signUp">
+            Sign Up
+          </Link>
         </div>
       </div>
     </form>

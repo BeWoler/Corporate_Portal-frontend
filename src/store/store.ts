@@ -190,7 +190,6 @@ export default class Store {
         this.setAdmin(true);
       }
     } catch (e) {
-      window.location.replace("/login");
       localStorage.clear();
       console.log(e);
     } finally {

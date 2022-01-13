@@ -40,6 +40,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:cypress": "start-server-and-test start http://localhost:3000 cypress",
+    "cypress": "cypress open",
     "eject": "react-scripts eject"
   },
   "proxy": "http://localhost:3010",
@@ -59,5 +61,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "cypress": "^9.2.1",
+    "cypress-localstorage-commands": "^1.6.1",
+    "start-server-and-test": "^1.14.0"
   }
 }
