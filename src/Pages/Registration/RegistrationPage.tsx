@@ -91,7 +91,9 @@ const RegistrationPage: FC = () => {
         </Button>
         <div className="form__linkBox">
           <span>Have an account?</span>
-          <Link to="/login">Sign In</Link>
+          <Link to="/login" className="signIn">
+            Sign In
+          </Link>
         </div>
       </div>
     </form>
