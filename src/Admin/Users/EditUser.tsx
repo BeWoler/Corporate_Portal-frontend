@@ -23,7 +23,7 @@ const EditUser = ({ currentUser, getUsers }: EditUserProps) => {
   const [skype, setSkype] = useState<string>();
   const [phone, setPhone] = useState<number>();
   const [description, setDescription] = useState<string>();
-  const [role, setRole] = useState<string>();
+  const [role, setRole] = useState<string>("member");
 
   const inputStyles = {
     margin: "0 0 1rem 0",

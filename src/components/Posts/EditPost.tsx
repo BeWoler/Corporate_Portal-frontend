@@ -10,11 +10,12 @@ interface EditPostProps {
 }
 
 const EditPost = ({ post, position, edit, editPost }: EditPostProps) => {
-  const [postText, setPostText] = useState<string>();
+  const [postText, setPostText] = useState<string>("");
 
   return (
     <div className={`post__edit ${edit === position ? "edit" : ""}`}>
       <Input
+        value={postText}
         onChange={(e) => {
           setPostText(e.target.value);
         }}
@@ -30,7 +31,8 @@ const EditPost = ({ post, position, edit, editPost }: EditPostProps) => {
       <Button
         onClick={async (e) => {
           e.preventDefault();
-          editPost(post._id, postText);
+          await editPost(post._id, postText);
+          await setPostText("");
         }}
         variant="contained"
         sx={{

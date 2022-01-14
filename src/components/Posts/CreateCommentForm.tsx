@@ -15,7 +15,7 @@ const CreateCommentForm = ({ post, createComment }: CreateCommentFormprops) => {
         disabled={comment === ""}
         onClick={async () => {
           await createComment(comment, post._id);
-          setComment("");
+          await setComment("");
         }}
         variant="contained"
         sx={{
