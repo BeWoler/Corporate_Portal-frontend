@@ -36,9 +36,6 @@ describe("Post test", () => {
     cy.get('textarea[placeholder="Comment"]:first').type("new test comment");
     cy.get("button").contains("Add").first().should("not.be.a", "disabled");
     cy.get("button").contains("Add").first().click();
-    expect(
-      cy.get("p.comment__text").first().should("have.text", "new test comment")
-    );
   });
 
   it("User edit post", () => {
