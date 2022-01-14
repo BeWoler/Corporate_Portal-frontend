@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { Context } from "../../index";
+import { useNavigate } from "react-router-dom";
 import FriendsService from "../../services/FriendsService";
 import { Button } from "@mui/material";
 import "./userProfile.css";
@@ -10,10 +11,11 @@ interface BtnProps {
 
 const AddFriend = ({ disabled }: BtnProps) => {
   const { store } = useContext(Context);
+  const navigate = useNavigate();
 
   const addFriend = async () => {
     await FriendsService.request(store.otherUser.id, store.user.id);
-    alert("You requested to be added as a friend");
+    navigate(`/friends/${store.user.id}`);
   };
 
   const btnStyles = {
