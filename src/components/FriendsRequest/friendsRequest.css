@@ -17,6 +17,11 @@
   display: flex;
 }
 
+.friends__requests__box {
+  display: flex;
+  flex-direction: column;
+}
+
 .friends__requests hr {
   max-height: 1200px;
   width: 5px;

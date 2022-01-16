@@ -50,42 +50,44 @@ const FriendsRequest: FC = () => {
   return (
     <div className="friends__requests">
       {requests?.length > 0 ? <hr /> : null}
-      {requests?.length > 0
-        ? requests.map((request: any) => {
-            return (
-              <div key={request._id} className="requests">
-                {request.sender.firstName} {request.sender.lastName} wants to
-                add you as a friend
-                <div>
-                  <Button
-                    variant="contained"
-                    sx={btnStyles}
-                    onClick={async () => {
-                      await acceptRequest(
-                        request.receiver,
-                        request.sender._id,
-                        request._id
-                      );
-                      getRequests();
-                    }}
-                  >
-                    Accept
-                  </Button>
-                  <Button
-                    variant="contained"
-                    sx={btnStyles}
-                    onClick={async () => {
-                      await declineRequest(request._id);
-                      getRequests();
-                    }}
-                  >
-                    Decline
-                  </Button>
+      <div className="friends__requests__box">
+        {requests?.length > 0
+          ? requests.map((request: any) => {
+              return (
+                <div key={request._id} className="requests">
+                  {request.sender.firstName} {request.sender.lastName} wants to
+                  add you as a friend
+                  <div>
+                    <Button
+                      variant="contained"
+                      sx={btnStyles}
+                      onClick={async () => {
+                        await acceptRequest(
+                          request.receiver,
+                          request.sender._id,
+                          request._id
+                        );
+                        getRequests();
+                      }}
+                    >
+                      Accept
+                    </Button>
+                    <Button
+                      variant="contained"
+                      sx={btnStyles}
+                      onClick={async () => {
+                        await declineRequest(request._id);
+                        getRequests();
+                      }}
+                    >
+                      Decline
+                    </Button>
+                  </div>
                 </div>
-              </div>
-            );
-          })
-        : null}
+              );
+            })
+          : null}
+      </div>
     </div>
   );
 };
