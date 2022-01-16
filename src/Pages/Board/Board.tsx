@@ -1,5 +1,6 @@
 import { FC } from "react";
 import BoardPosts from "../../components/BoardPosts/BoardPosts";
+import "./board.css";
 
 const Board: FC = () => {
   return (

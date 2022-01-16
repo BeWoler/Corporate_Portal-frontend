@@ -21,7 +21,7 @@ const Messenger: FC = () => {
   const socket = useRef(null);
 
   useEffect(() => {
-    socket.current = io("ws://localhost:3010");
+    socket.current = io("ws://localhost:3020");
     socket.current.on("getMessage", (data: any) => {
       setArrivalMessage({
         sender: data.sender,
@@ -114,102 +114,99 @@ const Messenger: FC = () => {
   };
 
   return (
-    <div className="messenger__container">
-      <h2 className="messenger__title">Messages</h2>
-      <div className="messenger__box">
-        <div className="messenger__conversations">
-          {conversations ? (
-            conversations.map((conversation) => {
-              return (
-                <div
-                  key={conversation._id}
-                  onClick={() => {
-                    setCurrentChat(conversation);
-                    setCurrentUser(
-                      conversation.members.find(
-                        (member: any) => member._id !== store.user.id
-                      )
+    <div className="messenger__box">
+      <div className="messenger__conversations">
+        {conversations ? (
+          conversations.map((conversation) => {
+            return (
+              <div
+                key={conversation._id}
+                onClick={() => {
+                  setCurrentChat(conversation);
+                  setCurrentUser(
+                    conversation.members.find(
+                      (member: any) => member._id !== store.user.id
+                    )
+                  );
+                }}
+              >
+                <Conversation conversation={conversation.members} />
+              </div>
+            );
+          })
+        ) : (
+          <div className="messenger__conversations"></div>
+        )}
+      </div>
+      <div className="messenger__chat__column">
+        {currentChat ? (
+          <>
+            <div className="messenger__chat__user">
+              <h3>
+                {currentUser.firstName} {currentUser.lastName}
+              </h3>
+              <Button
+                sx={btnStyles}
+                variant="contained"
+                onClick={deleteConversation}
+              >
+                Delete Dialog
+              </Button>
+            </div>
+            <hr />
+            <div className="messenger__chat">
+              {messages
+                ? messages.map((message) => {
+                    return (
+                      <div key={message._id} ref={scrollRef}>
+                        <Message
+                          message={message}
+                          own={message.sender._id === store.user.id}
+                        />
+                      </div>
                     );
-                  }}
-                >
-                  <Conversation conversation={conversation.members} />
+                  })
+                : null}
+            </div>
+            <hr />
+            <form className="messenger__form">
+              {fromFriend ? (
+                <Input
+                  value={newMessage}
+                  type="text"
+                  placeholder="Message"
+                  multiline={true}
+                  sx={inputStyles}
+                  onChange={(e) => setNewMessage(e.target.value)}
+                />
+              ) : (
+                <div className="messenger__private">
+                  Only friends can send messages to this user
                 </div>
-              );
-            })
-          ) : (
-            <div className="messenger__conversations"></div>
-          )}
-        </div>
-        <div className="messenger__chat__column">
-          {currentChat ? (
-            <>
-              <div className="messenger__chat__user">
-                <h3>
-                  {currentUser.firstName} {currentUser.lastName}
-                </h3>
+              )}
+              {newMessage !== "" ? (
                 <Button
-                  sx={btnStyles}
                   variant="contained"
-                  onClick={deleteConversation}
+                  sx={btnStyles}
+                  onClick={sendMessage}
                 >
-                  Delete Dialog
+                  Send
                 </Button>
-              </div>
-              <hr />
-              <div className="messenger__chat">
-                {messages
-                  ? messages.map((message) => {
-                      return (
-                        <div key={message._id} ref={scrollRef}>
-                          <Message
-                            message={message}
-                            own={message.sender._id === store.user.id}
-                          />
-                        </div>
-                      );
-                    })
-                  : null}
-              </div>
-              <hr />
-              <form className="messenger__form">
-                {fromFriend ? (
-                  <Input
-                    value={newMessage}
-                    type="text"
-                    placeholder="Message"
-                    multiline={true}
-                    sx={inputStyles}
-                    onChange={(e) => setNewMessage(e.target.value)}
-                  />
-                ) : (
-                  <div className="messenger__private">
-                    Only friends can send messages to this user
-                  </div>
-                )}
-                {newMessage !== "" ? (
-                  <Button
-                    variant="contained"
-                    sx={btnStyles}
-                    onClick={sendMessage}
-                  >
-                    Send
-                  </Button>
-                ) : (
-                  <Button
-                    disabled
-                    variant="contained"
-                    sx={btnStyles}
-                    onClick={sendMessage}
-                  >
-                    Send
-                  </Button>
-                )}
-              </form>
-            </>
-          ) : (
-            <div className="messenger__choose__chat">Choose Dialog</div>
-          )}
-        </div>
+              ) : (
+                <Button
+                  disabled
+                  variant="contained"
+                  sx={btnStyles}
+                  onClick={sendMessage}
+                >
+                  Send
+                </Button>
+              )}
+            </form>
+          </>
+        ) : (
+          <div className="messenger__choose__chat">Choose Dialog</div>
+        )}
       </div>
     </div>
   );

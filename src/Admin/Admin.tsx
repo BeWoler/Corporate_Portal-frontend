@@ -4,10 +4,10 @@ import { User } from "../models/user";
 import UserService from "../services/UserService";
 import EditUser from "./Users/EditUser";
 import Users from "./Users/Users";
-import "./admin.css";
 import ChangeUserPassword from "./Users/ChangeUserPassword";
 import ChangeUserAvatar from "./Users/ChangeUserAvatar";
 import Registration from "./Registration/Registration";
+import "./admin.css";
 
 const Admin = () => {
   const { store } = useContext(Context);

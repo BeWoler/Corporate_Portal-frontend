@@ -1,18 +1,3 @@
-.board__container {
-  display: flex;
-  flex-direction: column;
-}
-
-.board__title {
-  margin: 0 0 1.5rem 0;
-}
-
-.board__box {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
 .board__post {
   background-color: #fff;
   word-break: break-all;

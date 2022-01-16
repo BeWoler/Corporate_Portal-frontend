@@ -1,8 +1,8 @@
 import { FC } from "react";
-import "./userSettings.css";
 import { observer } from "mobx-react-lite";
 import SettingsForm from "../../components/SettingsForm/SettingsForm";
 import SettingsBtnsForm from "../../components/SettingsForm/SettingsBtnsForm";
+import "./userSettings.css";
 
 const UserSettingsPage: FC = () => {
   return (

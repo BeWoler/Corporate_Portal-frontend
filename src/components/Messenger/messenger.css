@@ -1,12 +1,3 @@
-.messenger__container {
-  display: flex;
-  flex-direction: column;
-}
-
-.messenger__title {
-  margin: 0 0 1.5rem 0;
-}
-
 .messenger__box {
   display: flex;
   flex-direction: row;
