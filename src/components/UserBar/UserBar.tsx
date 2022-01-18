@@ -2,7 +2,7 @@ import { Avatar } from "@mui/material";
 import { FC, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../../index";
-import "./userBar.css";
+import "./userBar.sass";
 
 const UserBar: FC = () => {
   const { store } = useContext(Context);

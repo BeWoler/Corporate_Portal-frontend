@@ -3,7 +3,7 @@ import { Context } from "../../index";
 import { useNavigate } from "react-router-dom";
 import FriendsService from "../../services/FriendsService";
 import { Button } from "@mui/material";
-import "./userProfile.css";
+import "./userProfile.sass";
 
 interface BtnProps {
   disabled?: boolean;

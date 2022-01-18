@@ -9,7 +9,7 @@ import UserFriends from "../UserFriends/UserFriends";
 import SendMessage from "./SendMessage";
 import UserService from "../../services/UserService";
 import UserPosts from "../UserPosts/UserPosts";
-import "./userProfile.css";
+import "./userProfile.sass";
 
 const OtherUserProfilePage: FC = () => {
   const { store } = useContext(Context);

@@ -1,4 +1,3 @@
-import "./navBar.css";
 import { FC, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../../index";
@@ -9,6 +8,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import ChatIcon from "@mui/icons-material/Chat";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import ImportContactsIcon from "@mui/icons-material/ImportContacts";
+import "./navBar.sass";
 
 const NavBar: FC = () => {
   const { store } = useContext(Context);

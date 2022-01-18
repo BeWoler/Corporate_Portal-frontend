@@ -3,7 +3,7 @@ import { Context } from "../../index";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import ConversationService from "../../services/ConverstionService";
-import "./userProfile.css";
+import "./userProfile.sass";
 
 const SendMessage: FC = () => {
   const navigate = useNavigate();

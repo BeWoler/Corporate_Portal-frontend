@@ -1,0 +1,36 @@
+@import ../App/app
+
+.userFriends__container
+  display: flex
+  flex-direction: column
+  padding: $padding
+  background-color: $backgroundComponentsColor
+  border-radius: $borderRadius
+
+.userFriends__container hr
+  margin: 0 0 .5rem 0
+
+.userFriends__title
+  margin: 0 0 .5rem 0
+
+.userFriends__title span
+  font-weight: 500
+  font-size: 16px
+  margin: 0 0 0 .5rem
+  color: #3d3d3d
+
+.userFriends__list
+  display: flex
+  flex-direction: row
+  justify-content: center
+  flex-wrap: wrap
+  max-height: 190px
+  text-align: center
+  overflow: auto
+
+.userFriends__link
+  margin: .5rem
+  max-width: 50px
+  max-height: 90px
+  overflow: hidden
+  word-break: break-all

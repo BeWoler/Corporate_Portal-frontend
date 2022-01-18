@@ -1,8 +1,8 @@
 import { FC, useContext } from "react";
-import "./settingsForm.css";
 import { Link } from "react-router-dom";
 import { Context } from "../../index";
 import { observer } from "mobx-react-lite";
+import "./settingsForm.sass";
 
 const SettingsBtnsForm: FC = () => {
   const { store } = useContext(Context);

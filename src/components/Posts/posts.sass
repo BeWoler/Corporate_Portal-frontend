@@ -1,0 +1,120 @@
+@import ../App/app
+
+.userPosts__container
+  display: flex
+  flex-direction: column
+
+.userPosts__post
+  background-color: $backgroundComponentsColor
+  word-break: break-all
+  padding: $padding
+  margin: 1rem 0 0.5rem 0
+  border-radius: $borderRadius
+
+.post__info
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+  margin: 0 0 0.3rem 0
+
+.post__time
+  font-size: 16px
+  font-weight: 500
+
+.post__author
+  margin: 0 0 0.3rem 0
+
+.post__text
+  margin: 0 0 2rem 0
+
+.post__functions
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+
+.post__likes
+  display: flex
+  flex-direction: row
+  align-items: center
+
+.posts__create
+  display: flex
+  flex-direction: row
+  justify-content: space-around
+  align-items: center
+  background-color: $backgroundComponentsColor
+  padding: $padding
+  border-radius: 0.3rem
+  margin: 0 0 1.5rem 0
+
+.posts__create__inputs
+  display: flex
+  flex-direction: column
+
+.posts__create__btn
+  display: flex
+  margin: 0 1rem
+  flex-direction: column
+
+.file__preview
+  text-align: center
+  width: fit-content
+  max-width: 100%
+  height: fit-content
+  max-height: 100%
+  margin: 1rem 0
+
+.post__files
+  display: flex
+  justify-content: center
+
+.post__hr
+  margin: 1rem 0
+  border: 1px solid #edeef0
+  border-radius: $borderRadius
+
+.post__comment
+  display: flex
+  flex-direction: column
+  background-color: $backgroundComponentsColor
+  padding: $padding
+  margin: 1rem
+  border: 2px solid #edeef0
+  transition: all ease 0.2s
+
+.post__comment:hover
+  background-color: #edeef0
+  border-radius: $borderRadius
+
+.post__comment__create
+  max-height: 700px
+  overflow: auto
+
+.comment__info
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+  margin: 0 0 0.2rem 0
+
+.comment__time
+  font-size: 14px
+  font-weight: 500
+
+.comment__author
+  display: flex
+  flex-direction: row
+  align-items: top
+  margin: 0 2rem 0 0
+
+.post__comment__container
+  display: none
+
+.post__edit
+  display: none
+  align-items: center
+
+.edit
+  display: flex
+
+.open
+  display: block

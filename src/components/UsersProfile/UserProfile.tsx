@@ -2,9 +2,9 @@ import { FC, useContext } from "react";
 import { Context } from "../../index";
 import { Avatar } from "@mui/material";
 import { observer } from "mobx-react-lite";
-import "./userProfile.css";
 import UserPosts from "../UserPosts/UserPosts";
 import UserFriends from "../UserFriends/UserFriends";
+import "./userProfile.sass";
 
 const UserProfilePage: FC = () => {
   const { store } = useContext(Context);

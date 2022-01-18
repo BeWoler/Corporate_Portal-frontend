@@ -3,7 +3,7 @@ import { Context } from "../../index";
 import { Avatar, Button } from "@mui/material";
 import { observer } from "mobx-react-lite";
 import UserService from "../../services/UserService";
-import "./userProfile.css";
+import "./userProfile.sass";
 
 const PrivateProfile: FC = () => {
   const { store } = useContext(Context);

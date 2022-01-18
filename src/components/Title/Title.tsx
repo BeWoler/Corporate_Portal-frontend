@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import "./title.css";
 import ApiIcon from "@mui/icons-material/Api";
+import "./title.sass";
 
 const Title: FC = () => {
   const apiIconStyles = {

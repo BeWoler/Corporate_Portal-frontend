@@ -11,7 +11,7 @@ import Comment from "./Comment";
 import CreateCommentForm from "./CreateCommentForm";
 import DeletePost from "./DeletePost";
 import EditPost from "./EditPost";
-import "./posts.css";
+import "./posts.sass";
 
 interface PostProps {
   posts: Post[];

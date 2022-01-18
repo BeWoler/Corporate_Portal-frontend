@@ -3,7 +3,7 @@ import { Context } from "../../index";
 import { Avatar } from "@mui/material";
 import { Link } from "react-router-dom";
 import { User } from "../../models/user";
-import "./userFriends.css";
+import "./userFriends.sass";
 
 interface UserFriendsProps {
   friends?: User[];

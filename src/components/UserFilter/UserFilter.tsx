@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { User } from "../../models/user";
 import { Autocomplete, TextField, Button } from "@mui/material";
-import "./userFilter.css";
+import "./userFilter.sass";
 
 interface UsersProps {
   users?: User[];

@@ -1,8 +1,8 @@
 import { FC, useContext, useState } from "react";
-import "./settingsForm.css";
 import { Button, Input, Switch } from "@mui/material";
 import { Context } from "../../index";
 import { observer } from "mobx-react-lite";
+import "./settingsForm.sass";
 
 const SettingsForm: FC = () => {
   const { store } = useContext(Context);

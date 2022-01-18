@@ -4,7 +4,7 @@ import { Button, Input } from "@mui/material";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import Title from "../../components/Title/Title";
-import "./registrationForm.css";
+import "./registrationForm.sass";
 
 const RegistrationForm: FC = () => {
   const [email, setEmail] = useState<string>("");
