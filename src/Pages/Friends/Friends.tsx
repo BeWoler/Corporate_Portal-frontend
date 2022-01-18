@@ -1,7 +1,7 @@
 import { FC } from "react";
 import FriendsList from "../../components/FriendsList/FriendsList";
 import FriendsRequest from "../../components/FriendsRequest/FriendsRequest";
-import "./friends.css";
+import "./friends.sass";
 
 const Friends: FC = () => {
   return (

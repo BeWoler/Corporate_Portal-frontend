@@ -1,6 +1,6 @@
 import { FC } from "react";
 import ChangePasswordForm from "../../components/ChangePasswordForm/ChangePasswordForm";
-import "./changePasswordPage.css";
+import "./changePasswordPage.sass";
 
 const ChangePasswordPage: FC = () => {
   return (
