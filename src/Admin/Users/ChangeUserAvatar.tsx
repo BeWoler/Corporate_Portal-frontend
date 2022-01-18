@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Avatar, Button, Input } from "@mui/material";
 import AdminService from "../Services/AdminService";
 import { User } from "../../models/user";
-import "./users.css";
+import "./changeUserAvatar.sass";
 
 interface ChangeUserAvatarProps {
   currentUser: User;

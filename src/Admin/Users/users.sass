@@ -1,0 +1,42 @@
+@import ../../components/App/app
+
+.admin__users
+  margin: 0 2rem 0 0
+
+.admin__currentUser
+  margin: 0 0 1rem 0
+  font-weight: 500
+  font-size: 16px
+
+.admin__users__ul
+  list-style: none
+  background-color: $backgroundComponentsColor
+  border-radius: $borderRadius
+  max-height: 600px
+  overflow: auto
+
+.admin__users__li
+  display: flex
+  align-items: center
+  flex-wrap: wrap
+  cursor: pointer
+  max-width: 330px
+  transition: all ease 0.2s
+  word-break: break-all
+  padding: .5rem
+
+.admin__users__li:hover
+  background-color: $backgroundColor
+
+.admin__users__data__ul
+  list-style: none
+  word-break: break-all
+  margin: .5rem 0
+
+.admin__users__data__li
+  word-break: break-all
+
+.admin__success
+  text-align: center
+  font-size: 20px
+  color: $successMessageColor

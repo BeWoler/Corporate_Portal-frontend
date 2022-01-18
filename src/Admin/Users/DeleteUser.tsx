@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import { User } from "../../models/user";
 import AdminService from "../Services/AdminService";
-import "./users.css";
+import "./users.sass";
 
 interface DeleteUserProps {
   currentUser: User;

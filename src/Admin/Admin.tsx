@@ -7,7 +7,7 @@ import Users from "./Users/Users";
 import ChangeUserPassword from "./Users/ChangeUserPassword";
 import ChangeUserAvatar from "./Users/ChangeUserAvatar";
 import Registration from "./Registration/Registration";
-import "./admin.css";
+import "./admin.sass";
 
 const Admin = () => {
   const { store } = useContext(Context);

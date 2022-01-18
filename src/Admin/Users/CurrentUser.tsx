@@ -1,5 +1,5 @@
 import { User } from "../../models/user";
-import "./users.css";
+import "./currentUser.sass";
 
 interface CurrentUserProps {
   currentUser: User;

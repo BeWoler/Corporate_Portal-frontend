@@ -3,8 +3,8 @@ import { Context } from "../../index";
 import { User } from "../../models/user";
 import { Link } from "react-router-dom";
 import { Avatar, Input } from "@mui/material";
-import "./users.css";
 import CurrentUser from "./CurrentUser";
+import "./users.sass";
 
 interface UsersProps {
   users: User[];

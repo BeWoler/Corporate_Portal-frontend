@@ -3,7 +3,7 @@ import { Button, Input } from "@mui/material";
 import DeleteUser from "./DeleteUser";
 import AdminService from "../Services/AdminService";
 import { User } from "../../models/user";
-import "./users.css";
+import "./editUser.sass";
 
 interface EditUserProps {
   currentUser: User;

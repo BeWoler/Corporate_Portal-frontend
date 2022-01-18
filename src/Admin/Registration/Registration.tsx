@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button, Input, Switch } from "@mui/material";
 import AdminService from "../Services/AdminService";
-import "./registration.css";
+import "./registration.sass";
 
 interface RegistrationProps {
   getUsers: () => Promise<void>;
