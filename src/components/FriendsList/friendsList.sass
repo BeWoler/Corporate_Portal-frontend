@@ -1,0 +1,51 @@
+@import ../App/app
+
+.friends__list
+  display: flex
+  flex-direction: column
+  justify-content: flex-start
+  list-style: none
+  max-height: 1200px
+  overflow: auto
+
+.friends__item
+  padding: $padding
+  word-break: break-all
+  display: flex
+  align-items: center
+  transition: all ease 0.2s
+  margin: 0 1rem 1rem 0
+  background-color: $backgroundComponentsColor
+  border-radius: $borderRadius
+
+.friends__item a
+  display: flex
+  flex-direction: row
+  align-items: center
+  font-weight: 500
+
+.users__friends
+  display: flex
+  justify-content: space-between
+  padding: $padding
+  word-break: break-all
+  display: flex
+  align-items: center
+  transition: all ease 0.2s
+  margin: 0 1rem 1rem 0
+  background-color: $backgroundComponentsColor
+  border-radius: $borderRadius
+
+.users__data
+  display: flex
+  flex-direction: row
+  align-items: center
+
+.friend__data__li
+  max-width: 15rem
+
+.empty__page
+  padding: $padding
+  background-color: $backgroundComponentsColor
+  border-radius: $borderRadius
+  width: fit-content

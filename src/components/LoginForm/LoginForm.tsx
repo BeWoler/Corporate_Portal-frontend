@@ -4,7 +4,7 @@ import { Button, Input } from "@mui/material";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import Title from "../../components/Title/Title";
-import "./loginForm.css";
+import "./loginForm.sass";
 
 const LoginForm: FC = () => {
   const { store } = useContext(Context);

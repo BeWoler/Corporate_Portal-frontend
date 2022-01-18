@@ -1,9 +1,9 @@
 import { useEffect, useContext } from "react";
-import "./app.css";
 import { observer } from "mobx-react-lite";
 import { Context } from "../../index";
 import AppRouter from "../../routes/AppRouter";
 import Header from "../Header/Header";
+import "./app.sass";
 
 const App = () => {
   const { store } = useContext(Context);

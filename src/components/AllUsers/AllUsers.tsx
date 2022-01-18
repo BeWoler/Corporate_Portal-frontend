@@ -1,7 +1,7 @@
 import { User } from "../../models/user";
 import { Avatar } from "@mui/material";
 import { Link } from "react-router-dom";
-import "./allUsers.css";
+import "./allUsers.sass";
 
 interface AllUsersProps {
   filteredUsers: User[];

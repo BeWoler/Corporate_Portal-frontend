@@ -3,8 +3,8 @@ import { Context } from "../../index";
 import { User } from "../../models/user";
 import { Input } from "@mui/material";
 import UserFilter from "../../components/UserFilter/UserFilter";
-import "./allUsers.css";
 import AllUsers from "./AllUsers";
+import "./allUsers.sass";
 
 const Users: FC = () => {
   const { store } = useContext(Context);

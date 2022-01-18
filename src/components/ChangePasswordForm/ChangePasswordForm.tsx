@@ -2,7 +2,7 @@ import { FC, useState, useContext } from "react";
 import { Input, Button } from "@mui/material";
 import { Context } from "../../index";
 import { observer } from "mobx-react-lite";
-import "./changePassword.css";
+import "./changePassword.sass";
 
 const ChangePasswordForm: FC = () => {
   const { store } = useContext(Context);

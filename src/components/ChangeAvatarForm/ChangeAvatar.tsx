@@ -3,7 +3,7 @@ import { Context } from "../../index";
 import api from "../../http/axios";
 import ChangeAvatarPreview from "./ChangeAvatarPreview";
 import ChangeAvatarForm from "./ChangeAvatarForm";
-import "./changeAvatar.css";
+import "./changeAvatar.sass";
 
 const ChangeAvatar: FC = () => {
   const { store } = useContext(Context);

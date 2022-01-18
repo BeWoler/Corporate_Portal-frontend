@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { Context } from "../../index";
-import "./conversation.css";
 import { User } from "../../models/user";
 import { Avatar } from "@mui/material";
+import "./conversation.sass";
 
 interface ConversationProps {
   conversation?: User[];

@@ -1,8 +1,8 @@
 import { FC } from "react";
-import Header from "../Header/Header";
-import "../App/app.css";
 import { Outlet, useLocation } from "react-router-dom";
+import Header from "../Header/Header";
 import NavBar from "../NavBar/NavBar";
+import "./layout.sass";
 
 const Layout: FC = () => {
   const location = useLocation();

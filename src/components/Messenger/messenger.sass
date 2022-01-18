@@ -1,0 +1,62 @@
+@import ../App/app
+
+.messenger__box
+  display: flex
+  flex-direction: row
+
+.messenger__conversations
+  display: flex
+  flex-direction: column
+  background-color: $backgroundComponentsColor
+  border-radius: $borderRadius
+  min-width: 160px
+
+.messenger__chat__column
+  background-color: $backgroundComponentsColor
+  border-radius: $borderRadius
+  border-top-left-radius: 0
+  border-bottom-left-radius: 0
+  border: 1px solid #edeef0
+
+.messenger__chat
+  display: flex
+  flex-direction: column
+  padding: $padding
+  height: 600px
+  overflow: auto
+  width: 580px
+
+.messenger__chat__empty
+  text-align: center
+
+.messenger__choose__chat
+  display: flex
+  align-items: center
+  justify-content: center
+  flex-direction: column
+  font-weight: 500
+  font-size: 40px
+  color: #edeef0
+  padding: $padding
+  height: 660px
+  width: 580px
+
+.messenger__private
+  font-size: 18px
+  font-weight: 500
+  padding: $padding
+
+.messenger__chat__user
+  display: flex
+  align-items: center
+  justify-content: space-between
+  margin: .5rem .5rem
+
+.messenger__form
+  display: flex
+  align-items: center
+  justify-content: space-between
+
+hr
+  background-color: none
+  border: 1px solid #edeef0

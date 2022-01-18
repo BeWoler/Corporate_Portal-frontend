@@ -1,6 +1,6 @@
 import { ChangeEvent, MouseEvent } from "react";
 import { Button, Input } from "@mui/material";
-import "./changeAvatar.css";
+import "./changeAvatar.sass";
 
 interface ChangeAvatarFormProps {
   imageChange: (event: ChangeEvent) => void;

@@ -8,7 +8,7 @@ import AddCommentIcon from "@mui/icons-material/AddComment";
 import Moment from "react-moment";
 import CreateCommentForm from "../Posts/CreateCommentForm";
 import Comment from "../Posts/Comment";
-import "./boardPosts.css";
+import "./boardPosts.sass";
 
 const BoardPosts: FC = () => {
   const { store } = useContext(Context);

@@ -1,12 +1,12 @@
 import { FC, useState, useEffect, useContext, useRef } from "react";
 import { Context } from "../../index";
 import { Input, Button } from "@mui/material";
+import { io } from "socket.io-client";
 import ConversationService from "../../services/ConverstionService";
 import MessagesService from "../../services/MessageService";
 import Conversation from "../../components/Conversation/Conversation";
 import Message from "../../components/Message/Message";
-import { io } from "socket.io-client";
-import "./messenger.css";
+import "./messenger.sass";
 
 const Messenger: FC = () => {
   const { store } = useContext(Context);

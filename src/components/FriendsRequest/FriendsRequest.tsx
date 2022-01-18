@@ -3,7 +3,7 @@ import { Context } from "../../index";
 import { Button } from "@mui/material";
 import { useLocation } from "react-router-dom";
 import FriendsService from "../../services/FriendsService";
-import "./friendsRequest.css";
+import "./friendsRequest.sass";
 
 const FriendsRequest: FC = () => {
   const { store } = useContext(Context);

@@ -4,7 +4,7 @@ import { User } from "../../models/user";
 import { Link } from "react-router-dom";
 import { Avatar } from "@mui/material";
 import DeleteFriendBtn from "../UserFriends/DeleteFriendBtn";
-import "./friendsList.css";
+import "./friendsList.sass";
 
 const FriendsList: FC = () => {
   const { store } = useContext(Context);

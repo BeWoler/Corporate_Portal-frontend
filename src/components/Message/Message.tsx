@@ -1,7 +1,7 @@
 import { Avatar } from "@mui/material";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
-import "./message.css";
+import "./message.sass";
 
 interface MessageProps {
   message: any;

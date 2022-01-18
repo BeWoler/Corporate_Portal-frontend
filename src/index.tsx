@@ -1,9 +1,9 @@
 import { createContext } from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
 import { BrowserRouter } from "react-router-dom";
+import ReactDOM from "react-dom";
 import App from "./components/App/App";
 import Store from "./store/store";
+import "./index.sass";
 
 interface State {
   store: Store;

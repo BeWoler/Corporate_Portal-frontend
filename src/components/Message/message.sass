@@ -1,0 +1,27 @@
+@import ../App/app
+
+.message__content
+  display: flex
+  flex-direction: row
+  margin: 0 0 1.5rem 0
+
+.message__text
+  display: flex
+  flex-direction: column
+  max-width: 300px
+  border-radius: $borderRadius
+  word-break: break-all
+  color: $backgroundComponentsColor
+  padding: .5rem 1rem
+  background-color: $primaryColor
+
+.message__text__info
+  display: flex
+  align-items: center
+  justify-content: space-between
+
+.message__content.own
+  justify-content: flex-end
+
+.message__content.own .message__text
+  background-color: #a6a7a8

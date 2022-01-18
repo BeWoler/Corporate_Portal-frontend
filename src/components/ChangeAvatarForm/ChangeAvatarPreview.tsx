@@ -1,5 +1,5 @@
 import { Avatar } from "@mui/material";
-import "./changeAvatar.css";
+import "./changeAvatar.sass";
 
 interface ChangeAvatarPreviewProps {
   img: any;
