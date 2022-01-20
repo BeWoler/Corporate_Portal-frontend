@@ -118,3 +118,20 @@
 
 .open
   display: block
+
+
+@media screen and ( max-width: 1100px )
+  .posts__create
+    flex-direction: column
+  
+@media screen and ( max-width: 500px )
+  .comment__author
+    flex-direction: column
+    margin: 0
+    align-items: center
+  .comment__time
+    display: flex
+    flex-direction: column
+    align-items: flex-end
+    align-self: flex-end
+  

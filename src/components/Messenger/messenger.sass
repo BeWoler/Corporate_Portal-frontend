@@ -60,3 +60,18 @@
 hr
   background-color: none
   border: 1px solid $backgroundColor
+
+@media screen and ( max-width: 900px )
+  .messenger__chat__user
+    :first-child
+      margin: .5rem
+
+@media screen and ( max-width: 765px )
+  .messenger__chat
+    width: auto
+  .messenger__choose__chat
+    width: auto
+
+@media screen and ( max-width: 400px )
+  .messenger__conversations
+    min-width: auto

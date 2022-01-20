@@ -35,3 +35,14 @@
   background-color: $backgroundComponentsColor
   margin: 1.5rem 0
   border-radius: $borderRadius
+
+@media screen and ( max-width: 700px )
+  .upload__avatar__preview
+    flex-direction: column
+    background-color: transparent
+    div
+      margin: 0 0 .5rem 0
+    :nth-child(+n+2)
+      display: none
+  .upload__view
+    display: none

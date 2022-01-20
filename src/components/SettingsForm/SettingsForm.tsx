@@ -152,6 +152,7 @@ const SettingsForm: FC = () => {
             privatePage,
             description,
           });
+          store.checkAuth();
         }}
         variant="contained"
         sx={btnStyles}

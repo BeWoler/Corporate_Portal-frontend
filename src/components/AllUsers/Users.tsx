@@ -13,7 +13,7 @@ const Users: FC = () => {
 
   const inputStyles = {
     margin: "0 0 2rem 0",
-    width: "330px",
+    width: "fit-content",
     backgroundColor: "#fff",
     padding: ".5rem",
     borderRadius: ".3rem .3rem 0 0",

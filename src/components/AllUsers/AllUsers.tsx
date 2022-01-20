@@ -1,5 +1,5 @@
 import { User } from "../../models/user";
-import { Avatar } from "@mui/material";
+import { Avatar, Pagination } from "@mui/material";
 import { Link } from "react-router-dom";
 import "./allUsers.sass";
 
