@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Context } from "../../index";
 import ApiIcon from "@mui/icons-material/Api";
 import UserBar from "../UserBar/UserBar";
+import MobileNavBar from "../NavBar/MobileNavBar";
 import "./header.sass";
 
 const Header: FC = () => {
@@ -25,6 +26,7 @@ const Header: FC = () => {
               <Link to="/board">Corporate Portal</Link>
             </p>
           </div>
+          <MobileNavBar />
           <UserBar />
         </div>
       </header>

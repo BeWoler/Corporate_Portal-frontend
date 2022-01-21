@@ -1,0 +1,76 @@
+@import ../App/app
+
+.mobile__burger
+  position: absolute
+  z-index: 12
+  margin: 0
+  display: none
+  height: 20px
+  right: 10%
+  top: 2%
+  background-color: #000
+  border-radius: $borderRadius
+  transform: rotate(90deg)
+  transition-duration: .35s
+  &:before
+    position: absolute
+    height: 20px
+    background-color: #000
+    content: ''
+    top: -4px
+    right: -2px
+    border: 2px solid #000
+    border-radius: $borderRadius
+    transition-duration: .35s
+  &:after
+    position: absolute
+    height: 20px
+    background-color: #000
+    content: ''
+    top: -4px
+    right: -2px
+    border: 2px solid #000
+    border-radius: $borderRadius
+    transition-duration: .35s
+
+.mobile__nav__ul
+  position: absolute
+  display: flex
+  border-left: 1px solid $backgroundColor
+  background-color: $backgroundComponentsColor
+  flex-direction: column
+  border-radius: $borderRadius
+  transition: all ease .3s
+  margin: 0
+  right: 0
+  padding: 2rem
+  height: 100%
+  align-items: flex-start
+  z-index: 10
+
+.mobile__nav__li
+  margin: 0 0 1rem 0
+  padding: $padding
+  transition: all ease 0.2s
+  font-weight: 500
+
+.closed
+  visibility: hidden
+  opacity: 0
+
+.opened
+  visibility: visible
+  opacity: 1
+
+.toggle
+  display: none
+
+.mobile__burger.toggled
+  &:before
+    transform: rotate(45deg)
+  &:after
+    transform: rotate(-45deg)
+
+@media screen and ( max-width: 530px )
+  .mobile__burger
+    display: inline-block
