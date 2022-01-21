@@ -10,6 +10,7 @@ import SendMessage from "./SendMessage";
 import UserService from "../../services/UserService";
 import UserPosts from "../UserPosts/UserPosts";
 import "./userProfile.sass";
+import "./mobileUserProfile.sass";
 
 const OtherUserProfilePage: FC = () => {
   const { store } = useContext(Context);
@@ -63,66 +64,121 @@ const OtherUserProfilePage: FC = () => {
   }
 
   return (
-    <div className="profile__container">
-      <div className="profile__first__column">
-        <Avatar variant="square" src={avatarSrc} sx={avatarStyles}>
-          {store.otherUser.firstName}
-        </Avatar>
-        {active ? (
-          <AddFriend disabled={true} />
-        ) : (
-          <AddFriend disabled={false} />
-        )}
-        <SendMessage />
-        <ul className="profile__info">
-          {store.otherUser.birthday ? (
-            <li className="profile__info__list">
-              My Birthday:{" "}
-              {store.otherUser.birthday.split("-").reverse().join(".")}
-            </li>
+    <>
+      <div className="profile__container">
+        <div className="profile__first__column">
+          <Avatar variant="square" src={avatarSrc} sx={avatarStyles}>
+            {store.otherUser.firstName}
+          </Avatar>
+          {active ? (
+            <AddFriend disabled={true} />
+          ) : (
+            <AddFriend disabled={false} />
+          )}
+          <SendMessage />
+          <ul className="profile__info">
+            {store.otherUser.birthday ? (
+              <li className="profile__info__list">
+                My Birthday:{" "}
+                {store.otherUser.birthday.split("-").reverse().join(".")}
+              </li>
+            ) : null}
+            {store.otherUser.stack !== "" ? (
+              <li className="profile__info__list">
+                Stack: {store.otherUser.stack}
+              </li>
+            ) : null}
+            {store.otherUser.position !== "" ? (
+              <li className="profile__info__list">
+                Position: {store.otherUser.position}
+              </li>
+            ) : null}
+            {store.otherUser.department !== "" ? (
+              <li className="profile__info__list">
+                Department: {store.otherUser.department}
+              </li>
+            ) : null}
+            {store.otherUser.education !== "" ? (
+              <li className="profile__info__list">
+                Education: {store.otherUser.education}
+              </li>
+            ) : null}
+            {store.otherUser.skype !== "" ? (
+              <li className="profile__info__list">
+                Skype: {store.otherUser.skype}
+              </li>
+            ) : null}
+            {store.otherUser.phone ? (
+              <li className="profile__info__list">
+                Phone: {store.otherUser.phone}
+              </li>
+            ) : null}
+          </ul>
+          {store.otherUser.friends ? (
+            <UserFriends friends={store.otherUser.friends} />
           ) : null}
-          {store.otherUser.stack !== "" ? (
-            <li className="profile__info__list">
-              Stack: {store.otherUser.stack}
-            </li>
-          ) : null}
-          {store.otherUser.position !== "" ? (
-            <li className="profile__info__list">
-              Position: {store.otherUser.position}
-            </li>
-          ) : null}
-          {store.otherUser.department !== "" ? (
-            <li className="profile__info__list">
-              Department: {store.otherUser.department}
-            </li>
-          ) : null}
-          {store.otherUser.education !== "" ? (
-            <li className="profile__info__list">
-              Education: {store.otherUser.education}
-            </li>
-          ) : null}
-          {store.otherUser.skype !== "" ? (
-            <li className="profile__info__list">
-              Skype: {store.otherUser.skype}
-            </li>
-          ) : null}
-          {store.otherUser.phone ? (
-            <li className="profile__info__list">
-              Phone: {store.otherUser.phone}
-            </li>
-          ) : null}
-        </ul>
-        {store.otherUser.friends ? (
-          <UserFriends friends={store.otherUser.friends} />
-        ) : null}
+        </div>
+        <div className="profile__second__column">
+          <p className="profile__name">
+            <span>
+              {store.otherUser.firstName && store.otherUser.lastName
+                ? `${store.otherUser.firstName} ${store.otherUser.lastName}`
+                : "I don't have a name"}
+            </span>
+            {blocked ? (
+              <Button
+                sx={btnStyles}
+                variant="contained"
+                onClick={async () => {
+                  await UserService.unblockUser(
+                    store.user.id,
+                    store.otherUser.id
+                  );
+                  await store.checkAuth();
+                }}
+              >
+                Unblock User
+              </Button>
+            ) : (
+              <Button
+                sx={btnStyles}
+                variant="contained"
+                onClick={async () => {
+                  await UserService.blockUser(
+                    store.user.id,
+                    store.otherUser.id
+                  );
+                  await store.checkAuth();
+                }}
+              >
+                Block User
+              </Button>
+            )}
+          </p>
+          <p className="profile__about">
+            {store.otherUser.description
+              ? `About me: ${store.otherUser.description}`
+              : "Nothing at now..."}
+          </p>
+          <UserPosts />
+        </div>
       </div>
-      <div className="profile__second__column">
-        <p className="profile__name">
-          <span>
+      <div className="mobile__profile__container">
+        <div className="mobile__profile__column">
+          <Avatar variant="square" src={avatarSrc} sx={avatarStyles}>
+            {store.otherUser.firstName}
+          </Avatar>
+          <p className="mobile__profile__name">
             {store.otherUser.firstName && store.otherUser.lastName
               ? `${store.otherUser.firstName} ${store.otherUser.lastName}`
               : "I don't have a name"}
-          </span>
+          </p>
+          {active ? (
+            <AddFriend disabled={true} />
+          ) : (
+            <AddFriend disabled={false} />
+          )}
+          <SendMessage />
           {blocked ? (
             <Button
               sx={btnStyles}
@@ -149,15 +205,61 @@ const OtherUserProfilePage: FC = () => {
               Block User
             </Button>
           )}
-        </p>
-        <p className="profile__about">
-          {store.otherUser.description
-            ? `About me: ${store.otherUser.description}`
-            : "Nothing at now..."}
-        </p>
-        <UserPosts />
+          <ul className="mobile__profile__info">
+            {store.otherUser.city !== "" ? (
+              <li className="mobile__profile__info__list">
+                City: {store.otherUser.city}
+              </li>
+            ) : null}
+            {store.otherUser.birthday ? (
+              <li className="mobile__profile__info__list">
+                My Birthday:{" "}
+                {store.otherUser.birthday.split("-").reverse().join(".")}
+              </li>
+            ) : null}
+            {store.otherUser.stack !== "" ? (
+              <li className="mobile__profile__info__list">
+                Stack: {store.otherUser.stack}
+              </li>
+            ) : null}
+            {store.otherUser.position !== "" ? (
+              <li className="mobile__profile__info__list">
+                Position: {store.otherUser.position}
+              </li>
+            ) : null}
+            {store.otherUser.department !== "" ? (
+              <li className="mobile__profile__info__list">
+                Department: {store.otherUser.department}
+              </li>
+            ) : null}
+            {store.otherUser.education !== "" ? (
+              <li className="mobile__profile__info__list">
+                Education: {store.otherUser.education}
+              </li>
+            ) : null}
+            {store.otherUser.skype !== "" ? (
+              <li className="mobile__profile__info__list">
+                Skype: {store.otherUser.skype}
+              </li>
+            ) : null}
+            {store.otherUser.phone ? (
+              <li className="mobile__profile__info__list">
+                Phone: {store.otherUser.phone}
+              </li>
+            ) : null}
+          </ul>
+          <p className="mobile__profile__about">
+            {store.otherUser.description !== ""
+              ? `About me: ${store.otherUser.description}`
+              : "Nothing at now..."}
+          </p>
+          {store.otherUser.friends ? (
+            <UserFriends friends={store.otherUser.friends} />
+          ) : null}
+          <UserPosts />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
