@@ -33,7 +33,7 @@ const Users: FC = () => {
   };
 
   useEffect(() => {
-    store.getAllUsers("").then(() => setUsers(store.allUsers));
+    store.getAllUsers().then(() => setUsers(store.allUsers));
     return () => setUsers(null);
   }, [store]);
 

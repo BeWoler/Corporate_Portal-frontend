@@ -12,7 +12,7 @@ interface CreatePostFormProps {
 const CreatePostForm = ({ createPost }: CreatePostFormProps) => {
   const { store } = useContext(Context);
   const [img, setImg] = useState<any>();
-  const [postText, setPostText] = useState<string>();
+  const [postText, setPostText] = useState<string>('');
   const [file, setFile] = useState<any>();
 
   const fileUpload = async (e: any) => {
@@ -100,8 +100,9 @@ const CreatePostForm = ({ createPost }: CreatePostFormProps) => {
             fileChange(e);
           }}
         />
-        {filePreview}
+        {file ? filePreview : null}
         <Input
+          value={postText}
           onChange={(e) => {
             setPostText(e.target.value);
           }}
@@ -116,6 +117,7 @@ const CreatePostForm = ({ createPost }: CreatePostFormProps) => {
       </div>
       <div className="posts__create__btn">
         <Button
+          disabled={postText === "" || file === null}
           onClick={async (e) => {
             e.preventDefault();
             await fileUpload(e);
