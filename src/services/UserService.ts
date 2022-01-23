@@ -4,8 +4,13 @@ import { User } from "../models/user";
 import { AuthResponse } from "../models/response/authResponse";
 
 export default class UserService {
-  static fetchUsers = (args?: any): Promise<AxiosResponse<User[]>> => {
-    return api.get<User[]>("/users", { params: { ...args } });
+  static fetchUsers = (
+    args?: any,
+    limit?: number
+  ): Promise<AxiosResponse> => {
+    return api.get("/users?limit=" + limit, {
+      params: { ...args },
+    });
   };
 
   static blockUser = (

@@ -4,12 +4,15 @@ import { User } from "../../models/user";
 import { Input } from "@mui/material";
 import UserFilter from "../../components/UserFilter/UserFilter";
 import AllUsers from "./AllUsers";
+import FetchMore from "../FetchMore/FetchMore";
 import "./allUsers.sass";
 
 const Users: FC = () => {
   const { store } = useContext(Context);
   const [users, setUsers] = useState<User[]>([]);
   const [search, setSearch] = useState<string>("");
+  const [totalUsers, setTotalUsers] = useState<number>(0);
+  let [limit, setLimit] = useState<number>(10);
 
   const inputStyles = {
     margin: "0 0 2rem 0",
@@ -21,21 +24,28 @@ const Users: FC = () => {
   };
 
   const getUsersWithQuery = async (params: any) => {
-    await store.getAllUsers(params);
+    await store.getAllUsers(params, limit);
     setUsers(store.allUsers);
     return () => setUsers(null);
   };
 
   const getUsersWithoutQuery = async () => {
-    await store.getAllUsers("");
+    await store.getAllUsers("", limit);
     setUsers(store.allUsers);
     return () => setUsers(null);
   };
 
+  const fetchMore = () => {
+    return setLimit(limit + 10);
+  };
+
   useEffect(() => {
-    store.getAllUsers().then(() => setUsers(store.allUsers));
+    store.getAllUsers("", limit).then(() => {
+      setUsers(store.allUsers);
+      setTotalUsers(+store.usersLength);
+    });
     return () => setUsers(null);
-  }, [store]);
+  }, [store, limit]);
 
   const filteredUsers = users?.filter((user) => {
     return (
@@ -65,6 +75,7 @@ const Users: FC = () => {
           />
         </div>
       </div>
+      {users?.length >= totalUsers ? null : <FetchMore fetchMore={fetchMore} />}
     </div>
   );
 };

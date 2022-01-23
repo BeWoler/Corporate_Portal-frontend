@@ -15,6 +15,7 @@ export default class Store {
   user = {} as User;
   otherUser = {} as User;
   allUsers = {} as User[];
+  usersLength = '';
   isAuth = false;
   isAdmin = false;
   isLoading = false;
@@ -43,6 +44,10 @@ export default class Store {
 
   setAllUsers(users: User[]) {
     this.allUsers = users;
+  }
+
+  setUsersLength(length: string) {
+    this.usersLength = length;
   }
 
   setLoading(bool: boolean) {
@@ -197,10 +202,11 @@ export default class Store {
     }
   }
 
-  async getAllUsers(args?: any) {
+  async getAllUsers(args?: any, limit?: number) {
     try {
-      const response = await UserService.fetchUsers(args);
-      this.setAllUsers(response.data);
+      const response = await UserService.fetchUsers(args, limit);
+      this.setAllUsers(response.data.users);
+      this.setUsersLength(response.data.length);
     } catch (e) {
       console.log(e);
     }
