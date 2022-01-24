@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/Corporate_Portal-frontend/static/css/main.dc9beec4.chunk.css",
+    "main.js": "/Corporate_Portal-frontend/static/js/main.436bdbf1.chunk.js",
+    "main.js.map": "/Corporate_Portal-frontend/static/js/main.436bdbf1.chunk.js.map",
+    "runtime-main.js": "/Corporate_Portal-frontend/static/js/runtime-main.b0a48ec7.js",
+    "runtime-main.js.map": "/Corporate_Portal-frontend/static/js/runtime-main.b0a48ec7.js.map",
+    "static/js/2.a06469b1.chunk.js": "/Corporate_Portal-frontend/static/js/2.a06469b1.chunk.js",
+    "static/js/2.a06469b1.chunk.js.map": "/Corporate_Portal-frontend/static/js/2.a06469b1.chunk.js.map",
+    "index.html": "/Corporate_Portal-frontend/index.html",
+    "static/css/main.dc9beec4.chunk.css.map": "/Corporate_Portal-frontend/static/css/main.dc9beec4.chunk.css.map",
+    "static/js/2.a06469b1.chunk.js.LICENSE.txt": "/Corporate_Portal-frontend/static/js/2.a06469b1.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b0a48ec7.js",
+    "static/js/2.a06469b1.chunk.js",
+    "static/css/main.dc9beec4.chunk.css",
+    "static/js/main.436bdbf1.chunk.js"
+  ]
+}
