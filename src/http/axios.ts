@@ -1,9 +1,9 @@
 import axios from "axios";
 import { AuthResponse } from "../models/response/authResponse";
 
-export const API_URL = "https://corporate-portal-itechart.herokuapp.com/api";
-export const ADMIN_API_URL = "https://corporate-portal-itechart.herokuapp.com/admin";
-export const URL = "https://corporate-portal-itechart.herokuapp.com";
+export const API_URL = "https://corporate-portal-server.herokuapp.com/api";
+export const ADMIN_API_URL = "https://corporate-portal-server.herokuapp.com/admin";
+export const URL = "https://corporate-portal-server.herokuapp.com/";
 
 const api = axios.create({
   withCredentials: true,
