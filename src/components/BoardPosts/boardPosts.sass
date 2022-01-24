@@ -1,5 +1,14 @@
 @import ../App/app
 
+.board
+  display: flex
+  flex-direction: column
+
+.board__posts__box
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
+
 .board__post
   background-color: $backgroundComponentsColor
   word-break: break-all
@@ -37,6 +46,11 @@
 .comment__create__form
   display: flex
   align-items: center
+
+@media screen and (max-width: 1100px)
+  .board__posts__box 
+    flex-direction: column
+
 
 @media screen and ( max-width: 500px )
   .board__info

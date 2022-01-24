@@ -34,8 +34,8 @@ export default class PostService {
     return api.get(`/post/id/${userId}`);
   };
 
-  static getAllPosts = (): Promise<AxiosResponse> => {
-    return api.get("/post/all");
+  static getAllPosts = (limit?: number): Promise<AxiosResponse> => {
+    return api.get("/post/all?limit=" + limit);
   };
 
   static like = (post: string, user: string): Promise<AxiosResponse> => {

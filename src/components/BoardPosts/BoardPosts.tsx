@@ -9,35 +9,46 @@ import Moment from "react-moment";
 import CreateCommentForm from "../Posts/CreateCommentForm";
 import Comment from "../Posts/Comment";
 import "./boardPosts.sass";
+import FetchMore from "../FetchMore/FetchMore";
 
 const BoardPosts: FC = () => {
   const { store } = useContext(Context);
   const [posts, setPosts] = useState<Post[]>([]);
   const [isOpen, setIsOpen] = useState<number>();
+  const [limit, setLimit] = useState<number>(10);
+  const [totalPosts, setTotalPosts] = useState<number>(0);
 
-  const getAllPosts = async () => {
-    await PostService.getAllPosts().then((res) => setPosts(res.data.reverse()));
+  const getAllPosts = async (limit: number) => {
+    await PostService.getAllPosts(limit).then((res) => {
+      setPosts(res.data.posts.reverse());
+      setTotalPosts(res.data.length);
+    });
   };
 
   useEffect(() => {
-    getAllPosts();
+    getAllPosts(limit);
     return () => {
       setPosts([]);
     };
-  }, []);
+  }, [limit]);
+
+  const fetchMore = () => {
+    return setLimit(limit + 10);
+  };
 
   const addLike = async (postId: string) => {
     await PostService.like(postId, store.user.id);
-    getAllPosts();
+    getAllPosts(limit);
   };
 
   const addComment = async (comment: string, postId: string) => {
     await PostService.createComment(postId, comment, store.user.id);
-    getAllPosts();
+    getAllPosts(limit);
   };
 
   return (
-    <>
+    <div className="board">
+      <div className="board__posts__box">
       {posts.length > 0
         ? posts.map((post, position) => {
             return (
@@ -124,7 +135,9 @@ const BoardPosts: FC = () => {
             );
           })
         : null}
-    </>
+        </div>
+      {posts?.length >= totalPosts ? null : <FetchMore fetchMore={fetchMore} />}
+    </div>
   );
 };
 

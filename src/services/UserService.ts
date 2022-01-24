@@ -1,13 +1,9 @@
 import api from "../http/axios";
 import { AxiosResponse } from "axios";
-import { User } from "../models/user";
 import { AuthResponse } from "../models/response/authResponse";
 
 export default class UserService {
-  static fetchUsers = (
-    args?: any,
-    limit?: number
-  ): Promise<AxiosResponse> => {
+  static fetchUsers = (args?: any, limit?: number): Promise<AxiosResponse> => {
     return api.get("/users?limit=" + limit, {
       params: { ...args },
     });
