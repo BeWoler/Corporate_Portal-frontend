@@ -24,7 +24,7 @@ const Messenger: FC = () => {
   const socket = useRef(null);
 
   useEffect(() => {
-    socket.current = io("ws://corporate-portal-socket.herokuapp.com", {
+    socket.current = io("https://corporate-portal-server.herokuapp.com", {
       withCredentials: true,
       transportOptions: {
         polling: {
