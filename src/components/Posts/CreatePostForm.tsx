@@ -42,7 +42,7 @@ const CreatePostForm = ({ createPost }: CreatePostFormProps) => {
   const fileChange = (e: any) => {
     let reader = new FileReader();
     const file = e.target.files[0];
-    if (file.size > 8000000) {
+    if (file && file.size > 8000000) {
       setImg(null);
       setFile(null);
       return alert("File size should be less then 8Mb");
