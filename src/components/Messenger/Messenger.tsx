@@ -2,7 +2,7 @@ import { FC, useState, useEffect, useContext, useRef } from "react";
 import { Context } from "../../index";
 import { Input, Button } from "@mui/material";
 import { io } from "socket.io-client";
-import * as dotenv from 'dotenv'
+import * as dotenv from "dotenv";
 import ConversationService from "../../services/ConverstionService";
 import MessagesService from "../../services/MessageService";
 import Conversation from "../../components/Conversation/Conversation";
@@ -23,8 +23,10 @@ const Messenger: FC = () => {
   const scrollRef = useRef<any>();
   const socket = useRef(null);
 
+  const socketUrl = process.env.REACT_APP_SOCKET;
+
   useEffect(() => {
-    socket.current = io(process.env.REACT_APP_SOCKET);
+    socket.current = io(socketUrl);
     socket.current.on("getMessage", (data: any) => {
       setArrivalMessage({
         sender: data.sender,
