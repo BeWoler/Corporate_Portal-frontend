@@ -4,9 +4,9 @@ import * as dotenv from "dotenv";
 
 dotenv.config();
 
-export const API_URL = process.env.REACT_APP_LOCALHOST_API_URL;
-export const ADMIN_API_URL = process.env.REACT_APP_LOCALHOST_ADMIN_API_URL;
-export const URL = process.env.REACT_APP_LOCALHOST_URL;
+export const API_URL = process.env.REACT_APP_API_URL;
+export const ADMIN_API_URL = process.env.REACT_APP_ADMIN_API_URL;
+export const URL = process.env.REACT_APP_URL;
 
 const api = axios.create({
   withCredentials: true,
