@@ -50,6 +50,7 @@ const UserFilter = ({
   return (
     <form className="filter__form">
       <Autocomplete
+        freeSolo={true}
         value={oldCity}
         inputValue={city}
         onInputChange={(event, newInputValue) => {

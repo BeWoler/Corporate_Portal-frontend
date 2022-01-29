@@ -9,6 +9,7 @@ import UserFriends from "../UserFriends/UserFriends";
 import SendMessage from "./SendMessage";
 import UserService from "../../services/UserService";
 import UserPosts from "../UserPosts/UserPosts";
+import Loading from "../Loading/Loading";
 import "./userProfile.sass";
 import "./mobileUserProfile.sass";
 
@@ -17,6 +18,7 @@ const OtherUserProfilePage: FC = () => {
   const location = useLocation();
   const [active, setActive] = useState<boolean>(false);
   const [blocked, setBlocked] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const avatarSrc = store.otherUser.avatar;
   const currentId = location.pathname.split("/").reverse()[0];
   const block: string[] = store.otherUser.blockedUser;
@@ -39,6 +41,11 @@ const OtherUserProfilePage: FC = () => {
   };
 
   useEffect(() => {
+    let timer = setTimeout(() => setLoading(false), 150);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
     if (store.user.friends) {
       store.user.friends.forEach((friendId: any) => {
         if (friendId._id === currentId) {
@@ -56,6 +63,9 @@ const OtherUserProfilePage: FC = () => {
     return () => setBlocked(false);
   }, [store.otherUser.id, store.user.blockedUser]);
 
+  if (loading === true) {
+    return <Loading />;
+  }
   if (store.otherUser.privatePage) {
     return <PrivateProfile />;
   }
@@ -110,7 +120,7 @@ const OtherUserProfilePage: FC = () => {
             ) : null}
             {store.otherUser.phone ? (
               <li className="profile__info__list">
-                Phone: {store.otherUser.phone}
+                Phone: +{store.otherUser.phone}
               </li>
             ) : null}
           </ul>
@@ -244,7 +254,7 @@ const OtherUserProfilePage: FC = () => {
             ) : null}
             {store.otherUser.phone ? (
               <li className="mobile__profile__info__list">
-                Phone: {store.otherUser.phone}
+                Phone: +{store.otherUser.phone}
               </li>
             ) : null}
           </ul>

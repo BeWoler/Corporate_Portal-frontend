@@ -1,11 +1,12 @@
 import axios from "axios";
 import { AuthResponse } from "../models/response/authResponse";
+import * as dotenv from "dotenv";
 
-export const API_URL =
-  "https://corporate-portal-server.herokuapp.com/api";
-export const ADMIN_API_URL =
-  "https://corporate-portal-server.herokuapp.com/admin";
-export const URL = "https://corporate-portal-server.herokuapp.com";
+dotenv.config();
+
+export const API_URL = process.env.REACT_APP_LOCALHOST_API_URL;
+export const ADMIN_API_URL = process.env.REACT_APP_LOCALHOST_ADMIN_API_URL;
+export const URL = process.env.REACT_APP_LOCALHOST_URL;
 
 const api = axios.create({
   withCredentials: true,

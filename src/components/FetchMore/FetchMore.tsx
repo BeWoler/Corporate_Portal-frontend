@@ -8,6 +8,7 @@ const FetchMore = ({ fetchMore }: FetchMoreProps) => {
   const moreBtnStyles = {
     width: "fit-content",
     backgroundColor: "#534ED9",
+    margin: "1rem 0",
     ":hover": { backgroundColor: "#7673D9" },
   };
   return (

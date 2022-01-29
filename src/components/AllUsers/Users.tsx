@@ -12,7 +12,7 @@ const Users: FC = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [search, setSearch] = useState<string>("");
   const [totalUsers, setTotalUsers] = useState<number>(0);
-  let [limit, setLimit] = useState<number>(10);
+  const [limit, setLimit] = useState<number>(10);
 
   const inputStyles = {
     margin: "0 0 2rem 0",
@@ -24,7 +24,7 @@ const Users: FC = () => {
   };
 
   const getUsersWithQuery = async (params: any) => {
-    await store.getAllUsers(params, limit);
+    await store.getAllUsers(params, 0);
     setUsers(store.allUsers);
     return () => setUsers(null);
   };

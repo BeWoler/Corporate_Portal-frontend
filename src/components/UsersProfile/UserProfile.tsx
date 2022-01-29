@@ -1,14 +1,16 @@
-import { FC, useContext } from "react";
+import { FC, useContext, useState, useEffect } from "react";
 import { Context } from "../../index";
 import { Avatar } from "@mui/material";
 import { observer } from "mobx-react-lite";
 import UserPosts from "../UserPosts/UserPosts";
 import UserFriends from "../UserFriends/UserFriends";
+import Loading from "../Loading/Loading";
 import "./userProfile.sass";
 import "./mobileUserProfile.sass";
 
 const UserProfilePage: FC = () => {
   const { store } = useContext(Context);
+  const [loading, setLoading] = useState<boolean>(true);
   const avatarSrc = store.user.avatar;
   const avatarStyles = {
     width: "235px",
@@ -20,6 +22,14 @@ const UserProfilePage: FC = () => {
     fontSize: "50px",
   };
 
+  useEffect(() => {
+    let timer = setTimeout(() => setLoading(false), 150);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading === true) {
+    return <Loading />;
+  }
   return (
     <>
       <div className="profile__container">
@@ -59,7 +69,9 @@ const UserProfilePage: FC = () => {
               <li className="profile__info__list">Skype: {store.user.skype}</li>
             ) : null}
             {store.user.phone ? (
-              <li className="profile__info__list">Phone: {store.user.phone}</li>
+              <li className="profile__info__list">
+                Phone: +{store.user.phone}
+              </li>
             ) : null}
           </ul>
           <UserFriends friends={store.user.friends} />
@@ -127,7 +139,7 @@ const UserProfilePage: FC = () => {
             ) : null}
             {store.user.phone ? (
               <li className="mobile__profile__info__list">
-                Phone: {store.user.phone}
+                Phone: +{store.user.phone}
               </li>
             ) : null}
           </ul>

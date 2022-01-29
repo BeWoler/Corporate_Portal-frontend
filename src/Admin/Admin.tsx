@@ -14,10 +14,10 @@ const Admin = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [currentUser, setCurrentUser] = useState<User>(store.user);
 
-  const getUsers = async() => {
-    const res = await UserService.fetchUsers();
-    return setUsers(res.data);
-  }
+  const getUsers = async () => {
+    const res = await UserService.fetchUsers("", 0);
+    return setUsers(res.data.users);
+  };
 
   useEffect(() => {
     getUsers();
@@ -34,18 +34,18 @@ const Admin = () => {
       <div className="admin__editUser">
         {currentUser === store.user ||
         currentUser._id === store.user.id ? null : (
-          <EditUser currentUser={currentUser} getUsers={getUsers}/>
+          <EditUser currentUser={currentUser} getUsers={getUsers} />
         )}
         {currentUser === store.user ||
         currentUser._id === store.user.id ? null : (
-          <ChangeUserPassword currentUser={currentUser} getUsers={getUsers}/>
+          <ChangeUserPassword currentUser={currentUser} getUsers={getUsers} />
         )}
         {currentUser === store.user ||
         currentUser._id === store.user.id ? null : (
-          <ChangeUserAvatar currentUser={currentUser} getUsers={getUsers}/>
+          <ChangeUserAvatar currentUser={currentUser} getUsers={getUsers} />
         )}
       </div>
-      <Registration getUsers={getUsers}/>
+      <Registration getUsers={getUsers} />
     </div>
   );
 };
