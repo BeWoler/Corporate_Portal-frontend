@@ -41,7 +41,7 @@ const OtherUserProfilePage: FC = () => {
   };
 
   useEffect(() => {
-    let timer = setTimeout(() => setLoading(false), 150);
+    let timer = setTimeout(() => setLoading(false), 200);
     return () => clearTimeout(timer);
   }, []);
 
