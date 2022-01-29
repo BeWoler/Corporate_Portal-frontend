@@ -2,11 +2,14 @@ import { FC, useState, useEffect, useContext, useRef } from "react";
 import { Context } from "../../index";
 import { Input, Button } from "@mui/material";
 import { io } from "socket.io-client";
+import * as dotenv from 'dotenv'
 import ConversationService from "../../services/ConverstionService";
 import MessagesService from "../../services/MessageService";
 import Conversation from "../../components/Conversation/Conversation";
 import Message from "../../components/Message/Message";
 import "./messenger.sass";
+
+dotenv.config();
 
 const Messenger: FC = () => {
   const { store } = useContext(Context);
@@ -21,7 +24,7 @@ const Messenger: FC = () => {
   const socket = useRef(null);
 
   useEffect(() => {
-    socket.current = io("https://corporate-portal-socket.herokuapp.com");
+    socket.current = io(process.env.REACT_APP_SOCKET);
     socket.current.on("getMessage", (data: any) => {
       setArrivalMessage({
         sender: data.sender,
