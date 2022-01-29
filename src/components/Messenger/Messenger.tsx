@@ -24,7 +24,7 @@ const Messenger: FC = () => {
   const socket = useRef(null);
 
   useEffect(() => {
-    socket.current = io(process.env.REACT_APP_CORS_SOCKET, {
+    socket.current = io("ws://corporate-portal-socket.herokuapp.com", {
       withCredentials: true,
       transportOptions: {
         polling: {
