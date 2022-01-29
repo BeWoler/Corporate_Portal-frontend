@@ -33,7 +33,7 @@ const Messenger: FC = () => {
         text: data.text,
       });
     });
-  }, []);
+  }, [socketUrl]);
 
   useEffect(() => {
     arrivalMessage &&
