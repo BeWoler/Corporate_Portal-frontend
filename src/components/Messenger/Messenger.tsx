@@ -21,7 +21,7 @@ const Messenger: FC = () => {
   const socket = useRef(null);
 
   useEffect(() => {
-    socket.current = io("https://corporate-portal-socket.herokuapp.com/");
+    socket.current = io("https://corporate-portal-socket.herokuapp.com");
     socket.current.on("getMessage", (data: any) => {
       setArrivalMessage({
         sender: data.sender,
