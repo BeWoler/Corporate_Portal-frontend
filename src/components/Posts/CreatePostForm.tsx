@@ -42,6 +42,7 @@ const CreatePostForm = ({ createPost }: CreatePostFormProps) => {
   const fileChange = (e: any) => {
     let reader = new FileReader();
     const file = e.target.files[0];
+    console.log(file.size);
     if (file) {
       reader.onloadend = () => {
         setImg(reader.result);
