@@ -23,7 +23,7 @@ const Messenger: FC = () => {
   const scrollRef = useRef<any>();
   const socket = useRef(null);
 
-  const socketUrl = process.env.REACT_APP_SOCKET;
+  const socketUrl = "https://corporate-portal-socket.herokuapp.com";
 
   useEffect(() => {
     socket.current = io(socketUrl);
