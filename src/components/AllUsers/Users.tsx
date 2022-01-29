@@ -25,13 +25,13 @@ const Users: FC = () => {
 
   const getUsersWithQuery = async (params: any) => {
     await store.getAllUsers(params, 0);
-    setUsers(store.allUsers);
+    setUsers(store.allUsers.reverse());
     return () => setUsers(null);
   };
 
   const getUsersWithoutQuery = async () => {
     await store.getAllUsers("", limit);
-    setUsers(store.allUsers);
+    setUsers(store.allUsers.reverse());
     return () => setUsers(null);
   };
 
@@ -41,7 +41,7 @@ const Users: FC = () => {
 
   useEffect(() => {
     store.getAllUsers("", limit).then(() => {
-      setUsers(store.allUsers);
+      setUsers(store.allUsers.reverse());
       setTotalUsers(+store.usersLength);
     });
     return () => setUsers(null);
@@ -65,6 +65,7 @@ const Users: FC = () => {
         sx={inputStyles}
         onChange={(e) => setSearch(e.target.value)}
       />
+      {users?.length >= totalUsers ? null : <FetchMore fetchMore={fetchMore} />}
       <div className="users__box">
         <AllUsers filteredUsers={filteredUsers} />
         <div className="users__filter">
@@ -75,7 +76,6 @@ const Users: FC = () => {
           />
         </div>
       </div>
-      {users?.length >= totalUsers ? null : <FetchMore fetchMore={fetchMore} />}
     </div>
   );
 };
