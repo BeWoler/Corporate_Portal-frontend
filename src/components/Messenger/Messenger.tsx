@@ -21,7 +21,7 @@ const Messenger: FC = () => {
   const socket = useRef(null);
 
   useEffect(() => {
-    socket.current = io("ws://localhost:3020");
+    socket.current = io(process.env.REACT_APP_SOCKET);
     socket.current.on("getMessage", (data: any) => {
       setArrivalMessage({
         sender: data.sender,
