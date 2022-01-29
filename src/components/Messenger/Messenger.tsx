@@ -28,6 +28,13 @@ const Messenger: FC = () => {
   useEffect(() => {
     socket.current = io(socketUrl, {
       withCredentials: true,
+      transportOptions: {
+        polling: {
+          extraHeaders: {
+            "my-custom-header": "test",
+          },
+        },
+      },
     });
     socket.current.on("getMessage", (data: any) => {
       setArrivalMessage({
