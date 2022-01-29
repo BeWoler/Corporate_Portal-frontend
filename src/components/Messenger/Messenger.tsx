@@ -23,10 +23,8 @@ const Messenger: FC = () => {
   const scrollRef = useRef<any>();
   const socket = useRef(null);
 
-  const socketUrl = "https://corporate-portal-socket.herokuapp.com";
-
   useEffect(() => {
-    socket.current = io(socketUrl, {
+    socket.current = io(process.env.REACT_APP_CORS_SOCKET, {
       withCredentials: true,
       transportOptions: {
         polling: {
@@ -42,7 +40,7 @@ const Messenger: FC = () => {
         text: data.text,
       });
     });
-  }, [socketUrl]);
+  }, []);
 
   useEffect(() => {
     arrivalMessage &&
