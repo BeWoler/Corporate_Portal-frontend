@@ -21,13 +21,14 @@ const Messenger: FC = () => {
   const socket = useRef(null);
 
   useEffect(() => {
-    socket.current = io("ws://localhost:3020");
+    socket.current = io("http://localhost:4000");
     socket.current.on("getMessage", (data: any) => {
       setArrivalMessage({
         sender: data.sender,
         text: data.text,
       });
     });
+    return () => socket.current.disconnect();
   }, []);
 
   useEffect(() => {
