@@ -177,8 +177,8 @@ const Messenger: FC = () => {
             <hr />
             <form
               className="messenger__form"
-              onKeyDown={(e) => {
-                if (e.code === "13" && newMessage !== "") {
+              onKeyUp={(e) => {
+                if (+e.code === 13 && newMessage !== "") {
                   sendMessage();
                 }
                 return;
