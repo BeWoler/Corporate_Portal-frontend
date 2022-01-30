@@ -175,7 +175,15 @@ const Messenger: FC = () => {
                 : null}
             </div>
             <hr />
-            <form className="messenger__form" onKeyDown={sendMessage}>
+            <form
+              className="messenger__form"
+              onKeyDown={(e) => {
+                if (e.code === "13" && newMessage !== "") {
+                  sendMessage();
+                }
+                return;
+              }}
+            >
               {fromFriend ? (
                 <Input
                   value={newMessage}
