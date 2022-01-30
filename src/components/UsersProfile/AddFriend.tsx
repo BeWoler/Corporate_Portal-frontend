@@ -1,8 +1,7 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Context } from "../../index";
-import { useNavigate } from "react-router-dom";
-import FriendsService from "../../services/FriendsService";
 import { Button } from "@mui/material";
+import FriendsService from "../../services/FriendsService";
 import "./userProfile.sass";
 
 interface BtnProps {
@@ -11,11 +10,11 @@ interface BtnProps {
 
 const AddFriend = ({ disabled }: BtnProps) => {
   const { store } = useContext(Context);
-  const navigate = useNavigate();
+  const [active, setActive] = useState<boolean>(disabled);
 
   const addFriend = async () => {
     await FriendsService.request(store.otherUser.id, store.user.id);
-    navigate(`/friends/${store.user.id}`);
+    setActive(true);
   };
 
   const btnStyles = {
@@ -27,7 +26,7 @@ const AddFriend = ({ disabled }: BtnProps) => {
 
   return (
     <Button
-      disabled={disabled}
+      disabled={active}
       variant="contained"
       sx={btnStyles}
       onClick={addFriend}

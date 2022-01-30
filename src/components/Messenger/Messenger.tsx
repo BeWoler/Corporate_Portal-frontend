@@ -200,6 +200,7 @@ const Messenger: FC = () => {
                 </Button>
               ) : (
                 <Button
+                  type="submit"
                   disabled
                   variant="contained"
                   sx={btnStyles}
