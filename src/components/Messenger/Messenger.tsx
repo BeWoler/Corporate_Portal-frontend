@@ -175,12 +175,7 @@ const Messenger: FC = () => {
                 : null}
             </div>
             <hr />
-            <form
-              className="messenger__form"
-              onKeyUp={e => {
-                +e.code === 13 ? sendMessage() : null
-              }}
-            >
+            <form className="messenger__form">
               {fromFriend ? (
                 <Input
                   value={newMessage}
@@ -200,6 +195,13 @@ const Messenger: FC = () => {
                   variant="contained"
                   sx={btnStyles}
                   onClick={sendMessage}
+                  onKeyUp={(e) => {
+                    if (e.code === "13") {
+                      return sendMessage();
+                    } else {
+                      return;
+                    }
+                  }}
                 >
                   Send
                 </Button>
