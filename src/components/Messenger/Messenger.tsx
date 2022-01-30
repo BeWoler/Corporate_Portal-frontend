@@ -177,11 +177,8 @@ const Messenger: FC = () => {
             <hr />
             <form
               className="messenger__form"
-              onKeyUp={(e) => {
-                if (+e.code === 13 && newMessage !== "") {
-                  sendMessage();
-                }
-                return;
+              onKeyUp={e => {
+                +e.code === 13 ? sendMessage() : null
               }}
             >
               {fromFriend ? (
