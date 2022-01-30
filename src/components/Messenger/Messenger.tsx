@@ -175,7 +175,7 @@ const Messenger: FC = () => {
                 : null}
             </div>
             <hr />
-            <form className="messenger__form" method="post">
+            <form className="messenger__form" onKeyDown={sendMessage}>
               {fromFriend ? (
                 <Input
                   value={newMessage}
@@ -200,7 +200,6 @@ const Messenger: FC = () => {
                 </Button>
               ) : (
                 <Button
-                  type="submit"
                   disabled
                   variant="contained"
                   sx={btnStyles}
