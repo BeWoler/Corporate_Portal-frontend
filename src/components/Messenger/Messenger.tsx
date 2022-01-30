@@ -175,7 +175,7 @@ const Messenger: FC = () => {
                 : null}
             </div>
             <hr />
-            <form className="messenger__form">
+            <form className="messenger__form" method="post">
               {fromFriend ? (
                 <Input
                   value={newMessage}
