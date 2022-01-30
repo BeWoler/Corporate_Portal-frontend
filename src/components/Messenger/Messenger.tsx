@@ -195,13 +195,6 @@ const Messenger: FC = () => {
                   variant="contained"
                   sx={btnStyles}
                   onClick={sendMessage}
-                  onKeyUp={(e) => {
-                    if (e.code === "13") {
-                      return sendMessage();
-                    } else {
-                      return;
-                    }
-                  }}
                 >
                   Send
                 </Button>
