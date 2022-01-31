@@ -13,15 +13,21 @@ const ChangeAvatar: FC = () => {
   const imageChange = (event: any) => {
     let reader = new FileReader();
     const file = event.target.files[0];
-    if (file) {
-      reader.onloadend = () => {
-        setImg(reader.result);
-      };
-      reader.readAsDataURL(file);
-      setFile(file);
-    } else {
+    if (file && file.size > 8000000) {
       setImg(null);
       setFile(null);
+      return alert("File size should be less then 8Mb");
+    } else {
+      if (file) {
+        reader.onloadend = () => {
+          setImg(reader.result);
+        };
+        reader.readAsDataURL(file);
+        setFile(file);
+      } else {
+        setImg(null);
+        setFile(null);
+      }
     }
   };
 

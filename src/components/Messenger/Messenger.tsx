@@ -175,7 +175,7 @@ const Messenger: FC = () => {
                 : null}
             </div>
             <hr />
-            <form className="messenger__form">
+            <form className="messenger__form" onSubmit={sendMessage}>
               {fromFriend ? (
                 <Input
                   value={newMessage}
@@ -192,6 +192,7 @@ const Messenger: FC = () => {
               )}
               {newMessage !== "" ? (
                 <Button
+                  type="submit"
                   variant="contained"
                   sx={btnStyles}
                   onClick={sendMessage}
