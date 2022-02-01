@@ -12,7 +12,7 @@ interface CreatePostFormProps {
 const CreatePostForm = ({ createPost }: CreatePostFormProps) => {
   const { store } = useContext(Context);
   const [img, setImg] = useState<any>();
-  const [postText, setPostText] = useState<string>('');
+  const [postText, setPostText] = useState<string>("");
   const [file, setFile] = useState<any>();
 
   const fileUpload = async (e: any) => {
@@ -42,15 +42,21 @@ const CreatePostForm = ({ createPost }: CreatePostFormProps) => {
   const fileChange = (e: any) => {
     let reader = new FileReader();
     const file = e.target.files[0];
-    if (file) {
-      reader.onloadend = () => {
-        setImg(reader.result);
-      };
-      reader.readAsDataURL(file);
-      setFile(file);
-    } else {
+    if (file && file.size > 8000000) {
       setImg(null);
       setFile(null);
+      return alert("File size should be less then 8Mb");
+    } else {
+      if (file) {
+        reader.onloadend = () => {
+          setImg(reader.result);
+        };
+        reader.readAsDataURL(file);
+        setFile(file);
+      } else {
+        setImg(null);
+        setFile(null);
+      }
     }
   };
 

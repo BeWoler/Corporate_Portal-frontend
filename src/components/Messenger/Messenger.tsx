@@ -6,7 +6,10 @@ import ConversationService from "../../services/ConverstionService";
 import MessagesService from "../../services/MessageService";
 import Conversation from "../../components/Conversation/Conversation";
 import Message from "../../components/Message/Message";
+import * as dotenv from "dotenv";
 import "./messenger.sass";
+
+dotenv.config();
 
 const Messenger: FC = () => {
   const { store } = useContext(Context);
@@ -21,7 +24,9 @@ const Messenger: FC = () => {
   const socket = useRef(null);
 
   useEffect(() => {
-    socket.current = io("http://localhost:4000");
+    socket.current = io("http://localhost:4000", {
+      withCredentials: true,
+    });
     socket.current.on("getMessage", (data: any) => {
       setArrivalMessage({
         sender: data.sender,
