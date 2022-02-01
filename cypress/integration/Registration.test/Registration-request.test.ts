@@ -25,7 +25,7 @@ describe("Registration request test", () => {
       method: "POST",
       url: apiUrl + "/registration",
       body: {
-        email: "test@test.com",
+        email: "bewoler@gmail.com",
         username: "cypress",
         firstName: "First",
         lastName: "Last",
@@ -44,7 +44,7 @@ describe("Registration request test", () => {
       url: apiUrl + "/registration",
       body: {
         email: "cypress@cypress.com",
-        username: "test",
+        username: "BeWoler",
         firstName: "First",
         lastName: "Last",
         password: "cypress123214",
@@ -73,24 +73,4 @@ describe("Registration request test", () => {
       expect(res.body.message).to.eq("Validation error");
     });
   });
-
-  // it("Request with the right data", () => {
-  //   cy.request({
-  //     method: "POST",
-  //     url: apiUrl + "/registration",
-  //     body: {
-  //       email: "cypress@cypress.com",
-  //       username: "cypress",
-  //       firstName: "First",
-  //       lastName: "Last",
-  //       password: "1234",
-  //     },
-  //     failOnStatusCode: true,
-  //   }).then((res) => {
-  //     expect(res.status).to.eq(200);
-  //     cy.getCookie("refreshToken");
-  //     cy.getCookie("role");
-  //     cy.getCookie("username");
-  //   });
-  // });
 });

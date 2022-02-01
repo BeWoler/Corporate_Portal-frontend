@@ -42,10 +42,6 @@ const Header: FC = () => {
             <Link to="/">Corporate Portal</Link>
           </p>
         </div>
-        <div className="header__signBtns">
-          <Link to="login">Sign In</Link>
-          <Link to="registration">Sign Up</Link>
-        </div>
       </div>
     </header>
   );

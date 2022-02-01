@@ -7,7 +7,7 @@ describe("Login request test", () => {
       method: "POST",
       url: apiUrl + "/login",
       body: {
-        username: "cypress",
+        username: "BeeeeeeeWoler",
         password: "cypress123214",
       },
       failOnStatusCode: false,
@@ -22,8 +22,8 @@ describe("Login request test", () => {
       method: "POST",
       url: apiUrl + "/login",
       body: {
-        username: "test",
-        password: "cypress123214",
+        username: "BeWoler",
+        password: "1111111111",
       },
       failOnStatusCode: false,
     }).then((res) => {
@@ -37,7 +37,7 @@ describe("Login request test", () => {
       method: "POST",
       url: apiUrl + "/login",
       body: {
-        username: "test",
+        username: "BeWoler",
         password: "1234",
       },
       failOnStatusCode: true,

@@ -25,8 +25,8 @@ describe("Login test", () => {
 
   it("Send request and get an error that password is wrong", () => {
     cy.get('input[placeholder="Username"]')
-      .type("test")
-      .should("have.value", "test");
+      .type("BeWoler")
+      .should("have.value", "1");
     cy.get('input[placeholder="Password"]')
       .type("12345")
       .should("have.value", "12345");
@@ -37,7 +37,7 @@ describe("Login test", () => {
 
   it("Send a valid request and get a token", () => {
     cy.get('input[placeholder="Username"]')
-      .type("test")
+      .type("BeWoler")
       .should("have.value", "test");
     cy.get('input[placeholder="Password"]')
       .type("1234")
