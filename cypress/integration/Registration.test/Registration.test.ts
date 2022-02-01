@@ -34,7 +34,7 @@ describe("Registration test", () => {
   });
 
   it("Send request with existing email", () => {
-    cy.get('input[placeholder="Email"]').type("test@test.com");
+    cy.get('input[placeholder="Email"]').type("bewoler@gmail.com");
     cy.get('input[placeholder="Username"]').type("cypress");
     cy.get('input[placeholder="First Name"]').type("FirstName");
     cy.get('input[placeholder="Last Name"]').type("LastName");
@@ -46,8 +46,8 @@ describe("Registration test", () => {
   });
 
   it("Send request with existing username", () => {
-    cy.get('input[placeholder="Email"]').type("cypress@cypress.com");
-    cy.get('input[placeholder="Username"]').type("test");
+    cy.get('input[placeholder="Email"]').type("testtesttest@gmail.com");
+    cy.get('input[placeholder="Username"]').type("BeWoler");
     cy.get('input[placeholder="First Name"]').type("FirstName");
     cy.get('input[placeholder="Last Name"]').type("LastName");
     cy.get('input[placeholder="Password"]').type("123456");
@@ -70,8 +70,8 @@ describe("Registration test", () => {
   });
 
   it("Send a valid request and get a token", () => {
-    cy.get('input[placeholder="Email"]').type("cypress@cypress.com");
-    cy.get('input[placeholder="Username"]').type("cypress");
+    cy.get('input[placeholder="Email"]').type("newtestcypress@cypress.com");
+    cy.get('input[placeholder="Username"]').type("cypress12345");
     cy.get('input[placeholder="First Name"]').type("FirstName");
     cy.get('input[placeholder="Last Name"]').type("LastName");
     cy.get('input[placeholder="Password"]').type("1234");
