@@ -54,9 +54,9 @@ const FriendsRequest: FC = () => {
         {requests?.length > 0
           ? requests.map((request: any) => {
               return (
-                <div key={request._id} className="requests">
-                  {request.sender.firstName} {request.sender.lastName} wants to
-                  add you as a friend
+                <div key={request?._id} className="requests">
+                  {request?.sender?.firstName} {request?.sender?.lastName} wants
+                  to add you as a friend
                   <div>
                     <Button
                       variant="contained"
